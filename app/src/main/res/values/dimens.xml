@@ -1,0 +1,32 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="basic_line_height">0.5dp</dimen>
+
+    <!-- ==========Ld_sdk_demo====start======================================== -->
+
+    <dimen name="base_item_height">64dp</dimen>
+    <dimen name="base_item_height_phone">50dp</dimen>
+
+    <dimen name="s1">9sp</dimen>
+    <dimen name="s2">11sp</dimen>
+    <dimen name="s3">12sp</dimen>
+    <dimen name="s4">13sp</dimen>
+    <dimen name="s5">14sp</dimen>
+    <dimen name="s6">15sp</dimen>
+    <dimen name="s7">16sp</dimen>
+    <dimen name="s8">17sp</dimen>
+    <dimen name="s9">19sp</dimen>
+    <dimen name="s10">23sp</dimen>
+    <dimen name="s11">24sp</dimen>
+    <dimen name="s12">28sp</dimen>
+    <dimen name="s13">38sp</dimen>
+    <dimen name="s14">48sp</dimen>
+    <dimen name="s100">100sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <!-- ==========Ld_sdk_demo====end======================================== -->
+
+</resources>

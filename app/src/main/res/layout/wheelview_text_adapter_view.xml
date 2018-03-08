@@ -3,27 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.bill.main.MainActivity"
     android:orientation="vertical"
     >
-    <com.common.base.CommonTitleView
-        android:id="@+id/commonTitleView"
+    <com.common.base.CustomFontDigitTextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <com.common.base.CustomFontTextView
-        android:id="@+id/addBtnTextView"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="42dp"
         android:text="ADD"
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
-        android:onClick="onBtnClick"
-        android:clickable="true"
-        android:background="@drawable/input_bg"
+        android:textColor="@color/c12"
+        android:textSize="@dimen/s4"
         />
-
-
-
 </LinearLayout>

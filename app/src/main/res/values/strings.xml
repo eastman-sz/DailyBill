@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">DailyBill</string>
+
+    <string name="digits_money">0123456789.</string>
 </resources>

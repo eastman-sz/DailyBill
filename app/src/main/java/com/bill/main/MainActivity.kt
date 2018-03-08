@@ -1,8 +1,12 @@
 package com.bill.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import com.bill.consumption.AddConsumptionActivity
 import com.common.base.BaseAppCompactActivitiy
 import com.sz.kk.daily.bill.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseAppCompactActivitiy() {
 
@@ -14,6 +18,16 @@ class MainActivity : BaseAppCompactActivitiy() {
     }
 
 
+    fun onBtnClick(v : View){
+        when(v){
+            addBtnTextView ->{
+                startActivity(Intent(context , AddConsumptionActivity::class.java))
+            }
 
+
+
+
+        }
+    }
 
 }

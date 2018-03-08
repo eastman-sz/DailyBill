@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="PullToZoomView">
+        <attr name="headerView" format="reference" />
+        <attr name="contentView" format="reference" />
+        <attr name="zoomView" format="reference" />
+        <attr name="isHeaderParallax" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="HorizontalWheelView">
+        <attr name="bgroudColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="commonReportItemView">
+        <attr name="itemName" format="string" />
+        <attr name="itemNameTextColor" format="reference" />
+        <attr name="unit" format="string" />
+        <attr name="hint" format="string" />
+        <attr name="itemIcon" format="reference" />
+        <attr name="valueDrawableRightIcon" format="reference" />
+        <attr name="valueTextColor" format="reference" />
+        <attr name="valueTextSize" format="dimension" />
+        <attr name="showBottomLine" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="phoneImageView">
+        <attr name="phoneIcon" format="reference" />
+    </declare-styleable>
+
+</resources>
