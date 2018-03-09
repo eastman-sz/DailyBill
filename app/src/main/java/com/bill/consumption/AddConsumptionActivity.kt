@@ -11,6 +11,9 @@ import com.common.base.ITextChangedListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
 import kotlinx.android.synthetic.main.activity_add_consumption.*
+import android.widget.ArrayAdapter
+
+
 
 class AddConsumptionActivity : BaseAppCompactActivitiy() {
 
@@ -38,6 +41,25 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 onBackPressed()
             }
         })
+    }
+
+    override fun initViews() {
+        val list = ArrayList<String>()
+        list.add("A")
+        list.add("AB")
+        list.add("AC")
+        list.add("AD")
+        list.add("AE")
+
+        val adapter = AutoCompleteAdapter(context , list)
+
+        val autoString = arrayOf("联合国", "联合国安理会", "联合国五个常任理事国", "bb", "bcd", "bcdf", "Google", "Google Map", "Google Android")
+
+//        val adapter = ArrayAdapter(this,
+//                R.layout.auto_complete_adapter_view, autoString)
+
+        autoCompleteTextView.setAdapter(adapter)
+
     }
 
     override fun initListener() {
