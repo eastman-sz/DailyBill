@@ -23,6 +23,7 @@
         android:layout_marginRight="15dp"
         >
         <com.common.base.CustomFontEditText
+            android:id="@+id/amountTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
@@ -142,6 +143,7 @@
         android:layout_marginRight="15dp"
         >
         <com.common.base.CustomFontEditText
+            android:id="@+id/remarksTextView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="fill_horizontal"
@@ -170,6 +172,22 @@
             />
     </RelativeLayout>
 
+    <com.common.base.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <com.common.base.CustomFontTextView
+        android:id="@+id/saveBtnTextView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:textColor="@color/c10"
+        android:textSize="@dimen/s6"
+        android:text="保存"
+        android:background="@drawable/gray_disabled_retangle_selector"
+        />
 
 
 </LinearLayout>
