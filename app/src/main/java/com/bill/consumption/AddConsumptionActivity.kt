@@ -3,6 +3,7 @@ package com.bill.consumption
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import com.bill.bill.DaiyBillDbHelper
 import com.bill.dialog.DateTimeSelectDialog
 import com.common.base.BaseAppCompactActivitiy
 import com.common.base.CommonTitleView
@@ -14,6 +15,9 @@ import kotlinx.android.synthetic.main.activity_add_consumption.*
 class AddConsumptionActivity : BaseAppCompactActivitiy() {
 
     var cTimestamp : Long = 0L;
+
+    var amountRight = false
+    var timeRight = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +44,9 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
         amountTextView.addTextChangedListener(object : ITextChangedListener(){
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 val right = checkAmountRight()
+                amountRight = right
+
+                freshBtn()
 
                 Log.e("ilog" , "是否正确:  " + right)
 
@@ -85,10 +92,23 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 dialog.onDateTimeSelectedListener = object : DateTimeSelectDialog.OnDateTimeSelectedListener{
                     override fun onSelected(timestamp: Long) {
                         runOnUiThread {
+                            cTimestamp = timestamp
+                            timeRight = true
                             dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy-MM-dd HH:mm:ss")
+
+                            freshBtn()
                         }
                     }
                 }
+            }
+
+            saveBtnTextView -> {
+                val amount = amountTextView.text.toString().toFloat()
+                val remarks = remarksTextView.text.toString()
+
+                DaiyBillDbHelper.save(amount , cTimestamp , remarks)
+
+                onBackPressed()
             }
         }
     }
@@ -108,6 +128,19 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
         return right
     }
 
+    fun freshBtn(){
+        val right = amountRight && timeRight
+        when(right){
+            false -> {
+                saveBtnTextView.setBackgroundResource(R.drawable.gray_disabled_retangle_selector)
+            }
+
+            true -> {
+                saveBtnTextView.setBackgroundResource(R.drawable.c1_c2_retangle_selector)
+            }
+
+        }
+    }
 
 
 }

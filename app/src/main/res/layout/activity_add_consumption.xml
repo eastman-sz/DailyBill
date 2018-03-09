@@ -187,7 +187,8 @@
         android:textSize="@dimen/s6"
         android:text="保存"
         android:background="@drawable/gray_disabled_retangle_selector"
+        android:onClick="onBtnClick"
+        android:clickable="true"
         />
-
 
 </LinearLayout>

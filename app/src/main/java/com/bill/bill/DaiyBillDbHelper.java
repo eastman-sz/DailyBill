@@ -12,14 +12,32 @@ import java.util.ArrayList;
  */
 public class DaiyBillDbHelper {
 
-    public static void save(long bid , long billtime ,long ctime ,String remarks ,int industryId ,int marketId){
+    public static void save(float amount ,long billtime ,String remarks ,int industryId ,int marketId){
         ContentValues values = new ContentValues();
+        long bid = System.currentTimeMillis();
         values.put("bid" , bid);
         values.put("billtime" , billtime);
-        values.put("ctime" , ctime);
+        values.put("ctime" , bid);
         values.put("remarks" , remarks);
         values.put("industryId" , industryId);
         values.put("marketId" , marketId);
+        values.put("amount" , amount);
+
+        SQLiteDatabase db = ISqliteDataBase.getSqLiteDatabase();
+        int count = db.update(DBNAME , values , "bid = ? " , new String[]{String.valueOf(bid)});
+        if (count < 1){
+            db.insert(DBNAME , null , values);
+        }
+    }
+
+    public static void save(float amount ,long billtime ,String remarks){
+        ContentValues values = new ContentValues();
+        long bid = System.currentTimeMillis();
+        values.put("bid" , bid);
+        values.put("billtime" , billtime);
+        values.put("ctime" , bid);
+        values.put("remarks" , remarks);
+        values.put("amount" , amount);
 
         SQLiteDatabase db = ISqliteDataBase.getSqLiteDatabase();
         int count = db.update(DBNAME , values , "bid = ? " , new String[]{String.valueOf(bid)});
@@ -83,6 +101,7 @@ public class DaiyBillDbHelper {
         String remarks = CursorHelper.getString(cursor, "remarks");
         int industryId = CursorHelper.getInt(cursor, "industryId");
         int marketId = CursorHelper.getInt(cursor, "marketId");
+        float amount = CursorHelper.getFloat(cursor, "amount");
 
         DailyBill dailyBill =  new DailyBill();
         dailyBill.setBid(bid);
@@ -91,6 +110,7 @@ public class DaiyBillDbHelper {
         dailyBill.setRemarks(remarks);
         dailyBill.setIndustryId(industryId);
         dailyBill.setMarketId(marketId);
+        dailyBill.setAmount(amount);
 
         return dailyBill;
     }
@@ -105,6 +125,7 @@ public class DaiyBillDbHelper {
                 .addColumn_Varchar("remarks" , 20)
                 .addColumn_Integer("industryId")
                 .addColumn_Integer("marketId")
+                .addColumn_Float("amount")
 
                 .buildTable(db);
     }

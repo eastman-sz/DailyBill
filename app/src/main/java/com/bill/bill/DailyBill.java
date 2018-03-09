@@ -6,6 +6,7 @@ package com.bill.bill;
 public class DailyBill {
 
     private long bid = 0L;
+    private float amount = 0f;
     private long billtime = 0L;
     private long ctime = 0L;
     private String remarks = "";
@@ -58,5 +59,12 @@ public class DailyBill {
 
     public void setMarketId(int marketId) {
         this.marketId = marketId;
+    }
+
+    public float getAmount() {
+        return amount;
+    }
+    public void setAmount(float amount) {
+        this.amount = amount;
     }
 }

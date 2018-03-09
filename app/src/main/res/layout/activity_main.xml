@@ -24,6 +24,18 @@
         android:background="@drawable/input_bg"
         />
 
+    <com.common.base.CustomFontTextView
+        android:id="@+id/listBtnTextView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="List"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:onClick="onBtnClick"
+        android:clickable="true"
+        android:background="@drawable/input_bg"
+        />
+
 
 
 </LinearLayout>

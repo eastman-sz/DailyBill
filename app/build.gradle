@@ -43,4 +43,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     compile(name: 'commonviewslib', ext: 'aar')
     compile(name: 'wheelview', ext: 'aar')
+    compile(name: 'pullFreshView', ext: 'aar')
 }

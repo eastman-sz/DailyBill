@@ -3,6 +3,7 @@ package com.bill.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import com.bill.bill.BillListActivity
 import com.bill.consumption.AddConsumptionActivity
 import com.common.base.BaseAppCompactActivitiy
 import com.sz.kk.daily.bill.R
@@ -24,8 +25,9 @@ class MainActivity : BaseAppCompactActivitiy() {
                 startActivity(Intent(context , AddConsumptionActivity::class.java))
             }
 
-
-
+            listBtnTextView -> {
+                startActivity(Intent(context , BillListActivity::class.java))
+            }
 
         }
     }

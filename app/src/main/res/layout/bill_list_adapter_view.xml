@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.bill.BillListActivity"
+    android:orientation="vertical"
+    android:background="@color/transparent"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="@drawable/list_item_bg"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_vertical"
+            >
+            <com.common.base.CustomFontTextView
+                android:id="@+id/marketTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/s4"
+                android:textColor="@color/c8"
+                android:gravity="center_vertical"
+                android:text="aa"
+                />
+
+            <com.common.base.CustomFontTextView
+                android:id="@+id/timeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/s4"
+                android:textColor="@color/c13"
+                android:gravity="center_vertical"
+                android:text="aa"
+                android:layout_marginTop="10dp"
+                />
+        </LinearLayout>
+
+        <com.common.base.CustomFontDigitTextView
+            android:id="@+id/amountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s11"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="111"
+            />
+    </LinearLayout>
+
+    <ImageView style="@style/full_line_style" />
+
+</LinearLayout>
