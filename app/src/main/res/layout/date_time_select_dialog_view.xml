@@ -23,7 +23,7 @@
         android:layout_height="210dp"
         android:background="@color/transparent"
         >
-        <com.bill.wheelview.custom.DateTimeSelectWheelview
+        <com.bill.wheelview.DateTimeSelectWheelview
             android:id="@+id/dateTimeSelectWheelview"
             android:layout_width="match_parent"
             android:layout_height="210dp"/>

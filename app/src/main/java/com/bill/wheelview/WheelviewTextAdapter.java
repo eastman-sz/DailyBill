@@ -1,14 +1,17 @@
-package com.bill.wheelview.custom;
+package com.bill.wheelview;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.bill.wheelview.adapter.AbstractWheelAdapter;
+
 import com.common.base.CustomFontDigitTextView;
 import com.common.base.ViewHolder;
+import com.sfs.adapter.AbstractWheelAdapter;
 import com.sz.kk.daily.bill.R;
+
 import java.util.ArrayList;
+
 /**
  * Created by E on 2018/3/8.
  */

@@ -1,16 +1,19 @@
-package com.bill.wheelview.custom;
+package com.bill.wheelview;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
-import com.bill.wheelview.HorizontalWheelView;
-import com.bill.wheelview.OnWheelScrollListener;
-import com.bill.wheelview.WheelView;
+
 import com.common.base.BaseRelativeLayout;
+import com.sfs.wheelview.HorizontalWheelView;
+import com.sfs.wheelview.OnWheelScrollListener;
+import com.sfs.wheelview.WheelView;
 import com.sz.kk.daily.bill.R;
 import com.utils.lib.ss.common.DateHepler;
+
 import java.util.ArrayList;
+
 /**
  * Created by E on 2018/3/8.
  */

@@ -13,37 +13,37 @@
         android:orientation="horizontal"
         android:background="@color/c10"
         >
-        <com.bill.wheelview.WheelView
+        <com.sfs.wheelview.WheelView
             android:id="@+id/yearWheelview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
-        <com.bill.wheelview.WheelView
+        <com.sfs.wheelview.WheelView
             android:id="@+id/monthWheelview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
-        <com.bill.wheelview.WheelView
+        <com.sfs.wheelview.WheelView
             android:id="@+id/dayWheelview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
-        <com.bill.wheelview.WheelView
+        <com.sfs.wheelview.WheelView
             android:id="@+id/hoursWheelview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
-        <com.bill.wheelview.WheelView
+        <com.sfs.wheelview.WheelView
             android:id="@+id/minutesWheelview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             />
-        <com.bill.wheelview.WheelView
+        <com.sfs.wheelview.WheelView
             android:id="@+id/sencondsWheelview"
             android:layout_width="0dp"
             android:layout_height="match_parent"
