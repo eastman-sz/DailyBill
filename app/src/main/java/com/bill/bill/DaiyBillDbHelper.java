@@ -14,7 +14,7 @@ public class DaiyBillDbHelper {
 
     public static void save(float amount ,long billtime ,String remarks ,int industryId ,int marketId){
         ContentValues values = new ContentValues();
-        long bid = System.currentTimeMillis();
+        long bid = System.currentTimeMillis();//唯一id
         values.put("bid" , bid);
         values.put("billtime" , billtime);
         values.put("ctime" , bid);
@@ -51,7 +51,7 @@ public class DaiyBillDbHelper {
         Cursor cursor = null;
         try {
             SQLiteDatabase db = ISqliteDataBase.getSqLiteDatabase();
-            cursor = db.query(DBNAME , null , null , null , null , null , null);
+            cursor = db.query(DBNAME , null , null , null , null , null , "billtime desc");
             while (null != cursor && cursor.moveToNext()){
                 DailyBill dailyBill = fromCursor(cursor);
 
@@ -73,7 +73,7 @@ public class DaiyBillDbHelper {
         try {
             SQLiteDatabase db = ISqliteDataBase.getSqLiteDatabase();
             cursor = db.query(DBNAME , null , "billtime > ? and billtime < ? " ,
-                    new String[]{String.valueOf(startTime) , String.valueOf(endTime)} , null , null , null);
+                    new String[]{String.valueOf(startTime) , String.valueOf(endTime)} , null , null , "billtime desc");
             while (null != cursor && cursor.moveToNext()){
                 DailyBill dailyBill = fromCursor(cursor);
 

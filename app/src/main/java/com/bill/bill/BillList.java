@@ -1,14 +1,17 @@
 package com.bill.bill;
 
+import android.support.annotation.NonNull;
+
 import com.handmark.base.IGroup;
 import com.utils.lib.ss.common.DateHepler;
 /**
  * Created by E on 2018/3/9.
  */
-public class BillList extends IGroup {
+public class BillList extends IGroup implements Comparable<BillList>{
 
+    private long bid = 0L;
     private float amount = 0f;
-    private long billtime = 0L;
+    private long billtime = 0L;//唯一
     private long ctime = 0L;
     private String remarks = "";
 
@@ -17,6 +20,7 @@ public class BillList extends IGroup {
 
     public static BillList fromBill(DailyBill bill){
         BillList billList = new BillList();
+        billList.setBid(bill.getBid());
         billList.setAmount(bill.getAmount());
         billList.setBilltime(bill.getBilltime());
         billList.setCtime(bill.getCtime());
@@ -56,8 +60,26 @@ public class BillList extends IGroup {
         this.remarks = remarks;
     }
 
+    public long getBid() {
+        return bid;
+    }
+
+    public void setBid(long bid) {
+        this.bid = bid;
+    }
+
     @Override
     protected int getIgroup() {
         return DateHepler.getMonthOfYear(billtime);
+    }
+
+    @Override
+    public int compareTo(@NonNull BillList o) {
+        if (o.getBilltime() > this.getBilltime()){
+            return 1;
+        }else if (o.getBilltime() == this.getBilltime()){
+            return 0;
+        }
+        return -1;
     }
 }

@@ -25,7 +25,7 @@
         android:fadingEdge="none"
         ptr:ptrAnimationStyle="flip"
         ptr:ptrHeaderTextColor="@color/c12"
-        ptr:ptrMode="both"
+        ptr:ptrMode="disabled"
         ptr:ptrloading_layout_bg_color="@color/transparent"
         />
 </LinearLayout>
