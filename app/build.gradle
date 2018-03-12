@@ -33,6 +33,9 @@ repositories {
     mavenCentral()
 }
 
+ext.kotlin_version='1.2.30'
+ext.anko_version='0.10.4' //https://github.com/Kotlin/anko
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
@@ -44,4 +47,7 @@ dependencies {
     compile(name: 'commonviewslib', ext: 'aar')
     compile(name: 'wheelview', ext: 'aar')
     compile(name: 'pullFreshView', ext: 'aar')
+
+    compile "org.jetbrains.anko:anko:$anko_version"
+
 }

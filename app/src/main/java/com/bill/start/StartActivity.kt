@@ -2,6 +2,7 @@ package com.bill.start
 
 import android.content.Intent
 import android.os.Bundle
+import com.bill.init.DataInitHelper
 import com.bill.main.MainActivity
 import com.common.base.BaseAppCompactActivitiy
 import com.sz.kk.daily.bill.R
@@ -14,6 +15,8 @@ class StartActivity : BaseAppCompactActivitiy() {
         setContentView(R.layout.activity_start)
 
         initActivitys()
+
+        DataInitHelper.initData()
 
         bgLayout.postDelayed({
             runOnUiThread({

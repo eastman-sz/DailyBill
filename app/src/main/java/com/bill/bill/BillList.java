@@ -14,6 +14,12 @@ public class BillList extends IGroup implements Comparable<BillList>{
     private long billtime = 0L;//唯一
     private long ctime = 0L;
     private String remarks = "";
+    private int marketId = 0; //细分二级
+
+    private float dayAmount = 0f;//某一天总额
+    private float weekAmount = 0f;//周总额
+    private float monthAmount = 0f;//月总额
+    private float yearAmount = 0f;//年总额
 
     public BillList() {
     }
@@ -25,6 +31,7 @@ public class BillList extends IGroup implements Comparable<BillList>{
         billList.setBilltime(bill.getBilltime());
         billList.setCtime(bill.getCtime());
         billList.setRemarks(bill.getRemarks());
+        billList.setMarketId(bill.getMarketId());
         return billList;
     }
 
@@ -66,6 +73,46 @@ public class BillList extends IGroup implements Comparable<BillList>{
 
     public void setBid(long bid) {
         this.bid = bid;
+    }
+
+    public int getMarketId() {
+        return marketId;
+    }
+
+    public void setMarketId(int marketId) {
+        this.marketId = marketId;
+    }
+
+    public float getDayAmount() {
+        return dayAmount;
+    }
+
+    public void setDayAmount(float dayAmount) {
+        this.dayAmount = dayAmount;
+    }
+
+    public float getWeekAmount() {
+        return weekAmount;
+    }
+
+    public void setWeekAmount(float weekAmount) {
+        this.weekAmount = weekAmount;
+    }
+
+    public float getMonthAmount() {
+        return monthAmount;
+    }
+
+    public void setMonthAmount(float monthAmount) {
+        this.monthAmount = monthAmount;
+    }
+
+    public float getYearAmount() {
+        return yearAmount;
+    }
+
+    public void setYearAmount(float yearAmount) {
+        this.yearAmount = yearAmount;
     }
 
     @Override

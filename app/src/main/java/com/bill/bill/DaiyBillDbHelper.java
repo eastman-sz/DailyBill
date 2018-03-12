@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.bill.db.CursorHelper;
 import com.bill.db.DbTableHelper;
 import com.bill.db.ISqliteDataBase;
+import com.utils.lib.ss.common.DateHepler;
+
 import java.util.ArrayList;
 /**
  * Created by E on 2018/3/8.
@@ -45,6 +47,26 @@ public class DaiyBillDbHelper {
             db.insert(DBNAME , null , values);
         }
     }
+
+    public static void save(float amount ,long billtime ,int marketId ,String remarks){
+        ContentValues values = new ContentValues();
+        long bid = System.currentTimeMillis();
+        values.put("bid" , bid);
+        values.put("billtime" , billtime);
+        values.put("ctime" , bid);
+        values.put("marketId" , marketId);
+        values.put("remarks" , remarks);
+        values.put("amount" , amount);
+
+        SQLiteDatabase db = ISqliteDataBase.getSqLiteDatabase();
+        int count = db.update(DBNAME , values , "bid = ? " , new String[]{String.valueOf(bid)});
+        if (count < 1){
+            db.insert(DBNAME , null , values);
+        }
+    }
+
+
+
 
     public static ArrayList<DailyBill> getAllDailyBills(){
         ArrayList<DailyBill> list = new ArrayList<>();

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.bill.start.StartActivity"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <com.common.base.CustomFontTextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:text="Start..."
+        android:gravity="center_vertical"
+        android:textSize="@dimen/s9"
+        android:textColor="@color/c8"
+        android:background="@drawable/list_item_bg"
+        android:paddingLeft="15dp"
+        />
+
+    <ImageView style="@style/full_line_style"/>
+
+</LinearLayout>

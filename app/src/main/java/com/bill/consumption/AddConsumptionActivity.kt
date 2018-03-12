@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import com.bill.bill.DaiyBillDbHelper
+import com.bill.dialog.ConsuptionPointDialog
 import com.bill.dialog.DateTimeSelectDialog
+import com.bill.point.ConsumptionPoint
 import com.common.base.BaseAppCompactActivitiy
 import com.common.base.CommonTitleView
 import com.common.base.ITextChangedListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
 import kotlinx.android.synthetic.main.activity_add_consumption.*
-import android.widget.ArrayAdapter
-
-
 
 class AddConsumptionActivity : BaseAppCompactActivitiy() {
 
@@ -21,6 +20,7 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
 
     var amountRight = false
     var timeRight = false
+    var marketId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,25 +41,6 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 onBackPressed()
             }
         })
-    }
-
-    override fun initViews() {
-        val list = ArrayList<String>()
-        list.add("A")
-        list.add("AB")
-        list.add("AC")
-        list.add("AD")
-        list.add("AE")
-
-        val adapter = AutoCompleteAdapter(context , list)
-
-        val autoString = arrayOf("联合国", "联合国安理会", "联合国五个常任理事国", "bb", "bcd", "bcdf", "Google", "Google Map", "Google Android")
-
-//        val adapter = ArrayAdapter(this,
-//                R.layout.auto_complete_adapter_view, autoString)
-
-        autoCompleteTextView.setAdapter(adapter)
-
     }
 
     override fun initListener() {
@@ -124,11 +105,27 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 }
             }
 
+            consumptionPointLayout ->{
+                val dialog = ConsuptionPointDialog(context)
+                dialog.show()
+                dialog.onConsuptionPointSelectListener = object : ConsuptionPointDialog.OnConsuptionPointSelectListener{
+                    override fun selected(consumptionPoint: ConsumptionPoint) {
+                        marketId = consumptionPoint.marketId
+
+                        runOnUiThread {
+                            pointNameTextView.text = consumptionPoint.marketName
+                        }
+
+                        freshBtn()
+                    }
+                }
+            }
+
             saveBtnTextView -> {
                 val amount = amountTextView.text.toString().toFloat()
                 val remarks = remarksTextView.text.toString()
 
-                DaiyBillDbHelper.save(amount , cTimestamp , remarks)
+                DaiyBillDbHelper.save(amount , cTimestamp , marketId , remarks)
 
                 onBackPressed()
             }
@@ -151,7 +148,7 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
     }
 
     fun freshBtn(){
-        val right = amountRight && timeRight
+        val right = amountRight && timeRight && marketId > 0
         when(right){
             false -> {
                 saveBtnTextView.setBackgroundResource(R.drawable.gray_disabled_retangle_selector)

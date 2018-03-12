@@ -7,7 +7,10 @@ import com.common.base.CommonTitleView
 import com.common.dialog.CommonDialog
 import com.common.dialog.OnCommonDialogBtnClickListener
 import com.sz.kk.daily.bill.R
+import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.MathUtil
 import kotlinx.android.synthetic.main.activity_bill_list.*
+import org.jetbrains.anko.doAsync
 
 class BillListActivity : BaseAppCompactActivitiy() {
 
@@ -32,14 +35,40 @@ class BillListActivity : BaseAppCompactActivitiy() {
         val adapter = BillListAdapter(context , list)
         sticky_list.refreshableView.adapter = adapter
 
-        val dailyBillList = DaiyBillDbHelper.getAllDailyBills()
-        dailyBillList.forEach({
-            val billList = BillList.fromBill(it)
+        doAsync {
+            //每月总额
+            val monthAmountMap = HashMap<String , Float>();
 
-            list.add(billList)
-        })
+            val dailyBillList = DaiyBillDbHelper.getAllDailyBills()
+            dailyBillList.forEach({
+                val billList = BillList.fromBill(it)
 
-        list.sort()
+                list.add(billList)
+
+                val mmOfYear = DateHepler.timestampFormat(billList.billtime , "yyyy-MM") as String
+                val amount = billList.amount
+
+                if (monthAmountMap.containsKey(mmOfYear)){
+
+                    val monthAmount = monthAmountMap[mmOfYear] as Float
+                    monthAmountMap.put(mmOfYear , MathUtil.addF(monthAmount , amount))
+
+                }else{
+
+                    monthAmountMap.put(mmOfYear , amount)
+                }
+            })
+
+            //
+            list.forEach {
+                val mmOfYear = DateHepler.timestampFormat(it.billtime , "yyyy-MM") as String
+
+                it.monthAmount = monthAmountMap[mmOfYear] as Float
+
+            }
+
+            list.sort()
+        }
 
         adapter.notifyDataSetChanged()
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.start.StartActivity"
+    android:orientation="vertical"
+    android:background="@color/sfs_page_bg_color"
+    >
+    <ListView
+        android:id="@+id/itemExpandListview"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:divider="@null"
+        android:scrollbars="none"
+        android:fadingEdge="none"
+        android:visibility="visible"
+        />
+    <com.common.base.CustomFontTextView
+        android:id="@+id/addNewPointTextView"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:textSize="@dimen/s6"
+        android:textColor="@color/c8"
+        android:text="添加"
+        />
+</LinearLayout>

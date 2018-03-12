@@ -13,6 +13,11 @@ public class DailyBill {
     private int industryId = 0;//行业一级
     private int marketId = 0; //细分二级
 
+    private float dayAmount = 0f;
+    private float weekAmount = 0f;
+    private float monthAmount = 0f;
+    private float yearAmount = 0f;
+
     public long getBid() {
         return bid;
     }
@@ -66,5 +71,37 @@ public class DailyBill {
     }
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public float getDayAmount() {
+        return dayAmount;
+    }
+
+    public void setDayAmount(float dayAmount) {
+        this.dayAmount = dayAmount;
+    }
+
+    public float getWeekAmount() {
+        return weekAmount;
+    }
+
+    public void setWeekAmount(float weekAmount) {
+        this.weekAmount = weekAmount;
+    }
+
+    public float getMonthAmount() {
+        return monthAmount;
+    }
+
+    public void setMonthAmount(float monthAmount) {
+        this.monthAmount = monthAmount;
+    }
+
+    public float getYearAmount() {
+        return yearAmount;
+    }
+
+    public void setYearAmount(float yearAmount) {
+        this.yearAmount = yearAmount;
     }
 }
