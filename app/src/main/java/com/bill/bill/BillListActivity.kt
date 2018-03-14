@@ -14,6 +14,8 @@ import org.jetbrains.anko.doAsync
 
 class BillListActivity : BaseAppCompactActivitiy() {
 
+    var bookId = 0L
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_list)
@@ -21,8 +23,13 @@ class BillListActivity : BaseAppCompactActivitiy() {
         initActivitys()
     }
 
+    override fun getIntentData() {
+        bookId = intent.getLongExtra("bookId" , 0)
+    }
+
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("List")
+        commonTitleView.setCenterTitleText("消费帐单")
+        commonTitleView.setLeftBtnText("返回")
         commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
             override fun onLeftBtnClick() {
                 onBackPressed()
@@ -39,7 +46,7 @@ class BillListActivity : BaseAppCompactActivitiy() {
             //每月总额
             val monthAmountMap = HashMap<String , Float>();
 
-            val dailyBillList = DaiyBillDbHelper.getAllDailyBills()
+            val dailyBillList = DaiyBillDbHelper.getAllDailyBills(bookId)
             dailyBillList.forEach({
                 val billList = BillList.fromBill(it)
 

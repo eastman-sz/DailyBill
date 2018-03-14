@@ -6,6 +6,7 @@ package com.bill.bill;
 public class DailyBill {
 
     private long bid = 0L;
+    private long bookId = 0L;
     private float amount = 0f;
     private long billtime = 0L;
     private long ctime = 0L;
@@ -26,6 +27,12 @@ public class DailyBill {
         this.bid = bid;
     }
 
+    public long getBookId() {
+        return bookId;
+    }
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
+    }
     public long getBilltime() {
         return billtime;
     }

@@ -35,7 +35,7 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
 
     override fun initTitle() {
         commonTitleView.setLeftBtnText("返回")
-        commonTitleView.setCenterTitleText("")
+        commonTitleView.setCenterTitleText("新增消费")
         commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
             override fun onLeftBtnClick() {
                 onBackPressed()
@@ -50,8 +50,6 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 amountRight = right
 
                 freshBtn()
-
-                Log.e("ilog" , "是否正确:  " + right)
 
                 if (right){
                     return

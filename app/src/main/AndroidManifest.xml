@@ -25,7 +25,8 @@
         <activity
             android:name="com.bill.consumption.AddConsumptionActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="com.bill.bill.BillListActivity"></activity>
+        <activity android:name="com.bill.bill.BillListActivity" />
+        <activity android:name="com.bill.billbook.AddBillbookActivity"></activity>
     </application>
 
 </manifest>
