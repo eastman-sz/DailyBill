@@ -5,9 +5,9 @@ import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import com.bill.base.BaseBillView
 import com.bill.bill.BillListActivity
 import com.bill.empty.BaseEmptyView
-import com.common.base.BaseRelativeLayout
 import com.common.base.CommonTitleView
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bill_book_view.view.*
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.bill_book_view.view.*
 /**
  * Created by E on 2018/3/13.
  */
-class BillbookView : BaseRelativeLayout{
+class BillbookView : BaseBillView{
 
     constructor(context: Context) : super(context){
         init()
