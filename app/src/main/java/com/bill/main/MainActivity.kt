@@ -31,16 +31,4 @@ class MainActivity : BaseAppCompactActivitiy() {
         viewPager.adapter = adapter
     }
 
-    fun onBtnClick(v : View){
-        when(v){
-            addBtnTextView ->{
-                startActivity(Intent(context , AddConsumptionActivity::class.java))
-            }
-
-            listBtnTextView -> {
-                startActivity(Intent(context , BillListActivity::class.java))
-            }
-        }
-    }
-
 }

@@ -3,7 +3,10 @@ package com.bill.billbook
 import android.content.Context
 import android.content.Intent
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ListView
 import com.bill.bill.BillListActivity
+import com.bill.empty.BaseEmptyView
 import com.common.base.BaseRelativeLayout
 import com.common.base.CommonTitleView
 import com.sz.kk.daily.bill.R
@@ -38,11 +41,24 @@ class BillbookView : BaseRelativeLayout{
         val adapter = BillbookAdapter(context , list)
         listView.adapter = adapter
 
+        addEmptyView(listView)
+
         listView.setOnItemClickListener { parent, view, position, id ->
             val billBook = list[position]
 
             context.startActivity(Intent(context , BillListActivity::class.java).putExtra("bookId" , billBook.bookId))
 
         }
+    }
+
+    private fun addEmptyView(listview: ListView){
+        val emptyView = listview.emptyView
+        if (null != emptyView){
+            return
+        }
+        val newEmptyView = BaseEmptyView(context)
+        (listview.parent as ViewGroup).addView(newEmptyView)
+        listview.emptyView = newEmptyView
+        newEmptyView.setEmptyText("点击右上角创建")
     }
 }

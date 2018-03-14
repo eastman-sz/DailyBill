@@ -1,5 +1,6 @@
 package com.bill.init
 
+import com.bill.billbook.BillbookDbHelper
 import com.bill.point.ConsumptionPointDbHelper
 import com.bill.util.PrefHelper
 import org.jetbrains.anko.doAsync
@@ -30,6 +31,9 @@ class DataInitHelper {
                         list.forEach({
                             ConsumptionPointDbHelper.add(it)
                         })
+
+                        //add default billBook
+                        BillbookDbHelper.saveDefault("默认")
                     }
                 }catch (e : Exception){
                     e.printStackTrace()

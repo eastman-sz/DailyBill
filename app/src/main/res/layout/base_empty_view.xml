@@ -7,14 +7,13 @@
     tools:context="com.bill.start.StartActivity"
     android:orientation="vertical"
     android:background="@color/sfs_page_bg_color"
-    android:id="@+id/bgLayout"
     >
     <com.common.base.CustomFontTextView
+        android:id="@+id/emptyTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Start..."
         android:gravity="center"
         android:textSize="@dimen/s9"
-        android:textColor="@color/c8"
+        android:textColor="@color/c13"
         />
 </LinearLayout>

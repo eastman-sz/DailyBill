@@ -21,6 +21,16 @@ public class BillbookDbHelper {
         db.insert(DBNAME , null , values);
     }
 
+    public static void saveDefault(String bookName){
+        ContentValues values = new ContentValues();
+        values.put("bookId" , 0);
+        values.put("name" , bookName);
+
+        SQLiteDatabase db = ISqliteDataBase.getSqLiteDatabase();
+        db.insert(DBNAME , null , values);
+    }
+
+
     public static ArrayList<Billbook> getBillbooks(){
         ArrayList<Billbook> list = new ArrayList<>();
         Cursor cursor = null;

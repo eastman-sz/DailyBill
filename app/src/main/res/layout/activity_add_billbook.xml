@@ -24,6 +24,9 @@
         android:gravity="center_vertical"
         android:paddingLeft="15dp"
         android:hint="输入名称"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:maxLength="12"
         />
 
     <com.common.base.CustomFontTextView

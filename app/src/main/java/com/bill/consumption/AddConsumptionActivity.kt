@@ -22,6 +22,8 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
     var timeRight = false
     var marketId = 0
 
+    var bookId = 0L
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_consumption)
@@ -31,6 +33,10 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
 
     init {
         cTimestamp = System.currentTimeMillis()
+    }
+
+    override fun getIntentData() {
+        bookId = intent.getLongExtra("bookId" , 0)
     }
 
     override fun initTitle() {
@@ -123,7 +129,7 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 val amount = amountTextView.text.toString().toFloat()
                 val remarks = remarksTextView.text.toString()
 
-                DaiyBillDbHelper.save(amount , cTimestamp , marketId , remarks)
+                DaiyBillDbHelper.save(bookId, amount , cTimestamp , marketId , remarks)
 
                 onBackPressed()
             }
