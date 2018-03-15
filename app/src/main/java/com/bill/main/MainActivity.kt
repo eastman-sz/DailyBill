@@ -1,9 +1,11 @@
 package com.bill.main
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import com.bill.billbook.BillbookView
+import com.bill.consumption.AddConsumptionActivity
 import com.bill.summary.SummaryView
-import com.bill.util.ILog
 import com.common.base.BaseAppCompactActivitiy
 import com.common.base.BasePagerAdapter
 import com.common.base.BaseRelativeLayout
@@ -30,14 +32,30 @@ class MainActivity : BaseAppCompactActivitiy() {
 
         viewPager.addOnPageChangeListener(object : IonPageChangeListener(){
             override fun onPageSelected(index: Int) {
-                ILog.e("---index--: " + index)
-
                 runOnUiThread {
-                    item1TextView.setTextColor(if (0 == index){resources.getColor(R.color.c8) }else{resources.getColor(R.color.c13)})
-                    item2TextView.setTextColor(if (1 == index){resources.getColor(R.color.c8) }else{resources.getColor(R.color.c13)})
+                    item1TextView.setTextColor(if (0 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
+                    item2TextView.setTextColor(if (1 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
+
+                    list[index].freshByHand(true)
                 }
             }
         })
+    }
+
+    fun onBtnClick(v : View){
+        when(v){
+            addConsumptionBtnTextView ->{
+                startActivity(Intent(context , AddConsumptionActivity::class.java))
+            }
+
+            item1TextView ->{
+                viewPager.setCurrentItem(0 ,false)
+            }
+
+            item2TextView ->{
+                viewPager.setCurrentItem(1 ,false)
+            }
+        }
     }
 
 }

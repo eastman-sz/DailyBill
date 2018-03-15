@@ -44,7 +44,7 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/s6"
-        android:text="ADD"
+        android:text="记一笔"
         android:onClick="onBtnClick"
         android:clickable="true"
         />

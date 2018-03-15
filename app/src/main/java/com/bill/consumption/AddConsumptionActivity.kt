@@ -7,6 +7,8 @@ import com.bill.bill.DaiyBillDbHelper
 import com.bill.dialog.ConsuptionPointDialog
 import com.bill.dialog.DateTimeSelectDialog
 import com.bill.point.ConsumptionPoint
+import com.bill.util.BroadcastAction
+import com.bill.util.BroadcastUtil
 import com.common.base.BaseAppCompactActivitiy
 import com.common.base.CommonTitleView
 import com.common.base.ITextChangedListener
@@ -132,6 +134,8 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 DaiyBillDbHelper.save(bookId, amount , cTimestamp , marketId , remarks)
 
                 onBackPressed()
+
+                BroadcastUtil.sendBroadCast(BroadcastAction.NEW_ADD_CONSUMPTION)
             }
         }
     }
@@ -156,10 +160,12 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
         when(right){
             false -> {
                 saveBtnTextView.setBackgroundResource(R.drawable.gray_disabled_retangle_selector)
+                saveBtnTextView.isEnabled = false
             }
 
             true -> {
                 saveBtnTextView.setBackgroundResource(R.drawable.c1_c2_retangle_selector)
+                saveBtnTextView.isEnabled = true
             }
 
         }

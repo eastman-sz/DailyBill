@@ -33,7 +33,7 @@ class DateTimeSelectDialog : BaseDialog{
             val currentDate = dateTimeSelectWheelview.currentDate
             val timeStamp = DateHepler.dateFormatString2Date(currentDate , "yyyy-MM-dd HH:mm:ss").time
 
-            onDateTimeSelectedListener?.onSelected(timeStamp)
+            onDateTimeSelectedListener?.onSelected(timeStamp/1000)
         }
     }
 

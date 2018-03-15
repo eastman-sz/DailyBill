@@ -13,13 +13,115 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <ListView
-        android:id="@+id/listView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:scrollbars="none"
-        android:fadingEdge="none"
-        android:overScrollMode="never"
-        />
+        android:layout_height="180dp"
+        android:background="@drawable/input_bg"
+        android:layout_margin="15dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            >
+            <com.common.base.CustomFontTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textColor="@color/c13"
+                android:textSize="@dimen/s2"
+                android:text="年度消费"
+                />
+
+            <com.common.base.CustomFontDigitTextView
+                android:id="@+id/yearAmountTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/s11"
+                android:textColor="@color/c1"
+                android:text="0"
+                android:layout_marginTop="10dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                >
+                <com.common.base.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/s2"
+                    android:textColor="@color/c13"
+                    android:text="今日"
+                    />
+                <com.common.base.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/s2"
+                    android:textColor="@color/c13"
+                    android:text="本周"
+                    />
+                <com.common.base.CustomFontTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/s2"
+                    android:textColor="@color/c13"
+                    android:text="本月"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                >
+                <com.common.base.CustomFontDigitTextView
+                    android:id="@+id/todayAmountTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/s8"
+                    android:textColor="@color/c1"
+                    android:text="0"
+                    />
+                <com.common.base.CustomFontDigitTextView
+                    android:id="@+id/weekAmountTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/s8"
+                    android:textColor="@color/c1"
+                    android:text="0"
+                    />
+                <com.common.base.CustomFontDigitTextView
+                    android:id="@+id/monthAmountTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:textSize="@dimen/s8"
+                    android:textColor="@color/c1"
+                    android:text="0"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
 </LinearLayout>

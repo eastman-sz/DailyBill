@@ -192,6 +192,7 @@
         android:background="@drawable/gray_disabled_retangle_selector"
         android:onClick="onBtnClick"
         android:clickable="true"
+        android:enabled="false"
         />
 
 </LinearLayout>

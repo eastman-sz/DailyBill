@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,48 +7,77 @@
     tools:context="com.bill.main.MainActivity"
     android:orientation="vertical"
     >
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        />
-
-    <ImageView style="@style/full_line_style" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:orientation="horizontal"
+        android:layout_height="match_parent"
         android:background="@color/transparent"
+        android:orientation="vertical"
         >
-        <com.common.base.CustomFontTextView
-            android:id="@+id/item1TextView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:textSize="@dimen/s4"
-            android:textColor="@color/c8"
-            android:gravity="center"
-            android:text="A"
             />
 
-        <com.common.base.CustomFontTextView
-            android:layout_width="@dimen/basic_line_height"
-            android:layout_height="match_parent"
-            android:background="@color/sfs_c9"
-            />
+        <ImageView style="@style/full_line_style" />
 
-        <com.common.base.CustomFontTextView
-            android:id="@+id/item2TextView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textSize="@dimen/s4"
-            android:textColor="@color/c13"
-            android:gravity="center"
-            android:text="B"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:orientation="horizontal"
+            android:background="@color/transparent"
+            >
+            <com.common.base.CustomFontTextView
+                android:id="@+id/item1TextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/s4"
+                android:textColor="@color/c27"
+                android:gravity="center"
+                android:text="A"
+                android:onClick="onBtnClick"
+                android:clickable="true"
+                />
+
+            <com.common.base.CustomFontTextView
+                android:layout_width="@dimen/basic_line_height"
+                android:layout_height="match_parent"
+                android:background="@color/sfs_c9"
+                />
+
+            <com.common.base.CustomFontTextView
+                android:id="@+id/item2TextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/s4"
+                android:textColor="@color/c13"
+                android:gravity="center"
+                android:text="B"
+                android:onClick="onBtnClick"
+                android:clickable="true"
+                />
+        </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+    <com.common.base.CustomFontTextView
+        android:id="@+id/addConsumptionBtnTextView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/c1_circle_selector"
+        android:alpha="0.6"
+        android:text="记一笔"
+        android:textSize="@dimen/s4"
+        android:gravity="center"
+        android:textColor="@color/c7"
+        android:layout_marginBottom="11dp"
+        android:layout_marginRight="5dp"
+        android:onClick="onBtnClick"
+        android:clickable="true"
+        />
+
+</RelativeLayout>
