@@ -10,6 +10,8 @@ import com.bill.bill.BillListActivity
 import com.bill.empty.BaseEmptyView
 import com.bill.util.BroadcastAction
 import com.common.base.CommonTitleView
+import com.common.dialog.CommonDialog
+import com.common.dialog.OnCommonDialogBtnClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bill_book_view.view.*
 /**
@@ -50,6 +52,24 @@ class BillbookView : BaseBillView{
 
             context.startActivity(Intent(context , BillListActivity::class.java).putExtra("bookId" , billBook.bookId))
 
+        }
+
+        listView.setOnItemLongClickListener { parent, view, position, id ->
+            val dialog = CommonDialog(context)
+            dialog.show()
+            dialog.setDialogText("温馨提示" , "确定删除此账簿吗?" , "取消" , "确定")
+            dialog.setOnCommonDialogBtnClickListener(object : OnCommonDialogBtnClickListener{
+                override fun onRightBtnClik() {
+                    val billBook = list[position]
+                    BillbookDbHelper.delete(billBook.bookId)
+
+                    list.removeAt(position)
+                    adapter?.notifyDataSetChanged()
+                }
+                override fun onLeftBtnClik() {
+                }
+            })
+            true
         }
     }
 
