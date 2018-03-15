@@ -36,7 +36,7 @@
                 android:textSize="@dimen/s4"
                 android:textColor="@color/c27"
                 android:gravity="center"
-                android:text="A"
+                android:text="账簿"
                 android:onClick="onBtnClick"
                 android:clickable="true"
                 />
@@ -55,7 +55,7 @@
                 android:textSize="@dimen/s4"
                 android:textColor="@color/c13"
                 android:gravity="center"
-                android:text="B"
+                android:text="简报"
                 android:onClick="onBtnClick"
                 android:clickable="true"
                 />

@@ -2,6 +2,8 @@ package com.bill.billbook
 
 import android.os.Bundle
 import android.view.View
+import com.bill.util.BroadcastAction
+import com.bill.util.BroadcastUtil
 import com.common.base.BaseAppCompactActivitiy
 import com.common.base.CommonTitleView
 import com.common.base.ITextChangedListener
@@ -19,7 +21,7 @@ class AddBillbookActivity : BaseAppCompactActivitiy() {
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("Add BillBook")
+        commonTitleView.setCenterTitleText("新建账簿")
         commonTitleView.setLeftBtnText("返回")
         commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
             override fun onLeftBtnClick() {
@@ -59,6 +61,8 @@ class AddBillbookActivity : BaseAppCompactActivitiy() {
                 ToastHelper.makeText(context , "创建成功")
 
                 onBackPressed()
+
+                BroadcastUtil.sendBroadCast(BroadcastAction.NEW_ADD_BILL_BOOK)
             }
         }
     }

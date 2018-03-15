@@ -21,6 +21,8 @@ class StartActivity : BaseAppCompactActivitiy() {
         bgLayout.postDelayed({
             runOnUiThread({
                 startActivity(Intent(context , MainActivity::class.java))
+
+                finish()
             })
         } , 500)
     }

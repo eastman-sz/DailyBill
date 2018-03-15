@@ -7,4 +7,5 @@ public class BroadcastAction {
 
     public final static String NEW_ADD_CONSUMPTION = "newAddConsumption";
 
+    public final static String NEW_ADD_BILL_BOOK = "newAddBillBook";
 }
