@@ -84,7 +84,7 @@ class BillListActivity : BaseAppCompactActivitiy() {
 
     fun freshBillListData(){
         doAsync {
-            list.clear()
+            val dataList = ArrayList<BillList>()
 
             //每月总额
             val monthAmountMap = HashMap<String , Float>();
@@ -93,7 +93,7 @@ class BillListActivity : BaseAppCompactActivitiy() {
             dailyBillList.forEach({
                 val billList = BillList.fromBill(it)
 
-                list.add(billList)
+                dataList.add(billList)
 
                 val mmOfYear = DateHepler.timestampFormat(billList.billtime , "yyyy-MM") as String
                 val amount = billList.amount
@@ -101,7 +101,7 @@ class BillListActivity : BaseAppCompactActivitiy() {
                 if (monthAmountMap.containsKey(mmOfYear)){
 
                     val monthAmount = monthAmountMap[mmOfYear] as Float
-                    monthAmountMap.put(mmOfYear , MathUtil.addF(monthAmount , amount))
+                    monthAmountMap.put(mmOfYear , MathUtil.addF(monthAmount , amount , 2))
 
                 }else{
 
@@ -110,16 +110,19 @@ class BillListActivity : BaseAppCompactActivitiy() {
             })
 
             //
-            list.forEach {
+            dataList.forEach {
                 val mmOfYear = DateHepler.timestampFormat(it.billtime , "yyyy-MM") as String
 
                 it.monthAmount = monthAmountMap[mmOfYear] as Float
 
             }
 
-            list.sort()
+            dataList.sort()
 
             uiThread {
+                list.clear()
+                list.addAll(dataList)
+
                 adapter?.notifyDataSetChanged()
             }
         }

@@ -117,7 +117,7 @@ public class BillList extends IGroup implements Comparable<BillList>{
 
     @Override
     protected int getIgroup() {
-        return DateHepler.getMonthOfYear(billtime);
+        return DateHepler.getYear(billtime) + DateHepler.getMonthOfYear(billtime);
     }
 
     @Override
