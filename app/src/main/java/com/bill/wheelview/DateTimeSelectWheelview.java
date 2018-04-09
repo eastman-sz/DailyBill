@@ -88,8 +88,13 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
     }
 
     private String cDate = null;
+    private long cTimeStamp = 0;
 
     public void setTimestamp(long timestamp){
+        if (0 == timestamp){
+            timestamp = System.currentTimeMillis()/1000;
+        }
+        this.cTimeStamp = timestamp;
         this.cDate = DateHepler.timestampFormat(timestamp,"yyyy-MM-dd-HH-mm-ss");
         freshViews();
     }
@@ -113,11 +118,11 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
             }
             @Override
             public void onScrollingFinished(HorizontalWheelView wheel) {
-                onMonthScrollChg(date ,wheel.getCurrentItem());
+                onMonthScrollChg(date ,wheel.getCurrentItem() + 1);
             }
         });
 
-        onMonthScrollChg(date ,3);
+        onMonthScrollChg(date ,DateHepler.getMonthOfYear(cTimeStamp));
 
         WheelviewTextAdapter hourAdapter = new WheelviewTextAdapter(context , hours);
         hoursWheelview.setViewAdapter(hourAdapter);

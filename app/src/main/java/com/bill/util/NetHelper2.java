@@ -29,14 +29,14 @@ public class NetHelper2 extends BaseHttpImp2 {
         String jsonString = JSONHelper.toJSON(params).toString();
         params.clear();
         params.put("data", IAES.getInstance().encode(jsonString));
-        params.put("appId", 10007);
+        params.put("appId", 10001);
         return params;
     }
 
     private HashMap<String, Object> getCommonParams(){
         HashMap<String, Object> params = new HashMap<>();
         params.put("platform", 2);
-        params.put("mac", "max");
+        params.put("mac", DeviceInfo.getLocalMacAddress(IApplication.getContext()));
         params.put("rtime", System.currentTimeMillis()/1000);
         params.put("version", PkgHelper.getVersionName(IApplication.getContext()));
         params.put("osversion", DeviceInfo.getSystemVersion());

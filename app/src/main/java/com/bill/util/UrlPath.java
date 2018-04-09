@@ -5,7 +5,7 @@ package com.bill.util;
  */
 public class UrlPath {
 
-    public static final String BASE_URL = "http://192.168.3.58:8080/Day3";
+    public static final String BASE_URL = "http://192.168.3.60:8080/Day6";
 
     public static final String USER_URL = BASE_URL + "/c";
 
