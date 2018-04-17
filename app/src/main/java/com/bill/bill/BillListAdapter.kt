@@ -27,16 +27,22 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
     override fun getConvertView(convertView: View?, list: MutableList<BillList>?, position: Int) {
         val amountTextView = ViewHolder.getView(convertView , R.id.amountTextView) as CustomFontDigitTextView
         val marketTextView = ViewHolder.getView(convertView , R.id.marketTextView) as CustomFontTextView
-        val timeTextView = ViewHolder.getView(convertView , R.id.timeTextView) as CustomFontTextView
+        val timeTextView = ViewHolder.getView(convertView , R.id.timeTextView) as CustomFontDigitTextView
+        val remarksTextView = ViewHolder.getView(convertView , R.id.remarksTextView) as CustomFontTextView
 
         val billList = list?.get(position)
         val marketId = billList!!.marketId
         val amount = billList?.amount
         val billTime = billList?.billtime as Long
+        val remarks = billList?.remarks
+        val dayOfWeek = DateHepler.getDayOfWeekString(billTime)
+
 
         marketTextView.text = marketArray?.get(marketId)?.marketName
         amountTextView.text = CommonUtil.trimLastZero(amount.toString())
-        timeTextView.text = DateHepler.timestampFormat(billTime , "MM-dd HH:mm:ss")
+        timeTextView.text = DateHepler.timestampFormat(billTime , "MM-dd HH:mm:ss").plus("   ").plus(dayOfWeek)
+        remarksTextView.text = "备注: ".plus(if (remarks.isEmpty()){"无"}else{remarks})
+        remarksTextView.visibility = if (remarks.isEmpty()){View.GONE}else{View.VISIBLE}
     }
 
     override fun getHeaderConvertView(convertView: View?, list: MutableList<BillList>?, position: Int) {
