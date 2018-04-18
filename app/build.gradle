@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 26
+    buildToolsVersion '27.0.3'
+
     defaultConfig {
         applicationId "com.sz.kk.daily.bill"
         minSdkVersion 21
@@ -25,7 +27,7 @@ android {
             jniLibs.srcDirs = ['Libs']
         }
     }
-    buildToolsVersion '26.0.2'
+
 }
 
 repositories {
@@ -44,10 +46,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    compile(name: 'commonviewslib', ext: 'aar')
-    compile(name: 'wheelview', ext: 'aar')
-    compile(name: 'pullFreshView', ext: 'aar')
+    implementation(name: 'commonviewslib', ext: 'aar')
+    implementation(name: 'wheelview', ext: 'aar')
+    implementation(name: 'pullFreshView', ext: 'aar')
 
-    compile "org.jetbrains.anko:anko:$anko_version"
+    implementation "org.jetbrains.anko:anko:$anko_version"
 
 }

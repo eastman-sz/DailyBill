@@ -40,7 +40,7 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
         marketTextView.text = marketArray?.get(marketId)?.marketName
         amountTextView.text = CommonUtil.trimLastZero(amount.toString())
-        timeTextView.text = DateHepler.timestampFormat(billTime , "MM-dd HH:mm:ss").plus("   ").plus(dayOfWeek)
+        timeTextView.text = DateHepler.timestampFormat(billTime , "MM-dd").plus("   ").plus(dayOfWeek)
         remarksTextView.text = "备注: ".plus(if (remarks.isEmpty()){"无"}else{remarks})
         remarksTextView.visibility = if (remarks.isEmpty()){View.GONE}else{View.VISIBLE}
     }
