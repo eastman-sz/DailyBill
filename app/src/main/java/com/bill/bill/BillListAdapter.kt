@@ -33,7 +33,7 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
         val billList = list?.get(position)
         val marketId = billList!!.marketId
         val amount = billList?.amount
-        val billTime = billList?.billtime as Long
+        val billTime = billList?.billtime
         val remarks = billList?.remarks
         val dayOfWeek = DateHepler.getDayOfWeekString(billTime)
 
