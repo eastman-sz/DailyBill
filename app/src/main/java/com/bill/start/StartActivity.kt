@@ -6,6 +6,7 @@ import com.bill.init.DataInitHelper
 import com.bill.main.MainActivity
 import com.common.base.BaseAppCompactActivitiy
 import com.sz.kk.daily.bill.R
+import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_start.*
 
 class StartActivity : BaseAppCompactActivitiy() {
@@ -27,4 +28,16 @@ class StartActivity : BaseAppCompactActivitiy() {
         } , 500)
     }
 
+    override fun onResume() {
+        super.onResume()
+        MobclickAgent.onPageStart(context.javaClass.simpleName)
+        MobclickAgent.onResume(this)
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        MobclickAgent.onPageEnd(context.javaClass.simpleName)
+        MobclickAgent.onPause(this)
+    }
 }

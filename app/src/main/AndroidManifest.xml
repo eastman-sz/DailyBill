@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sz.kk.daily.bill">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name="com.bill.application.IApplication"
         android:allowBackup="true"
@@ -27,6 +37,10 @@
             android:screenOrientation="portrait" />
         <activity android:name="com.bill.bill.BillListActivity" />
         <activity android:name="com.bill.billbook.AddBillbookActivity"></activity>
+
+        <meta-data android:value="5aeeb407a40fa3788c000208" android:name="UMENG_APPKEY"/>
+        <meta-data android:value="100000" android:name="UMENG_CHANNEL"/>
+
     </application>
 
 </manifest>
