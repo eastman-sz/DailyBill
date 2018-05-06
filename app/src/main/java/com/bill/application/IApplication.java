@@ -19,6 +19,7 @@ public class IApplication extends Application {
         super.onCreate();
         context = this;
 
+        //init ument
         UMConfigure.init(context , UMConstant.AppKey , "10000" , UMConfigure.DEVICE_TYPE_PHONE , null);
         MobclickAgent.setScenarioType(this , MobclickAgent.EScenarioType.E_UM_NORMAL);
     }
