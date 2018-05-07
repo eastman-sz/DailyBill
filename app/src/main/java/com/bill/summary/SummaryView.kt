@@ -86,6 +86,9 @@ class SummaryView : BaseBillView{
 
         yearAmountTextView.text = CommonUtil.trimLastZero(yearAmount.toString())
 
+
+        lastest7DayChartView.setPercent(0.6f)
+
     }
 
     override fun addBroadCastAction(): ArrayList<String> {

@@ -122,6 +122,11 @@
 
     </RelativeLayout>
 
-
+    <com.bill.summary.Lastest7DayChartView
+        android:id="@+id/lastest7DayChartView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        />
 
 </LinearLayout>
