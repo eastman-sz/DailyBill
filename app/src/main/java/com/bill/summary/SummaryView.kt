@@ -89,6 +89,8 @@ class SummaryView : BaseBillView{
 
         lastest7DayChartView.setPercent(0.6f)
 
+        lastest7DayChartView.showBillList(weekBills)
+
     }
 
     override fun addBroadCastAction(): ArrayList<String> {

@@ -15,6 +15,14 @@
         android:layout_height="200dp"
         android:background="@color/white"
         android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
+    <com.bill.summary.Lastest7DayChartViews
+        android:id="@+id/lastest7DayChartViewss"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white"
         />
 
 
