@@ -59,6 +59,25 @@
                 android:onClick="onBtnClick"
                 android:clickable="true"
                 />
+
+            <com.common.base.CustomFontTextView
+                android:layout_width="@dimen/basic_line_height"
+                android:layout_height="match_parent"
+                android:background="@color/sfs_c9"
+                />
+
+            <com.common.base.CustomFontTextView
+                android:id="@+id/item3TextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="@dimen/s4"
+                android:textColor="@color/c13"
+                android:gravity="center"
+                android:text="流水"
+                android:onClick="onBtnClick"
+                android:clickable="true"
+                />
         </LinearLayout>
     </LinearLayout>
 

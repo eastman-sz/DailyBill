@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import com.bill.billbook.BillbookView
 import com.bill.consumption.AddConsumptionActivity
+import com.bill.daylist.DailyBillListView
 import com.bill.summary.SummaryView
 import com.common.base.BaseAppCompactActivitiy
 import com.common.base.BasePagerAdapter
@@ -26,6 +27,7 @@ class MainActivity : BaseAppCompactActivitiy() {
         val list = ArrayList<BaseRelativeLayout>()
         list.add(BillbookView(context))
         list.add(SummaryView(context))
+        list.add(DailyBillListView(context))
 
         val adapter = BasePagerAdapter(context , list)
         viewPager.adapter = adapter
@@ -35,6 +37,8 @@ class MainActivity : BaseAppCompactActivitiy() {
                 runOnUiThread {
                     item1TextView.setTextColor(if (0 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
                     item2TextView.setTextColor(if (1 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
+                    item3TextView.setTextColor(if (2 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
+
 
                     list[index].freshByHand(true)
                 }
@@ -54,6 +58,10 @@ class MainActivity : BaseAppCompactActivitiy() {
 
             item2TextView ->{
                 viewPager.setCurrentItem(1 ,false)
+            }
+
+            item3TextView ->{
+                viewPager.setCurrentItem(2 ,false)
             }
         }
     }

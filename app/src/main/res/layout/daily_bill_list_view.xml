@@ -9,4 +9,26 @@
     android:background="@color/sfs_page_bg_color"
     android:id="@+id/bgLayout"
     >
+    <com.common.base.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshStickyListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/sticky_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:scrollbars="none"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@null"
+        android:fadingEdge="none"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrHeaderTextColor="@color/c12"
+        ptr:ptrMode="disabled"
+        ptr:ptrloading_layout_bg_color="@color/transparent"
+        />
+
+
 </LinearLayout>
