@@ -2,22 +2,19 @@ package com.bill.dialog
 
 import android.content.Context
 import android.os.Bundle
-import android.view.Gravity
 import com.bill.point.ConsumptionPoint
 import com.bill.point.ConsumptionPointHelper
-import com.common.dialog.BaseDialog
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.info.DeviceInfo
 import kotlinx.android.synthetic.main.consumption_point_dialog_view.*
 /**
  * Created by E on 2018/3/12.
  */
-class ConsuptionPointDialog : BaseDialog {
+class ConsuptionPointDialog : BaseUpGlideDialog {
 
     val list = ArrayList<ConsumptionPoint>()
     var adapter : ConsumptionPointAdapter ?= null
 
-    constructor(context: Context) : super(context , R.style.lable_del_dialog)
+    constructor(context: Context) : super(context)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,17 +52,6 @@ class ConsuptionPointDialog : BaseDialog {
                 }
             }
         })
-    }
-
-    override fun show() {
-        super.show()
-
-        val attr = window.attributes
-        attr.width = DeviceInfo.getScreenWith(context)
-        window.attributes = attr
-
-        window.setGravity(Gravity.BOTTOM)
-        window.setWindowAnimations(R.style.share_style)
     }
 
     interface OnConsuptionPointSelectListener{
