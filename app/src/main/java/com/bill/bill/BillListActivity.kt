@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import com.bill.base.OnCommonRequestListener
 import com.bill.consumption.AddConsumptionActivity
 import com.bill.empty.BaseEmptyView
 import com.bill.util.ILog
@@ -13,11 +14,7 @@ import com.common.base.CommonTitleView
 import com.common.dialog.CommonDialog
 import com.common.dialog.OnCommonDialogBtnClickListener
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
-import com.utils.lib.ss.common.MathUtil
 import kotlinx.android.synthetic.main.activity_bill_list.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 
 class BillListActivity : BaseAppCompactActivitiy() {
 
@@ -69,10 +66,10 @@ class BillListActivity : BaseAppCompactActivitiy() {
 
                     DaiyBillDbHelper.delete(billList.bid)
 
-                    runOnUiThread({
+                    runOnUiThread{
                         list.removeAt(newPosition)
                         adapter?.notifyDataSetChanged()
-                    })
+                    }
                 }
                 override fun onRightBtnClik() {
                 }
@@ -82,50 +79,16 @@ class BillListActivity : BaseAppCompactActivitiy() {
         }
     }
 
-    fun freshBillListData(){
-        doAsync {
-            val dataList = ArrayList<BillList>()
-
-            //每月总额
-            val monthAmountMap = HashMap<String , Float>();
-
-            val dailyBillList = DaiyBillDbHelper.getAllDailyBills(bookId)
-            dailyBillList.forEach({
-                val billList = BillList.fromBill(it)
-
-                dataList.add(billList)
-
-                val mmOfYear = DateHepler.timestampFormat(billList.billtime , "yyyy-MM") as String
-                val amount = billList.amount
-
-                if (monthAmountMap.containsKey(mmOfYear)){
-
-                    val monthAmount = monthAmountMap[mmOfYear] as Float
-                    monthAmountMap.put(mmOfYear , MathUtil.addF(monthAmount , amount , 2))
-
-                }else{
-
-                    monthAmountMap.put(mmOfYear , amount)
-                }
-            })
-
-            //
-            dataList.forEach {
-                val mmOfYear = DateHepler.timestampFormat(it.billtime , "yyyy-MM") as String
-
-                it.monthAmount = monthAmountMap[mmOfYear] as Float
-
-            }
-
-            dataList.sort()
-
-            uiThread {
+    private fun freshBillListData(){
+        DailyBillDataFetchHelper.getAllDailyBills(bookId , object : OnCommonRequestListener<List<BillList>>(){
+            override fun onSuccess(it: List<BillList>) {
                 list.clear()
-                list.addAll(dataList)
-
+                list.addAll(it)
                 adapter?.notifyDataSetChanged()
             }
-        }
+
+        })
+
     }
 
     fun onBtnClick(view : View){
