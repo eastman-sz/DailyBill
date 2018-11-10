@@ -13,7 +13,10 @@ import com.common.base.BaseRelativeLayout
 import com.common.base.IonPageChangeListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_main.*
-
+/**
+ * Main Page.
+ * @author E
+ */
 class MainActivity : BaseAppCompactActivitiy() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
