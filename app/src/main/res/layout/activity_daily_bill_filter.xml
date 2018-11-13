@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.daylist.DailyBillFilterActivity"
+    android:orientation="vertical"
+    android:background="@color/sfs_page_bg_color"
+    >
+    <com.common.base.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal"
+        android:background="@color/transparent"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        >
+        <com.common.base.CustomFontDigitTextView
+            android:id="@+id/startTimeTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:background="@drawable/btn_bg_a"
+            android:hint="开始时间"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="至"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            />
+
+        <com.common.base.CustomFontDigitTextView
+            android:id="@+id/endTimeTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:background="@drawable/btn_bg_a"
+            android:hint="结束时间"
+            />
+    </LinearLayout>
+
+    <com.common.base.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        />
+
+    <com.common.base.CustomFontTextView
+        android:id="@+id/sureBtnTextView"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:background="@drawable/c1_c2_retangle_selector"
+        android:textSize="@dimen/s4"
+        android:textColor="@color/white"
+        android:text="确定"
+        />
+
+
+</LinearLayout>

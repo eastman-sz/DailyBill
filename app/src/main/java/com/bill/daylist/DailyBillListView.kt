@@ -1,6 +1,7 @@
 package com.bill.daylist
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -12,6 +13,7 @@ import com.bill.bill.BillList
 import com.bill.bill.BillListAdapter
 import com.bill.bill.DailyBillDataFetchHelper
 import com.bill.bill.DaiyBillDbHelper
+import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
 import com.bill.util.BroadcastAction
 import com.common.base.CommonTitleView
@@ -19,6 +21,8 @@ import com.common.dialog.CommonDialog
 import com.common.dialog.OnCommonDialogBtnClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.daily_bill_list_view.view.*
+import org.jetbrains.anko.startActivity
+
 /**
  * Created by E on 2018/3/15.
  */
@@ -38,7 +42,11 @@ class DailyBillListView : BaseBillView {
         commonTitleView.setRightBtnText("筛选")
         commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
             override fun onRightBtnClick() {
-
+                DialogHelper.showDailyBillFilter(context , object : OnDailyBillFilterParamSetListener{
+                    override fun onResult(it : DailyBillFilter) {
+                        onFilter(it)
+                    }
+                })
             }
         })
     }
@@ -84,6 +92,18 @@ class DailyBillListView : BaseBillView {
             }
 
         })
+    }
+
+    private fun onFilter(it : DailyBillFilter){
+        DailyBillDataFetchHelper.getAllDailyBills(it.startTimestamp , it.endTimestamp, object : OnCommonRequestListener<List<BillList>>(){
+            override fun onSuccess(it: List<BillList>) {
+                list.clear()
+                list.addAll(it)
+                adapter?.notifyDataSetChanged()
+            }
+
+        })
+
     }
 
     private fun addEmptyView(listview: ListView){
