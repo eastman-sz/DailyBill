@@ -56,7 +56,6 @@ class DailyBillFilterActivity : BaseKotlinActivity() {
 
                     ListenerConfig.onDailyBillFilterParamSetListener?.onResult(dailyBillFilter)
 
-
                 }
             }
         }
