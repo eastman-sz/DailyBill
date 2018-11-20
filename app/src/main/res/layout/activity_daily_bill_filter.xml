@@ -13,51 +13,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:orientation="horizontal"
-        android:background="@color/transparent"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
         >
-        <com.common.base.CustomFontDigitTextView
-            android:id="@+id/startTimeTextView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/c8"
-            android:textSize="@dimen/s4"
-            android:gravity="center"
-            android:background="@drawable/btn_bg_a"
-            android:hint="开始时间"
+        <com.bill.daylist.CommonDateFilterView
+            android:id="@+id/commonDateFilterView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             />
 
-        <com.common.base.CustomFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="至"
-            android:textColor="@color/c8"
-            android:textSize="@dimen/s4"
-            android:gravity="center"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            />
 
-        <com.common.base.CustomFontDigitTextView
-            android:id="@+id/endTimeTextView"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:textColor="@color/c8"
-            android:textSize="@dimen/s4"
-            android:gravity="center"
-            android:background="@drawable/btn_bg_a"
-            android:hint="结束时间"
-            />
     </LinearLayout>
+
+
+
 
     <com.common.base.CustomFontTextView
         android:layout_width="match_parent"
