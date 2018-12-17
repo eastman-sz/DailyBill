@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.bill.billbook.AddBillbookActivity"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <com.common.base.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/s4"
+        android:textColor="@color/c8"
+        android:text="选择时间"
+        android:paddingLeft="15dp"
+        android:paddingBottom="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal"
+        android:background="@color/transparent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+        <com.common.base.CustomFontTextView
+            android:id="@+id/todayTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:text="今日"
+            android:background="@drawable/gray_disabled_small_corner_retangle_selector"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:id="@+id/weekTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:text="本周"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/gray_disabled_small_corner_retangle_selector"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:id="@+id/monthTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:text="本月"
+            android:background="@drawable/gray_disabled_small_corner_retangle_selector"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal"
+        android:background="@color/transparent"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        >
+        <com.common.base.CustomFontDigitTextView
+            android:id="@+id/startTimeTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:background="@drawable/input_bg"
+            android:hint="开始时间"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="至"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            />
+
+        <com.common.base.CustomFontDigitTextView
+            android:id="@+id/endTimeTextView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s4"
+            android:gravity="center"
+            android:background="@drawable/input_bg"
+            android:hint="结束时间"
+            />
+    </LinearLayout>
+
+</LinearLayout>
