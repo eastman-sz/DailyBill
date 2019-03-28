@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.consumption_point_dialog_view.*
 /**
  * Created by E on 2018/3/12.
  */
-class ConsuptionPointDialog : BaseUpGlideDialog {
+class ConsumptionPointDialog : BaseUpGlideDialog {
 
     val list = ArrayList<ConsumptionPoint>()
     var adapter : ConsumptionPointAdapter ?= null

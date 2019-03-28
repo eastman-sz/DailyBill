@@ -102,12 +102,12 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
     private void freshViews(){
         final String date[] = cDate.split("-");
 
-        WheelviewTextAdapter yearAdapter = new WheelviewTextAdapter(context , years);
+        WheelViewTextAdapter yearAdapter = new WheelViewTextAdapter(context , years);
         yearWheelview.setViewAdapter(yearAdapter);
         yearWheelview.setVisibleItems(5);
         yearWheelview.setCurrentItem(culItem(years , date[0]));
 
-        WheelviewTextAdapter monthAdapter = new WheelviewTextAdapter(context , months);
+        WheelViewTextAdapter monthAdapter = new WheelViewTextAdapter(context , months);
         monthWheelview.setViewAdapter(monthAdapter);
         monthWheelview.setVisibleItems(5);
         monthWheelview.setCurrentItem(culItem(months , date[1]));
@@ -124,18 +124,18 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
 
         onMonthScrollChg(date ,DateHepler.getMonthOfYear(cTimeStamp));
 
-        WheelviewTextAdapter hourAdapter = new WheelviewTextAdapter(context , hours);
+        WheelViewTextAdapter hourAdapter = new WheelViewTextAdapter(context , hours);
         hoursWheelview.setViewAdapter(hourAdapter);
         hoursWheelview.setVisibleItems(5);
         hoursWheelview.setCurrentItem(culItem(hours , date[3]));
 
-        WheelviewTextAdapter minuteAdapter = new WheelviewTextAdapter(context , minutes);
+        WheelViewTextAdapter minuteAdapter = new WheelViewTextAdapter(context , minutes);
         minutesWheelview.setViewAdapter(minuteAdapter);
         //setViewAdapter需要放在setCurrentItem之前
         minutesWheelview.setVisibleItems(5);
         minutesWheelview.setCurrentItem(culItem(minutes , date[4]));
 
-        WheelviewTextAdapter secondAdapter = new WheelviewTextAdapter(context , seconds);
+        WheelViewTextAdapter secondAdapter = new WheelViewTextAdapter(context , seconds);
         secondsWheelview.setViewAdapter(secondAdapter);
         secondsWheelview.setVisibleItems(5);
         secondsWheelview.setCurrentItem(culItem(seconds , date[5]));
@@ -146,7 +146,7 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
         int dayCount = getDayCountOfMonth(month);
         initList(days , dayCount);
 
-        WheelviewTextAdapter dayAdapter = new WheelviewTextAdapter(context , days);
+        WheelViewTextAdapter dayAdapter = new WheelViewTextAdapter(context , days);
         dayWheelview.setViewAdapter(dayAdapter);
         dayWheelview.setVisibleItems(5);
         dayWheelview.setCurrentItem(culItem(days , date[2]));

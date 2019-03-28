@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    tools:context="com.bill.billbook.AddBillbookActivity"
+    android:orientation="vertical"
+    >
+    <com.common.base.CustomFontTextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/c8"
+        android:textSize="@dimen/s4"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingRight="10dp"
+        android:ellipsize="end"
+        />
+</LinearLayout>

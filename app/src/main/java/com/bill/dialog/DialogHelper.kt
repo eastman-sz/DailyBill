@@ -1,6 +1,7 @@
 package com.bill.dialog
 
 import android.content.Context
+import com.bill.consumption.type.TypeSelectDialog
 import com.bill.daylist.DailyBillFilterActivity
 import com.bill.daylist.ListenerConfig
 import com.bill.daylist.OnDailyBillFilterParamSetListener
@@ -39,6 +40,10 @@ class DialogHelper {
             })
         }
 
+        fun showTypeSelectDialog(context: Context){
+            val dialog = TypeSelectDialog(context)
+            dialog.show()
+        }
 
 
 

@@ -3,7 +3,7 @@ package com.bill.consumption
 import android.os.Bundle
 import android.view.View
 import com.bill.bill.DaiyBillDbHelper
-import com.bill.dialog.ConsuptionPointDialog
+import com.bill.dialog.ConsumptionPointDialog
 import com.bill.dialog.DateTimeSelectDialog
 import com.bill.dialog.DialogHelper
 import com.bill.point.ConsumptionPoint
@@ -11,7 +11,6 @@ import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
 import com.common.base.BaseAppCompactActivitiy
 import com.common.base.CommonTitleView
-import com.common.base.ITextChangedListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
 import kotlinx.android.synthetic.main.activity_add_consumption.*
@@ -77,9 +76,9 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
             }
 
             consumptionPointLayout ->{
-                val dialog = ConsuptionPointDialog(context)
+                val dialog = ConsumptionPointDialog(context)
                 dialog.show()
-                dialog.onConsuptionPointSelectListener = object : ConsuptionPointDialog.OnConsuptionPointSelectListener{
+                dialog.onConsuptionPointSelectListener = object : ConsumptionPointDialog.OnConsuptionPointSelectListener{
                     override fun selected(consumptionPoint: ConsumptionPoint) {
                         marketId = consumptionPoint.marketId
 
@@ -90,6 +89,11 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                         freshBtn()
                     }
                 }
+            }
+
+            typeLayout ->{
+                //分类选择
+                DialogHelper.showTypeSelectDialog(context)
             }
 
             saveBtnTextView -> {

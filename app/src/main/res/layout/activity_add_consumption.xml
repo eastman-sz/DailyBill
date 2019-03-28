@@ -132,7 +132,41 @@
                 />
         </LinearLayout>
 
+        <ImageView style="@style/full_line_style"/>
 
+        <LinearLayout
+            android:id="@+id/typeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/list_item_bg"
+            android:orientation="horizontal"
+            android:onClick="onBtnClick"
+            android:clickable="true"
+            >
+            <com.common.base.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/c8"
+                android:textSize="@dimen/s4"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="分类"
+                />
+            <com.common.base.CustomFontTextView
+                android:id="@+id/typeNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textColor="@color/c8"
+                android:textSize="@dimen/s4"
+                android:gravity="center_vertical|right"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:drawableRight="@drawable/nextstep_right_arrow_n"
+                android:drawablePadding="10dp"
+                android:hint="请选择"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 
