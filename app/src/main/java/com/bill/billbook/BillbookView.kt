@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.ListView
 import com.bill.base.BaseBillView
 import com.bill.bill.BillListActivity
+import com.bill.dialog.DialogHelper
+import com.bill.dialog.OnCommonItemClickListener
 import com.bill.empty.BaseEmptyView
 import com.bill.util.BroadcastAction
 import com.common.base.CommonTitleView
-import com.common.dialog.CommonDialog
-import com.common.dialog.OnCommonDialogBtnClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bill_book_view.view.*
 /**
@@ -45,7 +45,7 @@ class BillbookView : BaseBillView{
 
         freshData()
 
-        addEmptyView(listView)
+        addEmptyView()
 
         listView.setOnItemClickListener { parent, view, position, id ->
             val billBook = list[position]
@@ -55,38 +55,37 @@ class BillbookView : BaseBillView{
         }
 
         listView.setOnItemLongClickListener { parent, view, position, id ->
-            val dialog = CommonDialog(context)
-            dialog.show()
-            dialog.setDialogText("温馨提示" , "确定删除此账簿吗?" , "取消" , "确定")
-            dialog.setOnCommonDialogBtnClickListener(object : OnCommonDialogBtnClickListener{
-                override fun onRightBtnClik() {
-                    val billBook = list[position]
-                    BillbookDbHelper.delete(billBook.bookId)
+           DialogHelper.showCommonDialog(context , "温馨提示" , "确定删除此账簿吗?" , "取消" , "确定" , object : OnCommonItemClickListener<Int>{
+               override fun onItemClick(it: Int) {
+                   when(it){
+                        1 ->{
+                            val billBook = list[position]
+                            BillbookDbHelper.delete(billBook.bookId)
 
-                    list.removeAt(position)
-                    adapter?.notifyDataSetChanged()
-                }
-                override fun onLeftBtnClik() {
-                }
-            })
+                            list.removeAt(position)
+                            adapter?.notifyDataSetChanged()
+                        }
+                   }
+               }
+           })
             true
         }
     }
 
-    fun freshData(){
+    private fun freshData(){
         list.clear()
         list.addAll(BillbookDbHelper.getBillbooks())
         adapter?.notifyDataSetChanged()
     }
 
-    private fun addEmptyView(listview: ListView){
-        val emptyView = listview.emptyView
+    private fun addEmptyView(){
+        val emptyView = listView.emptyView
         if (null != emptyView){
             return
         }
         val newEmptyView = BaseEmptyView(context)
-        (listview.parent as ViewGroup).addView(newEmptyView)
-        listview.emptyView = newEmptyView
+        (listView.parent as ViewGroup).addView(newEmptyView)
+        listView.emptyView = newEmptyView
         newEmptyView.setEmptyText("点击右上角创建")
     }
 

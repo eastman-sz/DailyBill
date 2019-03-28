@@ -21,12 +21,12 @@ public class PrefUtil {
         if (Build.VERSION.SDK_INT >= 11) {
             // android3.0以上支持
             if (null == pref) {
-                pref = IApplication.getContext().getSharedPreferences(name,
+                pref = IApplication.Companion.getContext().getSharedPreferences(name,
                         Context.MODE_MULTI_PROCESS);
             }
         } else {
             if (null == pref) {
-                pref = IApplication.getContext().getSharedPreferences(name,
+                pref = IApplication.Companion.getContext().getSharedPreferences(name,
                         Context.MODE_PRIVATE);
             }
         }

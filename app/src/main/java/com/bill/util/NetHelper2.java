@@ -36,9 +36,9 @@ public class NetHelper2 extends BaseHttpImp2 {
     private HashMap<String, Object> getCommonParams(){
         HashMap<String, Object> params = new HashMap<>();
         params.put("platform", 2);
-        params.put("mac", DeviceInfo.getLocalMacAddress(IApplication.getContext()));
+        params.put("mac", DeviceInfo.getLocalMacAddress(IApplication.Companion.getContext()));
         params.put("rtime", System.currentTimeMillis()/1000);
-        params.put("version", PkgHelper.getVersionName(IApplication.getContext()));
+        params.put("version", PkgHelper.getVersionName(IApplication.Companion.getContext()));
         params.put("osversion", DeviceInfo.getSystemVersion());
         params.put("brand", DeviceInfo.getBrand());
         params.put("model", DeviceInfo.getModel());

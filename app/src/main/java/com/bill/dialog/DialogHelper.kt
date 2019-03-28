@@ -4,6 +4,8 @@ import android.content.Context
 import com.bill.daylist.DailyBillFilterActivity
 import com.bill.daylist.ListenerConfig
 import com.bill.daylist.OnDailyBillFilterParamSetListener
+import com.common.dialog.CommonDialog
+import com.common.dialog.OnCommonDialogBtnClickListener
 import org.jetbrains.anko.startActivity
 
 class DialogHelper {
@@ -21,6 +23,22 @@ class DialogHelper {
             ListenerConfig.onDailyBillFilterParamSetListener = onDailyBillFilterParamSetListener
             context.startActivity<DailyBillFilterActivity>()
         }
+
+        fun showCommonDialog(context: Context , title : String , content : String , leftBtnText : String , rightBtnText : String ,
+                             onCommonItemClickListener : OnCommonItemClickListener<Int>){
+            val dialog = CommonDialog(context)
+            dialog.show()
+            dialog.setDialogText(title , content , leftBtnText, rightBtnText)
+            dialog.setOnCommonDialogBtnClickListener(object : OnCommonDialogBtnClickListener{
+                override fun onLeftBtnClik() {
+                    onCommonItemClickListener?.onItemClick(0)
+                }
+                override fun onRightBtnClik() {
+                    onCommonItemClickListener?.onItemClick(1)
+                }
+            })
+        }
+
 
 
 

@@ -15,7 +15,7 @@ public class ISqliteDataBase {
 		if (null == sqLiteDatabase) {
 			synchronized (object.getClass()) {
 				if (null == sqLiteDatabase) {
-					sqLiteDatabase = new IDbHelper(IApplication.getContext()).getWritableDatabase();
+					sqLiteDatabase = new IDbHelper(IApplication.Companion.getContext()).getWritableDatabase();
 				}
 			}
 		}

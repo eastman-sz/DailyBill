@@ -8,7 +8,7 @@ import com.bill.application.IApplication;
 public class BroadcastUtil {
 
     public static void sendBroadCast(String action){
-        IApplication.getContext().sendBroadcast(new Intent(action));
+        IApplication.Companion.getContext().sendBroadcast(new Intent(action));
     }
 
 }

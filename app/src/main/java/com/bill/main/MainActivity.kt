@@ -2,6 +2,7 @@ package com.bill.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.View
 import com.bill.billbook.BillbookView
 import com.bill.consumption.AddConsumptionActivity
@@ -38,9 +39,9 @@ class MainActivity : BaseAppCompactActivitiy() {
         viewPager.addOnPageChangeListener(object : IonPageChangeListener(){
             override fun onPageSelected(index: Int) {
                 runOnUiThread {
-                    item1TextView.setTextColor(if (0 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
-                    item2TextView.setTextColor(if (1 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
-                    item3TextView.setTextColor(if (2 == index){resources.getColor(R.color.c27) }else{resources.getColor(R.color.c13)})
+                    item1TextView.setTextColor(if (0 == index){ContextCompat.getColor(context ,R.color.c27)}else{ContextCompat.getColor(context ,R.color.c13)})
+                    item2TextView.setTextColor(if (1 == index){ContextCompat.getColor(context ,R.color.c27) }else{ContextCompat.getColor(context ,R.color.c13)})
+                    item3TextView.setTextColor(if (2 == index){ContextCompat.getColor(context ,R.color.c27)}else{ContextCompat.getColor(context ,R.color.c13)})
 
 
                     list[index].freshByHand(true)

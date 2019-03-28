@@ -1,11 +1,11 @@
 package com.bill.consumption
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.bill.bill.DaiyBillDbHelper
 import com.bill.dialog.ConsuptionPointDialog
 import com.bill.dialog.DateTimeSelectDialog
+import com.bill.dialog.DialogHelper
 import com.bill.point.ConsumptionPoint
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
@@ -52,53 +52,18 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
     }
 
     override fun initListener() {
-        amountTextView.addTextChangedListener(object : ITextChangedListener(){
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val right = checkAmountRight()
-                amountRight = right
-
+        amountTextView.onAmountEditTextListener = object : OnAmountEditTextListener{
+            override fun onEditListener(isRight: Boolean, text: String) {
+                amountRight = isRight
                 freshBtn()
-
-                if (right){
-                    return
-                }
-                val msg = s.toString()
-                var length = msg.length
-                if (length == 0){
-                    return
-                }
-                val startWithPoint = msg.startsWith("." ,true)
-                if (startWithPoint){
-                    val text = msg.substring(1)
-                    amountTextView.setText(text)
-                    amountTextView.setSelection(0)
-                    return
-                }
-
-                val selectionEnd = amountTextView.selectionEnd
-                if (selectionEnd == length){
-                    val text = msg.substring(0 , length -1)
-                    amountTextView.setText(text)
-                    amountTextView.setSelection(length -1)
-
-                }else{
-                    val text = msg.substring(0 , selectionEnd -1)
-                    val text2 = msg.substring(selectionEnd)
-
-                    amountTextView.setText(text.plus(text2))
-                    amountTextView.setSelection(selectionEnd -1)
-                }
             }
-        })
+        }
     }
 
     fun onBtnClick(v : View){
         when(v){
             dateTimeLayout -> {
-                val dialog = DateTimeSelectDialog(context)
-                dialog.show()
-                dialog.setTimestamp(cTimestamp)
-                dialog.onDateTimeSelectedListener = object : DateTimeSelectDialog.OnDateTimeSelectedListener{
+                DialogHelper.showDateTimeSelectDialog(context , cTimestamp , object : DateTimeSelectDialog.OnDateTimeSelectedListener{
                     override fun onSelected(timestamp: Long) {
                         runOnUiThread {
                             cTimestamp = timestamp
@@ -108,7 +73,7 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                             freshBtn()
                         }
                     }
-                }
+                })
             }
 
             consumptionPointLayout ->{
