@@ -21,4 +21,16 @@
         android:id="@+id/typeSelectWheelView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <ImageView style="@style/full_line_style"/>
+
+    <com.common.base.CustomFontTextView
+        android:id="@+id/sureBtnTextView"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:gravity="center"
+        android:textColor="@color/c12"
+        android:text="确定"
+        android:background="@drawable/btn_bg_a"
+        />
 </LinearLayout>

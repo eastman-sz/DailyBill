@@ -71,7 +71,13 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         })
     }
 
-    fun getSelectType() : SmallType{
+    fun getBigType() : BigType{
+        val curPosition = bigTypeWheelView.currentItem
+        val bigType = bigList[curPosition]
+        return bigType
+    }
+
+    fun getSmallType() : SmallType{
         val curPosition = smallTypeWheelView.currentItem
         val smallType = smallList[curPosition]
         return smallType

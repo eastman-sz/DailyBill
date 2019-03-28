@@ -8,6 +8,8 @@ import kotlinx.android.synthetic.main.type_select_dialog.*
 
 class TypeSelectDialog : BaseUpGlideDialog {
 
+    var onConsumptionTypeSelectListener : OnConsumptionTypeSelectListener ?= null
+
     constructor(context: Context) : super(context)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,6 +21,15 @@ class TypeSelectDialog : BaseUpGlideDialog {
 
     override fun initViews() {
         typeSelectWheelView.showType(1)
+    }
+
+    override fun initListeners() {
+        sureBtnTextView.setOnClickListener {
+            dismiss()
+            val smallType = typeSelectWheelView.getSmallType()
+            val bigType = typeSelectWheelView.getBigType()
+            onConsumptionTypeSelectListener?.onTypeSelect(smallType , bigType)
+        }
     }
 
 }

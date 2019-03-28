@@ -8,6 +8,7 @@ import com.common.base.BaseAppCompactActivitiy
 import com.sz.kk.daily.bill.R
 import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_start.*
+import org.jetbrains.anko.startActivity
 
 class StartActivity : BaseAppCompactActivitiy() {
 
@@ -20,12 +21,10 @@ class StartActivity : BaseAppCompactActivitiy() {
         DataInitHelper.initData()
 
         bgLayout.postDelayed({
-            runOnUiThread({
-                startActivity(Intent(context , MainActivity::class.java))
-
-                finish()
-            })
-        } , 500)
+            runOnUiThread {
+                startActivity<MainActivity>()
+            }
+        } , 300)
     }
 
     override fun onResume() {

@@ -1,45 +1,28 @@
 package com.bill.wheelview;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-
 import com.common.base.CustomFontDigitTextView;
 import com.common.base.ViewHolder;
-import com.sfs.adapter.AbstractWheelAdapter;
+import com.sfs.adapter.BaseWheelAdapter;
 import com.sz.kk.daily.bill.R;
-
 import java.util.ArrayList;
-
+import java.util.List;
 /**
  * Created by E on 2018/3/8.
  */
-public class WheelviewTextAdapter extends AbstractWheelAdapter {
+public class WheelViewTextAdapter extends BaseWheelAdapter<String> {
 
-    private Context context = null;
-    private ArrayList<String> list = null;
 
-    public WheelviewTextAdapter(Context context, ArrayList<String> list) {
-        this.context = context;
-        this.list = list;
+    public WheelViewTextAdapter(Context context, ArrayList<String> list) {
+        super(context , list , R.layout.wheelview_text_adapter_view);
     }
 
     @Override
-    public int getItemsCount() {
-        return list.size();
-    }
-
-    @Override
-    public View getItem(int position, View convertView, ViewGroup parent) {
-        if (null == convertView){
-            convertView = LayoutInflater.from(context).inflate(R.layout.wheelview_text_adapter_view , null);
-        }
+    public void getConvertView(View convertView, List<String> list, int position) {
         CustomFontDigitTextView textView = ViewHolder.getView(convertView , R.id.textView);
         String text = list.get(position);
 
         textView.setText(text);
-
-        return convertView;
     }
 }
