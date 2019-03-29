@@ -121,6 +121,14 @@ class SmallTypeDbHelper {
             return smallType
         }
 
+        //删除一级分类的时候，底下的二级分类也要一并删除
+        fun deleteAll(bigTypeId: Int){
+            val db = ISqliteDataBase.getSqLiteDatabase()
+            db.delete(DBNAME , "bigTypeId = ? " , arrayOf(bigTypeId.toString()))
+            //发送广播
+            BroadcastUtil.sendBroadCast(BroadcastAction.smallTypeFresh)
+        }
+
         fun delete(typeId : Int){
             val db = ISqliteDataBase.getSqLiteDatabase()
             db.delete(DBNAME , "typeId = ? " , arrayOf(typeId.toString()))

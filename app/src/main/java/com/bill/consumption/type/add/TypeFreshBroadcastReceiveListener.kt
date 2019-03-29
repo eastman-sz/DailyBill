@@ -26,6 +26,7 @@ class TypeFreshBroadcastReceiveListener : BroadcastReceiver {
         }
         val filter = IntentFilter()
         filter.addAction(BroadcastAction.smallTypeFresh)
+        filter.addAction(BroadcastAction.bigTypeFresh)
         IApplication.context?.registerReceiver(this , filter)
         hasRegistered = true
     }
@@ -42,6 +43,10 @@ class TypeFreshBroadcastReceiveListener : BroadcastReceiver {
         when(action){
             BroadcastAction.smallTypeFresh ->{
                 onTypeFreshBroadcastReceiveListener?.onSmallTypeFresh()
+            }
+
+            BroadcastAction.bigTypeFresh ->{
+                onTypeFreshBroadcastReceiveListener?.onBigTypeFresh()
             }
         }
 

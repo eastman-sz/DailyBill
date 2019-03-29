@@ -13,6 +13,8 @@ class EditTypeActivity : BaseKotlinActivity() {
     private val list = ArrayList<BigType>()
     private var adapter : BigTypeAdapter ?= null
 
+    private val typeFreshBroadcastReceiveListener = TypeFreshBroadcastReceiveListener()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_type)
@@ -30,9 +32,29 @@ class EditTypeActivity : BaseKotlinActivity() {
     }
 
     override fun initViews() {
-        list.addAll(BigTypeDbHelper.getBigTypeS())
         adapter = BigTypeAdapter(context, list)
         listView.adapter = adapter
+
+        freshViews()
+    }
+
+    private fun freshViews(){
+        list.clear()
+        list.addAll(BigTypeDbHelper.getBigTypeS())
+        adapter?.notifyDataSetChanged()
+    }
+
+    override fun initListener() {
+        typeFreshBroadcastReceiveListener.onTypeFreshBroadcastReceiveListener = object : OnTypeFreshBroadcastReceiveListener(){
+            override fun onBigTypeFresh() {
+                freshViews()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        typeFreshBroadcastReceiveListener.unRegister()
+        super.onDestroy()
     }
 
 

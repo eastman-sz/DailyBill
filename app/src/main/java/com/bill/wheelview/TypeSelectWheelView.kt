@@ -1,6 +1,8 @@
 package com.bill.wheelview
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
 import com.bill.base.BaseKotlinRelativeLayout
@@ -8,6 +10,8 @@ import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
 import com.bill.consumption.type.SmallType
 import com.bill.consumption.type.SmallTypeDbHelper
+import com.bill.consumption.type.add.OnTypeFreshBroadcastReceiveListener
+import com.bill.consumption.type.add.TypeFreshBroadcastReceiveListener
 import com.sz.kk.daily.bill.R
 import com.wheelview.HorizontalWheelView
 import com.wheelview.OnWheelScrollListener
@@ -15,8 +19,10 @@ import kotlinx.android.synthetic.main.type_select_wheelview.view.*
 
 class TypeSelectWheelView : BaseKotlinRelativeLayout {
 
-    val bigList = ArrayList<BigType>()
-    val smallList = ArrayList<SmallType>()
+    private val bigList = ArrayList<BigType>()
+    private val smallList = ArrayList<SmallType>()
+
+    private val typeFreshBroadcastReceiveListener = TypeFreshBroadcastReceiveListener()
 
     constructor(context: Context) : super(context){
         init()
@@ -31,6 +37,11 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
     }
 
     fun showType(smallType : Int){
+        freshAll()
+    }
+
+    private fun freshAll(){
+        bigList.clear()
         bigList.addAll(BigTypeDbHelper.getBigTypeS())
 
         val bigTypeAdapter = BigTypeWheelViewAdapter(context , bigList)
@@ -71,6 +82,19 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         })
     }
 
+    override fun initListener() {
+        typeFreshBroadcastReceiveListener.onTypeFreshBroadcastReceiveListener = object : OnTypeFreshBroadcastReceiveListener(){
+            override fun onBigTypeFresh() {
+                freshAll()
+            }
+            override fun onSmallTypeFresh() {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    freshAll()
+                } , 600)
+            }
+        }
+    }
+
     fun getBigType() : BigType{
         val curPosition = bigTypeWheelView.currentItem
         val bigType = bigList[curPosition]
@@ -81,6 +105,11 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         val curPosition = smallTypeWheelView.currentItem
         val smallType = smallList[curPosition]
         return smallType
+    }
+
+    override fun onDetachedFromWindow() {
+        typeFreshBroadcastReceiveListener.unRegister()
+        super.onDetachedFromWindow()
     }
 
 }

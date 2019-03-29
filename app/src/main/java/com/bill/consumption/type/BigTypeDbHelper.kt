@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
+import com.bill.util.BroadcastAction
+import com.bill.util.BroadcastUtil
 import java.lang.Exception
 
 class BigTypeDbHelper {
@@ -43,6 +45,9 @@ class BigTypeDbHelper {
 
             val db = ISqliteDataBase.getSqLiteDatabase()
             db.update(DBNAME , values , "typeId = ? " , arrayOf(typeId.toString()))
+
+            //发送广播
+            BroadcastUtil.sendBroadCast(BroadcastAction.bigTypeFresh)
         }
 
         fun getBigTypeS() : List<BigType>{
@@ -96,6 +101,15 @@ class BigTypeDbHelper {
                 cursor?.close()
             }
             return typeId
+        }
+
+        fun delete(typeId : Int){
+            val db = ISqliteDataBase.getSqLiteDatabase()
+            db.delete(DBNAME , "typeId = ? " , arrayOf(typeId.toString()))
+            //发送广播
+            BroadcastUtil.sendBroadCast(BroadcastAction.bigTypeFresh)
+            //删除相应的子项
+            SmallTypeDbHelper.deleteAll(typeId)
         }
 
         private fun fromCursor(cursor: Cursor) : BigType{

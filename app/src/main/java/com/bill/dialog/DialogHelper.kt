@@ -6,6 +6,7 @@ import com.bill.consumption.type.OnConsumptionTypeSelectListener
 import com.bill.consumption.type.TypeSelectDialog
 import com.bill.consumption.type.add.AddSmallTypeDialog
 import com.bill.consumption.type.add.BigTypeSelectDialog
+import com.bill.consumption.type.add.EditBigTypeNameDialog
 import com.bill.consumption.type.add.EditSmallTypeNameDialog
 import com.bill.daylist.DailyBillFilterActivity
 import com.bill.daylist.ListenerConfig
@@ -62,6 +63,13 @@ class DialogHelper {
             val dialog = EditSmallTypeNameDialog(context)
             dialog.show()
             dialog.setSmallTypeId(smallTypeId)
+        }
+
+        //修改一级分类名称
+        fun showEditEditBigTypeNameDialog(context: Context , typeId : Int){
+            val dialog = EditBigTypeNameDialog(context)
+            dialog.show()
+            dialog.setBigTypeId(typeId)
         }
 
     }
