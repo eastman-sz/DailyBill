@@ -4,15 +4,14 @@ import android.content.Context;
 import android.view.View;
 import com.common.base.CustomFontDigitTextView;
 import com.common.base.ViewHolder;
-import com.sfs.adapter.BaseWheelAdapter;
 import com.sz.kk.daily.bill.R;
+import com.wheelview.adapter.BaseWheelAdapter;
 import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by E on 2018/3/8.
  */
 public class WheelViewTextAdapter extends BaseWheelAdapter<String> {
-
 
     public WheelViewTextAdapter(Context context, ArrayList<String> list) {
         super(context , list , R.layout.wheelview_text_adapter_view);
