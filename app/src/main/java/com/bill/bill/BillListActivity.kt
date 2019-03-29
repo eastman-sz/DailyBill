@@ -62,7 +62,7 @@ class BillListActivity : BaseKotlinActivity() {
                             val newPosition = position -1
                             val billList = list[newPosition]
 
-                            DaiyBillDbHelper.delete(billList.bid)
+                            DailyBillDbHelper.delete(billList.bid)
 
                             runOnUiThread{
                                 list.removeAt(newPosition)

@@ -3,7 +3,8 @@ package com.bill.consumption
 import android.os.Bundle
 import android.view.View
 import com.bill.base.BaseKotlinActivity
-import com.bill.bill.DaiyBillDbHelper
+import com.bill.bill.DailyBillDbHelper
+import com.bill.consumption.nature.NatureInfo
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
 import com.bill.consumption.type.SmallType
@@ -14,19 +15,23 @@ import com.bill.point.ConsumptionPoint
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
 import com.common.base.OnCommonTitleClickListener
+import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
 import kotlinx.android.synthetic.main.activity_add_consumption.*
 
 class AddConsumptionActivity : BaseKotlinActivity() {
 
-    var cTimestamp : Long = 0L;
+    var billTime : Long = 0L //创建时间
 
     var amountRight = false
     var timeRight = false
-    var marketId = 0
 
-    var bookId = 0L
+    var marketId = 0 //地点ID
+    var bookId = 0L //帐本
+    var bigTypeId = 0 //二级分类ID
+    var smallTypeId = 0 //二级分类ID
+    var natureId = 0 //性质ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +40,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
     }
 
     init {
-        cTimestamp = System.currentTimeMillis()
+        billTime = System.currentTimeMillis()
     }
 
     override fun getIntentData() {
@@ -64,10 +69,10 @@ class AddConsumptionActivity : BaseKotlinActivity() {
     fun onBtnClick(v : View){
         when(v){
             dateTimeLayout -> {
-                DialogHelper.showDateTimeSelectDialog(context , cTimestamp , object : DateTimeSelectDialog.OnDateTimeSelectedListener{
+                DialogHelper.showDateTimeSelectDialog(context , billTime , object : DateTimeSelectDialog.OnDateTimeSelectedListener{
                     override fun onSelected(timestamp: Long) {
                         runOnUiThread {
-                            cTimestamp = timestamp
+                            billTime = timestamp
                             timeRight = true
                             dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy-MM-dd HH:mm:ss")
 
@@ -98,8 +103,23 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                 DialogHelper.showTypeSelectDialog(context , object : OnConsumptionTypeSelectListener{
                     override fun onTypeSelect(smallType: SmallType, bigType: BigType) {
                         runOnUiThread {
+                            bigTypeId = bigType.typeId
+                            smallTypeId = smallType.typeId
 
                             typeNameTextView.text = bigType.typeName.plus("  >  ").plus(smallType.typeName)
+                        }
+                    }
+                })
+            }
+
+            natureLayout ->{
+                //性质：日常消费...
+                DialogHelper.showNatureInfoSelectDialog(context , object : OnCommonItemClickListener<NatureInfo>(){
+                    override fun onItemClick(it: NatureInfo) {
+                        runOnUiThread {
+                            natureId = it.natureId
+
+                            natureTextView.text = it.natureName
                         }
                     }
                 })
@@ -109,7 +129,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                 val amount = amountTextView.text.toString().toFloat()
                 val remarks = remarksTextView.text.toString()
 
-                DaiyBillDbHelper.save(bookId, amount , cTimestamp , marketId , remarks)
+                DailyBillDbHelper.save(amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId)
 
                 onBackPressed()
 

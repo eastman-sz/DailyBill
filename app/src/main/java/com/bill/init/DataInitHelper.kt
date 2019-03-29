@@ -1,6 +1,8 @@
 package com.bill.init
 
 import com.bill.billbook.BillbookDbHelper
+import com.bill.consumption.nature.NatureInfo
+import com.bill.consumption.nature.NatureInfoDbHelper
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
 import com.bill.consumption.type.SmallType
@@ -85,6 +87,15 @@ class DataInitHelper {
                             SmallTypeDbHelper.save(it.bigTypeId , it.typeId , it.typeName!!)
                         }
 
+
+                        //--消费性质================================================
+                        val natureList = ArrayList<NatureInfo>()
+                        natureList.add(NatureInfo("固定支出"))
+                        natureList.add(NatureInfo("日常消费"))
+
+                        natureList.forEach {
+                            NatureInfoDbHelper.save(it.natureName!!)
+                        }
                     }
                 }catch (e : Exception){
                     e.printStackTrace()

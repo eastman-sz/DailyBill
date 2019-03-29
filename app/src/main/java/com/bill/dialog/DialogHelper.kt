@@ -1,6 +1,8 @@
 package com.bill.dialog
 
 import android.content.Context
+import com.bill.consumption.nature.NatureInfo
+import com.bill.consumption.nature.NatureInfoSelectDialog
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
 import com.bill.consumption.type.TypeSelectDialog
@@ -70,6 +72,13 @@ class DialogHelper {
             val dialog = EditBigTypeNameDialog(context)
             dialog.show()
             dialog.setBigTypeId(typeId)
+        }
+
+        //消费性质
+        fun showNatureInfoSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<NatureInfo> ?){
+            val dialog = NatureInfoSelectDialog(context)
+            dialog.show()
+            dialog.onCommonItemClickListener = onCommonItemClickListener
         }
 
     }

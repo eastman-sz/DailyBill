@@ -28,7 +28,7 @@ public class BillList extends IGroup implements Comparable<BillList>{
         BillList billList = new BillList();
         billList.setBid(bill.getBid());
         billList.setAmount(bill.getAmount());
-        billList.setBilltime(bill.getBilltime());
+        billList.setBilltime(bill.getBillTime());
         billList.setCtime(bill.getCtime());
         billList.setRemarks(bill.getRemarks());
         billList.setMarketId(bill.getMarketId());

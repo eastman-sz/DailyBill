@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.view.View
 import com.bill.base.BaseBillView
-import com.bill.bill.DaiyBillDbHelper
+import com.bill.bill.DailyBillDbHelper
 import com.bill.util.BroadcastAction
 import com.bill.util.CommonUtil
 import com.sz.kk.daily.bill.R
@@ -38,21 +38,21 @@ class SummaryView : BaseBillView{
         //今日
         val todayStartTimestamp = DateHepler.getDayStartTimestamp(ctime)
         val todayEndTimestamp = DateHepler.getDayEndTimestamp(ctime)
-        val todayBills = DaiyBillDbHelper.getDailyBills(todayStartTimestamp , todayEndTimestamp)
+        val todayBills = DailyBillDbHelper.getDailyBills(todayStartTimestamp , todayEndTimestamp)
         //本周
         val weekStartTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getWeekStartTimestamp(ctime))
         val weekEndTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getWeekEndTimestamp(ctime))
-        val weekBills = DaiyBillDbHelper.getDailyBills(weekStartTimestamp , weekEndTimestamp)
+        val weekBills = DailyBillDbHelper.getDailyBills(weekStartTimestamp , weekEndTimestamp)
         //本月
         val year = DateHepler.getYear()
         val month = DateHepler.getMonthOfYear()
         val monthStartTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstdayOfMonthInTimestamp(year , month))
         val monthEndTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastdayOfMonthInTimestamp(year , month))
-        val monthBills = DaiyBillDbHelper.getDailyBills(monthStartTimestamp , monthEndTimestamp)
+        val monthBills = DailyBillDbHelper.getDailyBills(monthStartTimestamp , monthEndTimestamp)
         //今年
         val day1OfYearStartTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
         val dayEndOfYearStartTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
-        val yearBills = DaiyBillDbHelper.getDailyBills(day1OfYearStartTimestamp , dayEndOfYearStartTimestamp)
+        val yearBills = DailyBillDbHelper.getDailyBills(day1OfYearStartTimestamp , dayEndOfYearStartTimestamp)
 
         var todayAmount = 0f
 

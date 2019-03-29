@@ -11,7 +11,7 @@ import com.bill.base.OnCommonRequestListener
 import com.bill.bill.BillList
 import com.bill.bill.BillListAdapter
 import com.bill.bill.DailyBillDataFetchHelper
-import com.bill.bill.DaiyBillDbHelper
+import com.bill.bill.DailyBillDbHelper
 import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
 import com.bill.util.BroadcastAction
@@ -63,7 +63,7 @@ class DailyBillListView : BaseBillView {
                             val newPosition = position -1
                             val billList = list[newPosition]
 
-                            DaiyBillDbHelper.delete(billList.bid)
+                            DailyBillDbHelper.delete(billList.bid)
                             (context as Activity).
                                     runOnUiThread {
                                         list.removeAt(newPosition)

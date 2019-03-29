@@ -17,7 +17,7 @@ class DailyBillDataFetchHelper {
         //所有记帐数据
         fun getAllDailyBills(onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
             doAsync {
-                val dailyBillList = DaiyBillDbHelper.getAllDailyBills()
+                val dailyBillList = DailyBillDbHelper.getAllDailyBills()
                 uiThread {
                     getGroupedBillList(dailyBillList , onCommonRequestListener)
                 }
@@ -27,7 +27,7 @@ class DailyBillDataFetchHelper {
         //某一个帐户下的所有数据
         fun getAllDailyBills(bookId : Long , onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
             doAsync {
-                val dailyBillList = DaiyBillDbHelper.getAllDailyBills(bookId)
+                val dailyBillList = DailyBillDbHelper.getAllDailyBills(bookId)
                 uiThread {
                     getGroupedBillList(dailyBillList , onCommonRequestListener)
                 }
@@ -37,7 +37,7 @@ class DailyBillDataFetchHelper {
         //某个时间段内的所有记帐数据
         fun getAllDailyBills(startTime : Long  , endTime : Long , onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
             doAsync {
-                val dailyBillList = DaiyBillDbHelper.getDailyBills(startTime , endTime)
+                val dailyBillList = DailyBillDbHelper.getDailyBills(startTime , endTime)
                 uiThread {
                     getGroupedBillList(dailyBillList , onCommonRequestListener)
                 }

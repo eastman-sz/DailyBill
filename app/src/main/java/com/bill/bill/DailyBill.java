@@ -8,11 +8,14 @@ public class DailyBill {
     private long bid = 0L;
     private long bookId = 0L;
     private float amount = 0f;
-    private long billtime = 0L;
+    private long billTime = 0L;
     private long ctime = 0L;
     private String remarks = "";
-    private int industryId = 0;//行业一级
-    private int marketId = 0; //细分二级
+    private int marketId = 0; //地点，网店都可以
+
+    private int bigTypeId = 0; //一级分类ID
+    private int smallTypeId = 0; //二级分类ID
+    private int natureId = 0; //性质ID
 
     private float dayAmount = 0f;
     private float weekAmount = 0f;
@@ -33,12 +36,13 @@ public class DailyBill {
     public void setBookId(long bookId) {
         this.bookId = bookId;
     }
-    public long getBilltime() {
-        return billtime;
+
+    public long getBillTime() {
+        return billTime;
     }
 
-    public void setBilltime(long billtime) {
-        this.billtime = billtime;
+    public void setBillTime(long billTime) {
+        this.billTime = billTime;
     }
 
     public long getCtime() {
@@ -55,14 +59,6 @@ public class DailyBill {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
-    }
-
-    public int getIndustryId() {
-        return industryId;
-    }
-
-    public void setIndustryId(int industryId) {
-        this.industryId = industryId;
     }
 
     public int getMarketId() {
@@ -110,5 +106,29 @@ public class DailyBill {
 
     public void setYearAmount(float yearAmount) {
         this.yearAmount = yearAmount;
+    }
+
+    public int getBigTypeId() {
+        return bigTypeId;
+    }
+
+    public void setBigTypeId(int bigTypeId) {
+        this.bigTypeId = bigTypeId;
+    }
+
+    public int getSmallTypeId() {
+        return smallTypeId;
+    }
+
+    public void setSmallTypeId(int smallTypeId) {
+        this.smallTypeId = smallTypeId;
+    }
+
+    public int getNatureId() {
+        return natureId;
+    }
+
+    public void setNatureId(int natureId) {
+        this.natureId = natureId;
     }
 }
