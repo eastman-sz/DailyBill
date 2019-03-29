@@ -3,7 +3,7 @@ package com.bill.consumption.type
 import android.content.Context
 import android.os.Bundle
 import com.bill.consumption.type.add.EditTypeActivity
-import com.bill.dialog.BaseUpGlideDialog
+import com.common.dialog.BaseUpGlideDialog
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.type_select_dialog.*
 import org.jetbrains.anko.startActivity

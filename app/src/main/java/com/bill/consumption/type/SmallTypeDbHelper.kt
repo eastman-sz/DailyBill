@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
+import com.bill.util.BroadcastAction
+import com.bill.util.BroadcastUtil
 import java.lang.Exception
 
 class SmallTypeDbHelper {
@@ -45,6 +47,8 @@ class SmallTypeDbHelper {
 
             val db = ISqliteDataBase.getSqLiteDatabase()
             db.update(DBNAME , values , "typeId = ? " , arrayOf(typeId.toString()))
+            //发送广播
+            BroadcastUtil.sendBroadCast(BroadcastAction.smallTypeFresh)
         }
 
         fun getSmallTypeS() : List<SmallType>{
@@ -97,6 +101,31 @@ class SmallTypeDbHelper {
                 cursor?.close()
             }
             return typeId
+        }
+
+        fun getSmallType(typeId : Int) : SmallType?{
+            var smallType : SmallType ?= null
+            var cursor : Cursor ?= null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME, null , "typeId = ? ", arrayOf(typeId.toString()) , null , null , null)
+                if (null != cursor &&cursor.moveToNext()){
+                    cursor.moveToFirst()
+                    smallType = fromCursor(cursor)
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }finally {
+                cursor?.close()
+            }
+            return smallType
+        }
+
+        fun delete(typeId : Int){
+            val db = ISqliteDataBase.getSqLiteDatabase()
+            db.delete(DBNAME , "typeId = ? " , arrayOf(typeId.toString()))
+            //发送广播
+            BroadcastUtil.sendBroadCast(BroadcastAction.smallTypeFresh)
         }
 
         private fun fromCursor(cursor: Cursor) : SmallType{

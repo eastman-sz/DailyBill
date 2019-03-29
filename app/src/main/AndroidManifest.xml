@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bill.consumption.type.add.EditTypeActivity"></activity>
+        <activity android:name="com.bill.consumption.type.add.EditSmallTypeActivity"></activity>
+        <activity android:name="com.bill.consumption.type.add.EditTypeActivity" />
         <activity
             android:name="com.bill.start.StartActivity"
             android:screenOrientation="portrait">

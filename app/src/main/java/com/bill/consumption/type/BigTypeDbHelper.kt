@@ -62,6 +62,24 @@ class BigTypeDbHelper {
             return list
         }
 
+        fun getBigType(typeId : Int) : BigType?{
+            var bigType : BigType ?= null
+            var cursor : Cursor ?= null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME , null , "typeId = ? ", arrayOf(typeId.toString()) , null , null , null)
+                if (null != cursor &&cursor.moveToNext()){
+                    cursor.moveToFirst()
+                    bigType = fromCursor(cursor)
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }finally {
+                cursor?.close()
+            }
+            return bigType
+        }
+
         private fun getMaxTypeId(): Int {
             var typeId = 0
             var cursor: Cursor? = null

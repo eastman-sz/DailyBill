@@ -2,13 +2,14 @@ package com.bill.dialog
 
 import android.content.Context
 import android.os.Bundle
+import com.common.dialog.BaseUpGlideDialog
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
 import kotlinx.android.synthetic.main.date_time_select_dialog_view.*
 /**
  * Created by E on 2018/3/8.
  */
-class DateTimeSelectDialog : BaseUpGlideDialog{
+class DateTimeSelectDialog : BaseUpGlideDialog {
 
     constructor(context: Context) : super(context)
 

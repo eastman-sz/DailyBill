@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import com.bill.point.ConsumptionPoint
 import com.bill.point.ConsumptionPointHelper
+import com.common.dialog.BaseUpGlideDialog
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.consumption_point_dialog_view.*
 /**

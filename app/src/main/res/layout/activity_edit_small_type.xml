@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.consumption.type.add.EditSmallTypeActivity"
+    android:orientation="vertical"
+    android:background="@color/sfs_page_bg_color"
+    >
+    <com.common.base.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:id="@+id/bigTypeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@drawable/list_item_selector"
+        >
+        <com.common.base.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textSize="@dimen/sfs_s5"
+            android:textColor="@color/c8"
+            android:text="当前一级分类"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:id="@+id/bigTypeNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|right"
+            android:paddingRight="15dp"
+            android:textSize="@dimen/sfs_s8"
+            android:textColor="@color/c27"
+            android:drawableRight="@drawable/nextstep_right_arrow_n"
+            android:drawablePadding="10dp"
+            />
+    </LinearLayout>
+
+    <com.common.base.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:textSize="@dimen/sfs_s5"
+        android:textColor="@color/c13"
+        android:text="二级分类"
+        />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@null"
+        android:fadeScrollbars="true"
+        android:fadingEdgeLength="0dp"
+        android:scrollbars="none"
+        />
+
+    <com.common.base.CustomFontTextView
+        android:id="@+id/addTextView"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/c27"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="@dimen/s6"
+        android:text="添加分类"
+        />
+</LinearLayout>
