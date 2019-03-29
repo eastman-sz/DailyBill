@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.consumption.type.add.EditTypeActivity"
+    android:background="@color/sfs_page_bg_color"
+    android:orientation="vertical"
+    >
+    <com.common.base.CommonTitleView
+        android:id="@+id/commonTitleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.common.base.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:textSize="@dimen/s4"
+        android:textColor="@color/c8"
+        android:text="现有的一级分类"
+        android:background="@color/white"
+        />
+    <ImageView style="@style/full_line_style" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:divider="@null"
+        android:fadeScrollbars="true"
+        android:overScrollMode="never"
+        />
+
+    <com.common.base.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="15dp"
+        android:textSize="@dimen/s6"
+        android:textColor="@color/c50"
+        android:text="点击上面的一级分类条目可以编辑相应的二级分类条目"
+        android:background="@color/transparent"
+        android:lineSpacingExtra="1.2dp"
+        android:lineSpacingMultiplier="1.2"
+        />
+</LinearLayout>

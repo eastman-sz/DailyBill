@@ -1,22 +1,20 @@
 package com.bill.start
 
-import android.content.Intent
 import android.os.Bundle
+import com.bill.base.BaseKotlinActivity
 import com.bill.init.DataInitHelper
 import com.bill.main.MainActivity
-import com.common.base.BaseAppCompactActivitiy
 import com.sz.kk.daily.bill.R
 import com.umeng.analytics.MobclickAgent
 import kotlinx.android.synthetic.main.activity_start.*
 import org.jetbrains.anko.startActivity
 
-class StartActivity : BaseAppCompactActivitiy() {
+class StartActivity : BaseKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-
-        initActivitys()
+        initActivity()
 
         DataInitHelper.initData()
 

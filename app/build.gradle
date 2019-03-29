@@ -47,12 +47,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     implementation(name: 'commonviewslib', ext: 'aar')
-    implementation(name: 'wheelview', ext: 'aar')
-    implementation(name: 'pullFreshView', ext: 'aar')
 
     implementation 'com.umeng.sdk:common:1.5.0'
     implementation 'com.umeng.sdk:analytics:7.5.0'
-
 
 
 }

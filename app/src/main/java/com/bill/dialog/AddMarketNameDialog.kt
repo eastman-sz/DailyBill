@@ -3,8 +3,8 @@ package com.bill.dialog
 import android.content.Context
 import android.os.Bundle
 import com.bill.point.ConsumptionPointHelper
-import com.common.base.CommonTitleView
 import com.common.base.ITextChangedListener
+import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.ToastHelper
 import kotlinx.android.synthetic.main.add_marketname_dialog_view.*
@@ -23,13 +23,14 @@ class AddMarketNameDialog : BaseFullScreenDialog{
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("添加新名称")
+        commonTitleView.setCenterTitle("添加新名称")
         commonTitleView.setLeftBtnText("取消")
         commonTitleView.setRightBtnText("添加")
-        commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
+        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onLeftBtnClick() {
                 dismiss()
             }
+
             override fun onRightBtnClick() {
                 val marketName = editText.text.toString()
                 if (marketName.isNullOrEmpty()){
@@ -47,7 +48,7 @@ class AddMarketNameDialog : BaseFullScreenDialog{
 
                 dismiss()
             }
-        })
+        }
     }
 
     override fun initListeners() {

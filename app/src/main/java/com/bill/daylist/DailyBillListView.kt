@@ -1,7 +1,6 @@
 package com.bill.daylist
 
 import android.app.Activity
-import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -16,13 +15,10 @@ import com.bill.bill.DaiyBillDbHelper
 import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
 import com.bill.util.BroadcastAction
-import com.common.base.CommonTitleView
-import com.common.dialog.CommonDialog
-import com.common.dialog.OnCommonDialogBtnClickListener
+import com.common.base.OnCommonTitleClickListener
+import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.daily_bill_list_view.view.*
-import org.jetbrains.anko.startActivity
-
 /**
  * Created by E on 2018/3/15.
  */
@@ -36,11 +32,11 @@ class DailyBillListView : BaseBillView {
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("明细")
+        commonTitleView.setCenterTitle("明细")
         commonTitleView.setLeftBtnVisibility(View.INVISIBLE)
         commonTitleView.setRightBtnVisibility(View.VISIBLE)
         commonTitleView.setRightBtnText("筛选")
-        commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
+        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onRightBtnClick() {
                 DialogHelper.showDailyBillFilter(context , object : OnDailyBillFilterParamSetListener{
                     override fun onResult(it : DailyBillFilter) {
@@ -48,7 +44,7 @@ class DailyBillListView : BaseBillView {
                     }
                 })
             }
-        })
+        }
     }
 
     override fun initViews() {
@@ -60,22 +56,21 @@ class DailyBillListView : BaseBillView {
         addEmptyView(sticky_list.refreshableView)
 
         sticky_list.refreshableView.setOnItemLongClickListener { parent, view, position, id ->
-            val dialog = CommonDialog(context)
-            dialog.show()
-            dialog.setDialogText("提示" , "确定要删除此条记录吗？" , "确定" , "取消")
-            dialog.setOnCommonDialogBtnClickListener(object : OnCommonDialogBtnClickListener {
-                override fun onLeftBtnClik() {
-                    val newPosition = position -1
-                    val billList = list[newPosition]
+            DialogHelper.showCommonDialog(context , "确定要删除此条记录吗？" , "确定" , "取消" , object : OnCommonItemClickListener<Int>(){
+                override fun onItemClick(it: Int) {
+                    when(it){
+                        0 ->{
+                            val newPosition = position -1
+                            val billList = list[newPosition]
 
-                    DaiyBillDbHelper.delete(billList.bid)
-                    (context as Activity).
-                            runOnUiThread {
-                                list.removeAt(newPosition)
-                                adapter?.notifyDataSetChanged()
-                            }
-                }
-                override fun onRightBtnClik() {
+                            DaiyBillDbHelper.delete(billList.bid)
+                            (context as Activity).
+                                    runOnUiThread {
+                                        list.removeAt(newPosition)
+                                        adapter?.notifyDataSetChanged()
+                                    }
+                        }
+                    }
                 }
             })
 

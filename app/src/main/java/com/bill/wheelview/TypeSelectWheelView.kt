@@ -8,9 +8,9 @@ import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
 import com.bill.consumption.type.SmallType
 import com.bill.consumption.type.SmallTypeDbHelper
-import com.sfs.wheelview.HorizontalWheelView
-import com.sfs.wheelview.OnWheelScrollListener
 import com.sz.kk.daily.bill.R
+import com.wheelview.HorizontalWheelView
+import com.wheelview.OnWheelScrollListener
 import kotlinx.android.synthetic.main.type_select_wheelview.view.*
 
 class TypeSelectWheelView : BaseKotlinRelativeLayout {
@@ -37,7 +37,7 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         bigTypeWheelView.viewAdapter = bigTypeAdapter
         bigTypeWheelView.visibleItems = 7
         bigTypeWheelView.setCurrentItem(5 , false)
-        bigTypeWheelView.addScrollingListener(object : OnWheelScrollListener{
+        bigTypeWheelView.addScrollingListener(object : OnWheelScrollListener {
             override fun onScrollingStarted(wheelView: HorizontalWheelView) {
             }
             override fun onScrollingFinished(wheelView: HorizontalWheelView) {

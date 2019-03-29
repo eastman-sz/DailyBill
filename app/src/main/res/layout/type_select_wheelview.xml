@@ -16,13 +16,13 @@
             android:orientation="horizontal"
             android:background="@color/c10"
             >
-            <com.sfs.wheelview.WheelView
+            <com.wheelview.WheelView
                 android:id="@+id/bigTypeWheelView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 />
-            <com.sfs.wheelview.WheelView
+            <com.wheelview.WheelView
                 android:id="@+id/smallTypeWheelView"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

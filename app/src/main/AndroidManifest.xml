@@ -19,6 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.bill.consumption.type.add.EditTypeActivity"></activity>
         <activity
             android:name="com.bill.start.StartActivity"
             android:screenOrientation="portrait">
@@ -45,7 +46,7 @@
             android:value="100000" />
 
         <activity android:name="com.bill.daylist.DailyBillFilterActivity" />
-        <activity android:name="com.bill.base.BaseKotlinActivity"></activity>
+        <activity android:name="com.bill.base.BaseKotlinActivity" />
     </application>
 
 </manifest>

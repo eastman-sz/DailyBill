@@ -3,7 +3,7 @@ package com.bill.daylist
 import android.os.Bundle
 import android.view.View
 import com.bill.base.BaseKotlinActivity
-import com.common.base.CommonTitleView
+import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_daily_bill_filter.*
 /**
@@ -18,19 +18,18 @@ class DailyBillFilterActivity : BaseKotlinActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_daily_bill_filter)
-
-        initActivitys()
+        initActivity()
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("筛选")
+        commonTitleView.setCenterTitle("筛选")
         commonTitleView.setLeftBtnText("返回")
         commonTitleView.setRightBtnVisibility(View.INVISIBLE)
-        commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
+        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onLeftBtnClick() {
                 finish()
             }
-        })
+        }
     }
 
     override fun initViews() {

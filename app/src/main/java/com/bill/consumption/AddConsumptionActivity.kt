@@ -2,6 +2,7 @@ package com.bill.consumption
 
 import android.os.Bundle
 import android.view.View
+import com.bill.base.BaseKotlinActivity
 import com.bill.bill.DaiyBillDbHelper
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
@@ -12,15 +13,12 @@ import com.bill.dialog.DialogHelper
 import com.bill.point.ConsumptionPoint
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
-import com.bill.util.ILog
-import com.common.base.BaseAppCompactActivitiy
-import com.common.base.CommonTitleView
+import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
 import kotlinx.android.synthetic.main.activity_add_consumption.*
-import org.jetbrains.anko.runOnUiThread
 
-class AddConsumptionActivity : BaseAppCompactActivitiy() {
+class AddConsumptionActivity : BaseKotlinActivity() {
 
     var cTimestamp : Long = 0L;
 
@@ -33,8 +31,7 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_consumption)
-
-        initActivitys()
+        initActivity()
     }
 
     init {
@@ -47,12 +44,12 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
 
     override fun initTitle() {
         commonTitleView.setLeftBtnText("返回")
-        commonTitleView.setCenterTitleText("新增消费")
-        commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
+        commonTitleView.setCenterTitle("新增消费")
+        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onLeftBtnClick() {
                 onBackPressed()
             }
-        })
+        }
     }
 
     override fun initListener() {
@@ -119,21 +116,6 @@ class AddConsumptionActivity : BaseAppCompactActivitiy() {
                 BroadcastUtil.sendBroadCast(BroadcastAction.NEW_ADD_CONSUMPTION)
             }
         }
-    }
-
-    fun checkAmountRight() : Boolean{
-        val text = amountTextView.text.toString()
-        if (text.isNullOrEmpty()){
-            return false
-        }
-        if (text.startsWith(".",true)){
-            return false
-        }
-        if (!text.contains(".")){
-            return true
-        }
-        val right  = text.indexOf(".") == text.lastIndexOf(".")
-        return right
     }
 
     fun freshBtn(){

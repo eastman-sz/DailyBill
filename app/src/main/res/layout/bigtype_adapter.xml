@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.common.swipe.SwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.billbook.AddBillbookActivity"
+    android:orientation="horizontal"
+    android:background="@drawable/list_item_selector"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="vertical"
+        >
+        <com.common.base.CustomFontTextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/sfs_s5"
+            />
+
+        <ImageView style="@style/full_line_style" />
+
+    </LinearLayout>
+
+    <com.common.base.CustomFontTextView
+        android:id="@+id/removeBtnTextView"
+        android:layout_width="75dp"
+        android:layout_height="42dp"
+        android:background="@color/c34"
+        android:text="删除"
+        android:gravity="center"
+        android:textSize="@dimen/s4"
+        android:textColor="@color/c10"
+        />
+</com.common.swipe.SwipeMenuLayout>

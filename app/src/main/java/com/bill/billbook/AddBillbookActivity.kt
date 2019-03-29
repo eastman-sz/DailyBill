@@ -2,36 +2,31 @@ package com.bill.billbook
 
 import android.os.Bundle
 import android.view.View
+import com.bill.base.BaseKotlinActivity
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
-import com.common.base.BaseAppCompactActivitiy
-import com.common.base.CommonTitleView
 import com.common.base.ITextChangedListener
+import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.ToastHelper
 import kotlinx.android.synthetic.main.activity_add_billbook.*
 
-class AddBillbookActivity : BaseAppCompactActivitiy() {
+class AddBillbookActivity : BaseKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_billbook)
-
-        initActivitys()
+        initActivity()
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("新建账簿")
+        commonTitleView.setCenterTitle("新建账簿")
         commonTitleView.setLeftBtnText("返回")
-        commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
+        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onLeftBtnClick() {
                 onBackPressed()
             }
-        })
-    }
-
-    override fun initViews() {
-
+        }
     }
 
     override fun initListener() {

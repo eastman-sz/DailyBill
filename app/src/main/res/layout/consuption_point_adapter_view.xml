@@ -16,7 +16,7 @@
         android:gravity="center_vertical"
         android:textSize="@dimen/s9"
         android:textColor="@color/c8"
-        android:background="@drawable/list_item_bg"
+        android:background="@drawable/list_item_selector"
         android:paddingLeft="15dp"
         />
 

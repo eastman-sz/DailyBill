@@ -5,18 +5,18 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import com.bill.base.BaseKotlinActivity
 import com.bill.base.OnCommonRequestListener
 import com.bill.consumption.AddConsumptionActivity
+import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
 import com.bill.util.ILog
-import com.common.base.BaseAppCompactActivitiy
-import com.common.base.CommonTitleView
-import com.common.dialog.CommonDialog
-import com.common.dialog.OnCommonDialogBtnClickListener
+import com.common.base.OnCommonTitleClickListener
+import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_bill_list.*
 
-class BillListActivity : BaseAppCompactActivitiy() {
+class BillListActivity : BaseKotlinActivity() {
 
     var bookId = 0L
     val list = ArrayList<BillList>()
@@ -25,8 +25,7 @@ class BillListActivity : BaseAppCompactActivitiy() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bill_list)
-
-        initActivitys()
+        initActivity()
     }
 
     override fun getIntentData() {
@@ -34,13 +33,13 @@ class BillListActivity : BaseAppCompactActivitiy() {
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("消费帐单")
+        commonTitleView.setCenterTitle("消费帐单")
         commonTitleView.setLeftBtnText("返回")
-        commonTitleView.setOnTitleClickListener(object : CommonTitleView.OnTitleClickListener(){
+        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onLeftBtnClick() {
                 onBackPressed()
             }
-        })
+        }
     }
 
     override fun initViews() {
@@ -56,22 +55,21 @@ class BillListActivity : BaseAppCompactActivitiy() {
         }
 
         sticky_list.refreshableView.setOnItemLongClickListener { parent, view, position, id ->
-            val dialog = CommonDialog(context)
-            dialog.show()
-            dialog.setDialogText("提示" , "确定要删除此条记录吗？" , "确定" , "取消")
-            dialog.setOnCommonDialogBtnClickListener(object : OnCommonDialogBtnClickListener{
-                override fun onLeftBtnClik() {
-                    val newPosition = position -1
-                    val billList = list[newPosition]
+            DialogHelper.showCommonDialog(context , "确定要删除此条记录吗？" , "确定" , "取消" , object : OnCommonItemClickListener<Int>(){
+                override fun onItemClick(it: Int) {
+                    when(it){
+                        0 ->{
+                            val newPosition = position -1
+                            val billList = list[newPosition]
 
-                    DaiyBillDbHelper.delete(billList.bid)
+                            DaiyBillDbHelper.delete(billList.bid)
 
-                    runOnUiThread{
-                        list.removeAt(newPosition)
-                        adapter?.notifyDataSetChanged()
+                            runOnUiThread{
+                                list.removeAt(newPosition)
+                                adapter?.notifyDataSetChanged()
+                            }
+                        }
                     }
-                }
-                override fun onRightBtnClik() {
                 }
             })
 

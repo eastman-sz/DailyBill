@@ -5,8 +5,8 @@ import android.view.View
 import com.bill.consumption.type.BigType
 import com.common.base.CustomFontTextView
 import com.common.base.ViewHolder
-import com.sfs.adapter.BaseWheelAdapter
 import com.sz.kk.daily.bill.R
+import com.wheelview.adapter.BaseWheelAdapter
 
 class BigTypeWheelViewAdapter : BaseWheelAdapter<BigType> {
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.bill.bill.BillListActivity"
     android:orientation="vertical"
-    android:background="@drawable/sfs_common_dialog_bg"
+    android:background="@drawable/common_dialog_bg"
     >
     <com.common.base.CommonTitleView
         android:id="@+id/commonTitleView"

@@ -4,27 +4,27 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
+import com.bill.base.BaseKotlinActivity
 import com.bill.billbook.BillbookView
 import com.bill.consumption.AddConsumptionActivity
 import com.bill.daylist.DailyBillListView
 import com.bill.summary.SummaryView
-import com.common.base.BaseAppCompactActivitiy
 import com.common.base.BasePagerAdapter
 import com.common.base.BaseRelativeLayout
-import com.common.base.IonPageChangeListener
+import com.common.base.OnIPageChangeListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_main.*
 /**
  * Main Page.
  * @author E
  */
-class MainActivity : BaseAppCompactActivitiy() {
+class MainActivity : BaseKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initActivitys()
+        initActivity()
     }
 
     override fun initViews() {
@@ -35,8 +35,7 @@ class MainActivity : BaseAppCompactActivitiy() {
 
         val adapter = BasePagerAdapter(context , list)
         viewPager.adapter = adapter
-
-        viewPager.addOnPageChangeListener(object : IonPageChangeListener(){
+        viewPager.addOnPageChangeListener(object : OnIPageChangeListener(){
             override fun onPageSelected(index: Int) {
                 runOnUiThread {
                     item1TextView.setTextColor(if (0 == index){ContextCompat.getColor(context ,R.color.c27)}else{ContextCompat.getColor(context ,R.color.c13)})

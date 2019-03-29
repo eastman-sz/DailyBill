@@ -21,7 +21,7 @@ class SummaryView : BaseBillView{
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitleText("简报")
+        commonTitleView.setCenterTitle("简报")
         commonTitleView.setLeftBtnVisibility(View.INVISIBLE)
     }
 

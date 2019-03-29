@@ -7,7 +7,7 @@ import com.bill.daylist.DailyBillFilterActivity
 import com.bill.daylist.ListenerConfig
 import com.bill.daylist.OnDailyBillFilterParamSetListener
 import com.common.dialog.CommonDialog
-import com.common.dialog.OnCommonDialogBtnClickListener
+import com.common.dialog.OnCommonItemClickListener
 import org.jetbrains.anko.startActivity
 
 class DialogHelper {
@@ -26,19 +26,11 @@ class DialogHelper {
             context.startActivity<DailyBillFilterActivity>()
         }
 
-        fun showCommonDialog(context: Context , title : String , content : String , leftBtnText : String , rightBtnText : String ,
+        fun showCommonDialog(context: Context , content : String , leftBtnText : String , rightBtnText : String ,
                              onCommonItemClickListener : OnCommonItemClickListener<Int>){
             val dialog = CommonDialog(context)
             dialog.show()
-            dialog.setDialogText(title , content , leftBtnText, rightBtnText)
-            dialog.setOnCommonDialogBtnClickListener(object : OnCommonDialogBtnClickListener{
-                override fun onLeftBtnClik() {
-                    onCommonItemClickListener?.onItemClick(0)
-                }
-                override fun onRightBtnClik() {
-                    onCommonItemClickListener?.onItemClick(1)
-                }
-            })
+            dialog.setParams(content , leftBtnText , rightBtnText , onCommonItemClickListener)
         }
 
         fun showTypeSelectDialog(context: Context , onConsumptionTypeSelectListener : OnConsumptionTypeSelectListener){

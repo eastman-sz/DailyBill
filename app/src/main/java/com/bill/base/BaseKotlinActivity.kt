@@ -1,9 +1,8 @@
 package com.bill.base
 
+import com.common.base.BaseAppCompactActivity
 
-import com.common.base.BaseAppCompactActivitiy
-
-open class BaseKotlinActivity : BaseAppCompactActivitiy() {
+open class BaseKotlinActivity : BaseAppCompactActivity() {
 
 
 }
