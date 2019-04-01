@@ -1,16 +1,15 @@
 package com.bill.init
 
-import com.bill.billbook.BillbookDbHelper
+import com.bill.billbook.BillBookDbHelper
+import com.bill.consumption.martket.MarketDbHelper
 import com.bill.consumption.nature.NatureInfo
 import com.bill.consumption.nature.NatureInfoDbHelper
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
 import com.bill.consumption.type.SmallType
 import com.bill.consumption.type.SmallTypeDbHelper
-import com.bill.point.ConsumptionPointDbHelper
 import com.bill.util.PrefHelper
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import java.lang.Exception
 /**
  * Created by E on 2018/3/12.
@@ -35,11 +34,11 @@ class DataInitHelper {
                         list.add("淘宝")
 
                         list.forEach {
-                            ConsumptionPointDbHelper.add(it)
+                            MarketDbHelper.add(it)
                         }
 
                         //add default billBook
-                        BillbookDbHelper.saveDefault("默认")
+                        BillBookDbHelper.saveDefault("默认")
 
                         //add bigType
                         val bigTypeList = ArrayList<BigType>()
@@ -90,8 +89,8 @@ class DataInitHelper {
 
                         //--消费性质================================================
                         val natureList = ArrayList<NatureInfo>()
-                        natureList.add(NatureInfo("固定支出"))
                         natureList.add(NatureInfo("日常消费"))
+                        natureList.add(NatureInfo("固定支出"))
 
                         natureList.forEach {
                             NatureInfoDbHelper.save(it.natureName!!)

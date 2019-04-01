@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.bill.base.BaseKotlinActivity
-import com.bill.billbook.BillbookView
+import com.bill.billbook.BillBookView
 import com.bill.consumption.AddConsumptionActivity
 import com.bill.daylist.DailyBillListView
 import com.bill.summary.SummaryView
@@ -29,7 +29,7 @@ class MainActivity : BaseKotlinActivity() {
 
     override fun initViews() {
         val list = ArrayList<BaseRelativeLayout>()
-        list.add(BillbookView(context))
+        list.add(BillBookView(context))
         list.add(SummaryView(context))
         list.add(DailyBillListView(context))
 

@@ -17,9 +17,9 @@ import org.jetbrains.anko.startActivity
 /**
  * Created by E on 2018/3/13.
  */
-class BillbookView : BaseBillView{
+class BillBookView : BaseBillView{
 
-    val list = ArrayList<Billbook>()
+    val list = ArrayList<BillBook>()
     var adapter : BillbookAdapter ?= null
 
     constructor(context: Context) : super(context){
@@ -60,7 +60,7 @@ class BillbookView : BaseBillView{
                    when(it){
                         1 ->{
                             val billBook = list[position]
-                            BillbookDbHelper.delete(billBook.bookId)
+                            BillBookDbHelper.delete(billBook.bookId)
 
                             list.removeAt(position)
                             adapter?.notifyDataSetChanged()
@@ -74,7 +74,7 @@ class BillbookView : BaseBillView{
 
     private fun freshData(){
         list.clear()
-        list.addAll(BillbookDbHelper.getBillbooks())
+        list.addAll(BillBookDbHelper.getBillBooks())
         adapter?.notifyDataSetChanged()
     }
 

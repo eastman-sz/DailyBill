@@ -3,18 +3,16 @@ package com.bill.db;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.bill.bill.DailyBillDbHelper;
-import com.bill.billbook.BillbookDbHelper;
+import com.bill.billbook.BillBookDbHelper;
+import com.bill.consumption.martket.MarketDbHelper;
 import com.bill.consumption.nature.NatureInfoDbHelper;
 import com.bill.consumption.type.BigTypeDbHelper;
 import com.bill.consumption.type.SmallTypeDbHelper;
-import com.bill.point.ConsumptionPointDbHelper;
 /**
  * Created by E on 2017/4/20.
  */
 public class IDbHelper extends SQLiteOpenHelper {
-
     /**
      * 更新历史
      */
@@ -27,9 +25,9 @@ public class IDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        DailyBillDbHelper.createTable(db);
-        ConsumptionPointDbHelper.createTable(db);
-        BillbookDbHelper.createTable(db);
+        DailyBillDbHelper.Companion.createTable(db);
+        MarketDbHelper.Companion.createTable(db);
+        BillBookDbHelper.Companion.createTable(db);
         SmallTypeDbHelper.Companion.createTable(db);
         BigTypeDbHelper.Companion.createTable(db);
         NatureInfoDbHelper.Companion.createTable(db);
@@ -37,9 +35,9 @@ public class IDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        DailyBillDbHelper.dropTable(db);
-        ConsumptionPointDbHelper.dropTable(db);
-        BillbookDbHelper.dropTable(db);
+        DailyBillDbHelper.Companion.dropTable(db);
+        MarketDbHelper.Companion.dropTable(db);
+        BillBookDbHelper.Companion.dropTable(db);
 
         SmallTypeDbHelper.Companion.dropTable(db);
         BigTypeDbHelper.Companion.dropTable(db);

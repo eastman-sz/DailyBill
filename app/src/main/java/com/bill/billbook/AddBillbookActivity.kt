@@ -51,7 +51,7 @@ class AddBillbookActivity : BaseKotlinActivity() {
         when(v){
             createBillBookTextView ->{
                 val name = nameTextView.text.toString()
-                BillbookDbHelper.save(name)
+                BillBookDbHelper.save(name)
 
                 ToastHelper.makeText(context , "创建成功")
 

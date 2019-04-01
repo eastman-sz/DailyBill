@@ -3,7 +3,7 @@ package com.bill.billbook;
 /**
  * Created by E on 2018/3/13.
  */
-public class Billbook {
+public class BillBook {
 
     private long bookId = 0;
     private String name = null;

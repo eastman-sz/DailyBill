@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import com.common.base.CustomFontEditText
 import com.common.base.ITextChangedListener
+import java.util.regex.Pattern
 
 class AmountEditText : CustomFontEditText{
 
@@ -24,8 +25,8 @@ class AmountEditText : CustomFontEditText{
     private fun addListener(){
         addTextChangedListener(object : ITextChangedListener(){
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                val right = checkAmountRight()
-
+//                val right = checkAmountRight()
+                val right = isOnlyPointNumber(text.toString())
                 onAmountEditTextListener?.onEditListener(right , s.toString())
 
                 if (right){
@@ -76,5 +77,12 @@ class AmountEditText : CustomFontEditText{
         return right
     }
 
+    //保留两位小数正则
+    fun  isOnlyPointNumber(number : String) : Boolean{
+        val pattern = Pattern.compile("^\\d+\\.?\\d{0,2}$")
+        val matcher = pattern.matcher(number)
+        return matcher.matches()
+    }
 
-}
+
+    }

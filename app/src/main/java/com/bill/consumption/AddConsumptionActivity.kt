@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.View
 import com.bill.base.BaseKotlinActivity
 import com.bill.bill.DailyBillDbHelper
+import com.bill.consumption.martket.Market
+import com.bill.consumption.martket.MarketSelectDialog
 import com.bill.consumption.nature.NatureInfo
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
 import com.bill.consumption.type.SmallType
-import com.bill.dialog.ConsumptionPointDialog
 import com.bill.dialog.DateTimeSelectDialog
 import com.bill.dialog.DialogHelper
-import com.bill.point.ConsumptionPoint
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
 import com.common.base.OnCommonTitleClickListener
@@ -66,6 +66,27 @@ class AddConsumptionActivity : BaseKotlinActivity() {
         }
     }
 
+    override fun initViews() {
+        //添加默认值
+        //帐本：默认
+        bookId = 0
+        //默认时间:当前时间
+        dateTimeTextView.text = DateHepler.timestampFormat(billTime , "yyyy-MM-dd HH:mm:ss")
+        timeRight = true
+        //默认分类 吃> 中餐
+        bigTypeId = 1
+        smallTypeId = 12
+        typeNameTextView.text = "吃  >  中餐"
+        //默认性质:日常消费
+        natureId = 1
+        natureTextView.text = "日常消费"
+        //默认消费地点:沃尔玛
+        marketId = 1
+        pointNameTextView.text = "沃尔玛"
+
+        freshBtn()
+    }
+
     fun onBtnClick(v : View){
         when(v){
             dateTimeLayout -> {
@@ -83,14 +104,14 @@ class AddConsumptionActivity : BaseKotlinActivity() {
             }
 
             consumptionPointLayout ->{
-                val dialog = ConsumptionPointDialog(context)
+                val dialog = MarketSelectDialog(context)
                 dialog.show()
-                dialog.onConsuptionPointSelectListener = object : ConsumptionPointDialog.OnConsuptionPointSelectListener{
-                    override fun selected(consumptionPoint: ConsumptionPoint) {
-                        marketId = consumptionPoint.marketId
+                dialog.onConsuptionPointSelectListener = object : MarketSelectDialog.OnConsuptionPointSelectListener{
+                    override fun selected(market: Market) {
+                        marketId = market.marketId
 
                         runOnUiThread {
-                            pointNameTextView.text = consumptionPoint.marketName
+                            pointNameTextView.text = market.marketName
                         }
 
                         freshBtn()
@@ -108,6 +129,8 @@ class AddConsumptionActivity : BaseKotlinActivity() {
 
                             typeNameTextView.text = bigType.typeName.plus("  >  ").plus(smallType.typeName)
                         }
+
+                        freshBtn()
                     }
                 })
             }
@@ -121,6 +144,8 @@ class AddConsumptionActivity : BaseKotlinActivity() {
 
                             natureTextView.text = it.natureName
                         }
+
+                        freshBtn()
                     }
                 })
             }
@@ -129,7 +154,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                 val amount = amountTextView.text.toString().toFloat()
                 val remarks = remarksTextView.text.toString()
 
-                DailyBillDbHelper.save(amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId)
+                DailyBillDbHelper.save(bookId , amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId)
 
                 onBackPressed()
 
@@ -139,19 +164,9 @@ class AddConsumptionActivity : BaseKotlinActivity() {
     }
 
     fun freshBtn(){
-        val right = amountRight && timeRight && marketId > 0
-        when(right){
-            false -> {
-                saveBtnTextView.setBackgroundResource(R.drawable.gray_disabled_retangle_selector)
-                saveBtnTextView.isEnabled = false
-            }
-
-            true -> {
-                saveBtnTextView.setBackgroundResource(R.drawable.c1_c2_retangle_selector)
-                saveBtnTextView.isEnabled = true
-            }
-
-        }
+        val right = amountRight && timeRight && marketId > 0 && bigTypeId > 0 && smallTypeId> 0 && natureId > 0
+        saveBtnTextView.setBackgroundResource(if (right) R.drawable.c1_c2_retangle_selector else R.drawable.gray_disabled_retangle_selector)
+        saveBtnTextView.isEnabled = right
     }
 
 

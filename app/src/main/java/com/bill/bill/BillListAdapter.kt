@@ -3,8 +3,8 @@ package com.bill.bill
 import android.content.Context
 import android.util.SparseArray
 import android.view.View
-import com.bill.point.ConsumptionPoint
-import com.bill.point.ConsumptionPointHelper
+import com.bill.consumption.martket.Market
+import com.bill.consumption.martket.MarketDbHelper
 import com.bill.util.CommonUtil
 import com.common.base.CustomFontDigitTextView
 import com.common.base.CustomFontTextView
@@ -17,11 +17,11 @@ import com.utils.lib.ss.common.DateHepler
  */
 class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
-    var marketArray : SparseArray<ConsumptionPoint> ?= null
+    var marketArray : SparseArray<Market> ?= null
 
     constructor(context: Context , list : List<BillList>) :
             super(context , list , R.layout.bill_list_adapter_view , R.layout.adapter_header_view){
-        marketArray = ConsumptionPointHelper.getAllConsuptionPointsArray()
+        marketArray = MarketDbHelper.getMarketArray()
     }
 
     override fun getConvertView(convertView: View?, list: MutableList<BillList>?, position: Int) {
