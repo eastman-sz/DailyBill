@@ -1,6 +1,10 @@
 package com.bill.dialog
 
 import android.content.Context
+import com.bill.billbook.BillBook
+import com.bill.billbook.BillBookSelectDialog
+import com.bill.consumption.martket.Market
+import com.bill.consumption.martket.MarketSelectDialog
 import com.bill.consumption.nature.NatureInfo
 import com.bill.consumption.nature.NatureInfoSelectDialog
 import com.bill.consumption.type.BigType
@@ -77,6 +81,20 @@ class DialogHelper {
         //消费性质
         fun showNatureInfoSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<NatureInfo> ?){
             val dialog = NatureInfoSelectDialog(context)
+            dialog.show()
+            dialog.onCommonItemClickListener = onCommonItemClickListener
+        }
+
+        //帐本选择
+        fun showBillBookSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<BillBook>?){
+            val dialog = BillBookSelectDialog(context)
+            dialog.show()
+            dialog.onCommonItemClickListener = onCommonItemClickListener
+        }
+
+        //商场选择
+        fun showMarketSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<Market>?){
+            val dialog = MarketSelectDialog(context)
             dialog.show()
             dialog.onCommonItemClickListener = onCommonItemClickListener
         }

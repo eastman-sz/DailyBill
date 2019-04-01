@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="42dp"
+    tools:context="com.bill.main.MainActivity"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="@color/transparent"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            android:layout_centerInParent="true"
+            >
+            <com.common.base.CustomFontDigitTextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ADD"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:textColor="@color/c12"
+                android:textSize="@dimen/s4"
+                />
+            <com.common.base.CustomFontTextView
+                android:id="@+id/dayOfWeekTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingLeft="17dp"
+                android:textColor="@color/c27"
+                android:textSize="@dimen/s1"
+                android:paddingTop="1dp"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

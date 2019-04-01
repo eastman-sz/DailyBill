@@ -1,12 +1,14 @@
 package com.bill.summary
 
 import android.content.Context
-import android.content.Intent
 import android.view.View
 import com.bill.base.BaseBillView
 import com.bill.bill.DailyBillDbHelper
+import com.bill.consumption.NewAddConsumptionBroadcastReceiveListener
+import com.bill.consumption.OnNewAddConsumptionBroadcastReceiveListener
 import com.bill.util.BroadcastAction
 import com.bill.util.CommonUtil
+import com.bill.util.ILog
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
 import kotlinx.android.synthetic.main.summary_view.view.*
@@ -15,6 +17,8 @@ import java.util.ArrayList
  * Created by E on 2018/3/12.
  */
 class SummaryView : BaseBillView{
+
+    private val newAddConsumptionBroadcastReceiveListener = NewAddConsumptionBroadcastReceiveListener()
 
     constructor(context: Context) : super(context){
         init()
@@ -27,6 +31,14 @@ class SummaryView : BaseBillView{
 
     override fun initViews() {
         View.inflate(context , R.layout.summary_view , this)
+    }
+
+    override fun initListener() {
+        newAddConsumptionBroadcastReceiveListener.onNewAddConsumptionBroadcastReceiveListener = object : OnNewAddConsumptionBroadcastReceiveListener(){
+            override fun onNewAddConsumption() {
+                freshData()
+            }
+        }
     }
 
     override fun freshByHand(forceUpdate: Boolean) {
@@ -93,18 +105,13 @@ class SummaryView : BaseBillView{
 
     }
 
-    override fun addBroadCastAction(): ArrayList<String> {
-        val list = ArrayList<String>()
-        list.add(BroadcastAction.NEW_ADD_CONSUMPTION)
-        return list
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        newAddConsumptionBroadcastReceiveListener?.register()
     }
 
-    override fun onBroadCastReceive(context: Context?, action: String?, intent: Intent?) {
-        when(action){
-            BroadcastAction.NEW_ADD_CONSUMPTION -> {
-                freshData()
-            }
-        }
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        newAddConsumptionBroadcastReceiveListener.unRegister()
     }
-
 }

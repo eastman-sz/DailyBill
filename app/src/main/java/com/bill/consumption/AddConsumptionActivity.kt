@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.bill.base.BaseKotlinActivity
 import com.bill.bill.DailyBillDbHelper
+import com.bill.billbook.BillBook
 import com.bill.consumption.martket.Market
 import com.bill.consumption.martket.MarketSelectDialog
 import com.bill.consumption.nature.NatureInfo
@@ -40,7 +41,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
     }
 
     init {
-        billTime = System.currentTimeMillis()
+        billTime = System.currentTimeMillis()/1000
     }
 
     override fun getIntentData() {
@@ -70,8 +71,9 @@ class AddConsumptionActivity : BaseKotlinActivity() {
         //添加默认值
         //帐本：默认
         bookId = 0
+        bookTextView.text = "默认"
         //默认时间:当前时间
-        dateTimeTextView.text = DateHepler.timestampFormat(billTime , "yyyy-MM-dd HH:mm:ss")
+        dateTimeTextView.text = DateHepler.timestampFormat(billTime , "yyyy年MM月dd日 HH:mm:ss")
         timeRight = true
         //默认分类 吃> 中餐
         bigTypeId = 1
@@ -95,8 +97,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                         runOnUiThread {
                             billTime = timestamp
                             timeRight = true
-                            dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy-MM-dd HH:mm:ss")
-
+                            dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy年MM月dd日 HH:mm:ss")
                             freshBtn()
                         }
                     }
@@ -104,19 +105,18 @@ class AddConsumptionActivity : BaseKotlinActivity() {
             }
 
             consumptionPointLayout ->{
-                val dialog = MarketSelectDialog(context)
-                dialog.show()
-                dialog.onConsuptionPointSelectListener = object : MarketSelectDialog.OnConsuptionPointSelectListener{
-                    override fun selected(market: Market) {
-                        marketId = market.marketId
+                //商场选择
+                DialogHelper.showMarketSelectDialog(context , object : OnCommonItemClickListener<Market>(){
+                    override fun onItemClick(it: Market) {
+                        marketId = it.marketId
 
                         runOnUiThread {
-                            pointNameTextView.text = market.marketName
+                            pointNameTextView.text = it.marketName
                         }
 
                         freshBtn()
                     }
-                }
+                })
             }
 
             typeLayout ->{
@@ -148,6 +148,20 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                         freshBtn()
                     }
                 })
+            }
+
+            bookLayout ->{
+                //帐本：默认
+                DialogHelper.showBillBookSelectDialog(context , object : OnCommonItemClickListener<BillBook>(){
+                    override fun onItemClick(it: BillBook) {
+                        bookId = it.bookId
+                        runOnUiThread {
+                            bookTextView.text = it.name
+                        }
+                        freshBtn()
+                    }
+                })
+
             }
 
             saveBtnTextView -> {

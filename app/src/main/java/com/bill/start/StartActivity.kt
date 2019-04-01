@@ -21,6 +21,7 @@ class StartActivity : BaseKotlinActivity() {
         bgLayout.postDelayed({
             runOnUiThread {
                 startActivity<MainActivity>()
+                finish()
             }
         } , 300)
     }

@@ -2,19 +2,18 @@ package com.bill.daylist
 
 import android.app.Activity
 import android.content.Context
-import android.content.Intent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import com.bill.base.BaseBillView
 import com.bill.base.OnCommonRequestListener
 import com.bill.bill.BillList
 import com.bill.bill.BillListAdapter
 import com.bill.bill.DailyBillDataFetchHelper
 import com.bill.bill.DailyBillDbHelper
+import com.bill.consumption.NewAddConsumptionBroadcastReceiveListener
+import com.bill.consumption.OnNewAddConsumptionBroadcastReceiveListener
 import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
-import com.bill.util.BroadcastAction
 import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
@@ -26,6 +25,8 @@ class DailyBillListView : BaseBillView {
 
     val list = ArrayList<BillList>()
     var adapter : BillListAdapter?= null
+
+    private val newAddConsumptionBroadcastReceiveListener = NewAddConsumptionBroadcastReceiveListener()
 
     constructor(context: Context) : super(context){
         init()
@@ -53,7 +54,7 @@ class DailyBillListView : BaseBillView {
         adapter = BillListAdapter(context , list)
         sticky_list.refreshableView.adapter = adapter
 
-        addEmptyView(sticky_list.refreshableView)
+        addEmptyView()
 
         sticky_list.refreshableView.setOnItemLongClickListener { parent, view, position, id ->
             DialogHelper.showCommonDialog(context , "确定要删除此条记录吗？" , "确定" , "取消" , object : OnCommonItemClickListener<Int>(){
@@ -75,6 +76,14 @@ class DailyBillListView : BaseBillView {
             })
 
             true
+        }
+    }
+
+    override fun initListener() {
+        newAddConsumptionBroadcastReceiveListener.onNewAddConsumptionBroadcastReceiveListener = object : OnNewAddConsumptionBroadcastReceiveListener(){
+            override fun onNewAddConsumption() {
+                freshBillListData()
+            }
         }
     }
 
@@ -101,14 +110,15 @@ class DailyBillListView : BaseBillView {
 
     }
 
-    private fun addEmptyView(listview: ListView){
-        val emptyView = listview.emptyView
+    private fun addEmptyView(){
+        val listView = sticky_list.refreshableView
+        val emptyView = listView.emptyView
         if (null != emptyView){
             return
         }
         val newEmptyView = BaseEmptyView(context)
-        (listview.parent as ViewGroup).addView(newEmptyView)
-        listview.emptyView = newEmptyView
+        (listView.parent as ViewGroup).addView(newEmptyView)
+        listView.emptyView = newEmptyView
         newEmptyView.setEmptyText("Nothing")
     }
 
@@ -116,19 +126,14 @@ class DailyBillListView : BaseBillView {
         freshBillListData()
     }
 
-    override fun addBroadCastAction(): java.util.ArrayList<String> {
-        val list = java.util.ArrayList<String>()
-        list.add(BroadcastAction.NEW_ADD_CONSUMPTION)
-        return list
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        newAddConsumptionBroadcastReceiveListener.register()
     }
 
-    override fun onBroadCastReceive(context: Context?, action: String?, intent: Intent?) {
-        when(action){
-            BroadcastAction.NEW_ADD_CONSUMPTION -> {
-                freshBillListData()
-            }
-        }
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        newAddConsumptionBroadcastReceiveListener.unRegister()
     }
-
 
 }

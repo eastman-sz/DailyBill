@@ -4,26 +4,26 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+
+import com.bill.util.ILog;
 import com.common.base.BaseRelativeLayout;
 import com.sz.kk.daily.bill.R;
 import com.utils.lib.ss.common.DateHepler;
 import com.wheelview.HorizontalWheelView;
 import com.wheelview.OnWheelScrollListener;
 import com.wheelview.WheelView;
-
 import java.util.ArrayList;
-
 /**
  * Created by E on 2018/3/8.
  */
-public class DateTimeSelectWheelview extends BaseRelativeLayout {
+public class DateTimeSelectWheelView extends BaseRelativeLayout {
 
-    private WheelView yearWheelview = null;
-    private WheelView monthWheelview = null;
-    private WheelView dayWheelview = null;
-    private WheelView hoursWheelview = null;
-    private WheelView minutesWheelview = null;
-    private WheelView secondsWheelview = null;
+    private WheelView yearWheelView = null;
+    private WheelView monthWheelView = null;
+    private WheelView dayWheelView = null;
+    private WheelView hoursWheelView = null;
+    private WheelView minutesWheelView = null;
+    private WheelView secondsWheelView = null;
 
     private ArrayList<String> years = new ArrayList<>();
     private ArrayList<String> months = new ArrayList<>();
@@ -32,19 +32,19 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
     private ArrayList<String> minutes = new ArrayList<>();
     private ArrayList<String> seconds = new ArrayList<>();
 
-    public DateTimeSelectWheelview(Context context) {
+    public DateTimeSelectWheelView(Context context) {
         super(context);
 
         init();
     }
 
-    public DateTimeSelectWheelview(Context context, AttributeSet attrs) {
+    public DateTimeSelectWheelView(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         init();
     }
 
-    public DateTimeSelectWheelview(Context context, AttributeSet attrs, int defStyleAttr) {
+    public DateTimeSelectWheelView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         init();
@@ -54,12 +54,12 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
     protected void initViews() {
         LayoutInflater.from(context).inflate(R.layout.date_time_select_wheelview , this);
 
-        yearWheelview = findViewById(R.id.yearWheelview);
-        monthWheelview = findViewById(R.id.monthWheelview);
-        dayWheelview = findViewById(R.id.dayWheelview);
-        hoursWheelview = findViewById(R.id.hoursWheelview);
-        minutesWheelview = findViewById(R.id.minutesWheelview);
-        secondsWheelview = findViewById(R.id.sencondsWheelview);
+        yearWheelView = findViewById(R.id.yearWheelview);
+        monthWheelView = findViewById(R.id.monthWheelview);
+        dayWheelView = findViewById(R.id.dayWheelview);
+        hoursWheelView = findViewById(R.id.hoursWheelview);
+        minutesWheelView = findViewById(R.id.minutesWheelview);
+        secondsWheelView = findViewById(R.id.sencondsWheelview);
 
         initData();
     }
@@ -101,19 +101,27 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
     private void freshViews(){
         final String date[] = cDate.split("-");
 
-        WheelViewTextAdapter yearAdapter = new WheelViewTextAdapter(context , years);
-        yearWheelview.setViewAdapter(yearAdapter);
-        yearWheelview.setVisibleItems(5);
-        yearWheelview.setCurrentItem(culItem(years , date[0]));
+        YearWheelViewAdapter yearAdapter = new YearWheelViewAdapter(context , years);
+        yearWheelView.setViewAdapter(yearAdapter);
+        yearWheelView.setVisibleItems(5);
+        yearWheelView.setCurrentItem(culItem(years , date[0]));
+        yearWheelView.addScrollingListener(new OnWheelScrollListener() {
+            @Override
+            public void onScrollingStarted(HorizontalWheelView horizontalWheelView) {
+            }
+            @Override
+            public void onScrollingFinished(HorizontalWheelView horizontalWheelView) {
+                onMonthScrollChg(date ,DateHepler.getMonthOfYear(cTimeStamp));
+            }
+        });
 
-        WheelViewTextAdapter monthAdapter = new WheelViewTextAdapter(context , months);
-        monthWheelview.setViewAdapter(monthAdapter);
-        monthWheelview.setVisibleItems(5);
-        monthWheelview.setCurrentItem(culItem(months , date[1]));
-        monthWheelview.addScrollingListener(new OnWheelScrollListener() {
+        MonthWheelViewAdapter monthAdapter = new MonthWheelViewAdapter(context , months);
+        monthWheelView.setViewAdapter(monthAdapter);
+        monthWheelView.setVisibleItems(5);
+        monthWheelView.setCurrentItem(culItem(months , date[1]));
+        monthWheelView.addScrollingListener(new OnWheelScrollListener() {
             @Override
             public void onScrollingStarted(HorizontalWheelView wheel) {
-
             }
             @Override
             public void onScrollingFinished(HorizontalWheelView wheel) {
@@ -124,20 +132,20 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
         onMonthScrollChg(date ,DateHepler.getMonthOfYear(cTimeStamp));
 
         WheelViewTextAdapter hourAdapter = new WheelViewTextAdapter(context , hours);
-        hoursWheelview.setViewAdapter(hourAdapter);
-        hoursWheelview.setVisibleItems(5);
-        hoursWheelview.setCurrentItem(culItem(hours , date[3]));
+        hoursWheelView.setViewAdapter(hourAdapter);
+        hoursWheelView.setVisibleItems(5);
+        hoursWheelView.setCurrentItem(culItem(hours , date[3]));
 
         WheelViewTextAdapter minuteAdapter = new WheelViewTextAdapter(context , minutes);
-        minutesWheelview.setViewAdapter(minuteAdapter);
+        minutesWheelView.setViewAdapter(minuteAdapter);
         //setViewAdapter需要放在setCurrentItem之前
-        minutesWheelview.setVisibleItems(5);
-        minutesWheelview.setCurrentItem(culItem(minutes , date[4]));
+        minutesWheelView.setVisibleItems(5);
+        minutesWheelView.setCurrentItem(culItem(minutes , date[4]));
 
         WheelViewTextAdapter secondAdapter = new WheelViewTextAdapter(context , seconds);
-        secondsWheelview.setViewAdapter(secondAdapter);
-        secondsWheelview.setVisibleItems(5);
-        secondsWheelview.setCurrentItem(culItem(seconds , date[5]));
+        secondsWheelView.setViewAdapter(secondAdapter);
+        secondsWheelView.setVisibleItems(5);
+        secondsWheelView.setCurrentItem(culItem(seconds , date[5]));
     }
 
     private void onMonthScrollChg(String[] date ,int month){
@@ -145,10 +153,12 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
         int dayCount = getDayCountOfMonth(month);
         initList(days , dayCount);
 
-        WheelViewTextAdapter dayAdapter = new WheelViewTextAdapter(context , days);
-        dayWheelview.setViewAdapter(dayAdapter);
-        dayWheelview.setVisibleItems(5);
-        dayWheelview.setCurrentItem(culItem(days , date[2]));
+        ILog.e("--------年--- " + getYear() + "    ---月: " + getMonth());
+
+        DayOfMonthWheelViewAdapter dayAdapter = new DayOfMonthWheelViewAdapter(context , days , getYear() , getMonth());
+        dayWheelView.setViewAdapter(dayAdapter);
+        dayWheelView.setVisibleItems(5);
+        dayWheelView.setCurrentItem(culItem(days , date[2]));
     }
 
     private void initList(ArrayList<String> list , int count){
@@ -183,17 +193,24 @@ public class DateTimeSelectWheelview extends BaseRelativeLayout {
 
     private int culItem(ArrayList<String> list, String text){
         int item = list.indexOf(text);
-        Log.e("ilog" , "----item---: " + item);
         return item;
     }
 
+    private String getYear(){
+        return years.get(yearWheelView.getCurrentItem());
+    }
+
+    private String getMonth(){
+        return months.get(monthWheelView.getCurrentItem());
+    }
+
     public String getCurrentDate(){
-        String year = years.get(yearWheelview.getCurrentItem());
-        String month = months.get(monthWheelview.getCurrentItem());
-        String day = days.get(dayWheelview.getCurrentItem());
-        String hour = hours.get(hoursWheelview.getCurrentItem());
-        String minute = minutes.get(minutesWheelview.getCurrentItem());
-        String second = seconds.get(secondsWheelview.getCurrentItem());
+        String year = years.get(yearWheelView.getCurrentItem());
+        String month = months.get(monthWheelView.getCurrentItem());
+        String day = days.get(dayWheelView.getCurrentItem());
+        String hour = hours.get(hoursWheelView.getCurrentItem());
+        String minute = minutes.get(minutesWheelView.getCurrentItem());
+        String second = seconds.get(secondsWheelView.getCurrentItem());
 
         String dateTime = year+ "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
         Log.e("ilog" , "----dateTime---: " + dateTime);

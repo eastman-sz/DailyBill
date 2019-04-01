@@ -3,6 +3,7 @@ package com.bill.consumption.martket
 import android.content.Context
 import android.os.Bundle
 import com.common.dialog.BaseUpGlideDialog
+import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.consumption_point_dialog_view.*
 /**
@@ -12,6 +13,8 @@ class MarketSelectDialog : BaseUpGlideDialog {
 
     val list = ArrayList<Market>()
     var adapter : MarketSelectAdapter?= null
+
+    var onCommonItemClickListener : OnCommonItemClickListener<Market>?= null
 
     constructor(context: Context) : super(context)
 
@@ -30,7 +33,7 @@ class MarketSelectDialog : BaseUpGlideDialog {
 
         itemExpandListview.setOnItemClickListener { _, _, position, id ->
 
-            onConsuptionPointSelectListener?.selected(list[position])
+            onCommonItemClickListener?.onItemClick(list[position])
 
             dismiss()
         }
@@ -52,11 +55,5 @@ class MarketSelectDialog : BaseUpGlideDialog {
             }
         })
     }
-
-    interface OnConsuptionPointSelectListener{
-        fun selected(market: Market)
-    }
-
-    var onConsuptionPointSelectListener : OnConsuptionPointSelectListener ?= null
 
 }
