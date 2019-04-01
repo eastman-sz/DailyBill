@@ -2,11 +2,11 @@ package com.bill.consumption
 
 import android.content.Context
 import android.util.AttributeSet
-import com.common.base.CustomFontEditText
+import com.common.base.CustomFontDigitEditText
 import com.common.base.ITextChangedListener
 import java.util.regex.Pattern
 
-class AmountEditText : CustomFontEditText{
+class AmountEditText : CustomFontDigitEditText{
 
     var onAmountEditTextListener : OnAmountEditTextListener ?= null
 

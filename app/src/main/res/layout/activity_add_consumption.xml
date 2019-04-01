@@ -28,8 +28,8 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="15dp"
-            android:textColor="@color/c8"
-            android:textSize="@dimen/s7"
+            android:textColor="@color/c1"
+            android:textSize="@dimen/s10"
             android:background="@drawable/input_bg"
             android:digits="@string/digits_money"
             android:inputType="numberDecimal"
@@ -38,6 +38,7 @@
             android:maxLength="12"
             android:textColorHint="@color/c14"
             android:hint="请输入金额"
+            android:textStyle="bold"
             />
         <com.common.base.CustomFontTextView
             android:layout_width="wrap_content"
