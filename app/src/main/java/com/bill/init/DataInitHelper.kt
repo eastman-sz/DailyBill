@@ -93,6 +93,7 @@ class DataInitHelper {
                         natureList.add(NatureInfo("固定支出"))
 
                         natureList.forEach {
+
                             NatureInfoDbHelper.save(it.natureName!!)
                         }
                     }
