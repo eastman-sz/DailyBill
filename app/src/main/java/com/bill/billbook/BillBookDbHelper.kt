@@ -23,7 +23,7 @@ class BillBookDbHelper {
 
         fun saveDefault(bookName: String) {
             val values = ContentValues()
-            values.put("bookId", 0)
+            values.put("bookId", 1)
             values.put("name", bookName)
 
             val db = ISqliteDataBase.getSqLiteDatabase()

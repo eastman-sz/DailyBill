@@ -79,7 +79,9 @@ class AmountEditText : CustomFontDigitEditText{
 
     //保留两位小数正则
     fun  isOnlyPointNumber(number : String) : Boolean{
-        val pattern = Pattern.compile("^\\d+\\.?\\d{0,2}$")
+//        val pattern = Pattern.compile("^\\d+\\.?\\d{0,2}$")
+//        val pattern = Pattern.compile("^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?$")
+        val pattern = Pattern.compile("^(([1-9]{1}\\d{0,8})|([0]{1}))(\\.(\\d){0,2})?$")
         val matcher = pattern.matcher(number)
         return matcher.matches()
     }
