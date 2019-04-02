@@ -7,6 +7,8 @@ import com.bill.consumption.martket.Market
 import com.bill.consumption.martket.MarketSelectDialog
 import com.bill.consumption.nature.NatureInfo
 import com.bill.consumption.nature.NatureInfoSelectDialog
+import com.bill.consumption.payment.Payment
+import com.bill.consumption.payment.PaymentSelectDialog
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
 import com.bill.consumption.type.TypeSelectDialog
@@ -95,6 +97,13 @@ class DialogHelper {
         //商场选择
         fun showMarketSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<Market>?){
             val dialog = MarketSelectDialog(context)
+            dialog.show()
+            dialog.onCommonItemClickListener = onCommonItemClickListener
+        }
+
+        //支付方式
+        fun showPaymentSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<Payment> ?){
+            val dialog = PaymentSelectDialog(context)
             dialog.show()
             dialog.onCommonItemClickListener = onCommonItemClickListener
         }

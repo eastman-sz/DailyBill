@@ -9,7 +9,7 @@ import com.common.base.BaseRelativeLayout
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.lastest_seven_day_layoutview.view.*
 
-class Lastest7DayChartView : BaseRelativeLayout{
+class Latest7DayChartView : BaseRelativeLayout{
 
     constructor(context: Context) : super(context){
         init()

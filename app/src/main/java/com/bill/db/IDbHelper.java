@@ -7,6 +7,7 @@ import com.bill.bill.DailyBillDbHelper;
 import com.bill.billbook.BillBookDbHelper;
 import com.bill.consumption.martket.MarketDbHelper;
 import com.bill.consumption.nature.NatureInfoDbHelper;
+import com.bill.consumption.payment.PaymentDbHelper;
 import com.bill.consumption.type.BigTypeDbHelper;
 import com.bill.consumption.type.SmallTypeDbHelper;
 /**
@@ -31,6 +32,7 @@ public class IDbHelper extends SQLiteOpenHelper {
         SmallTypeDbHelper.Companion.createTable(db);
         BigTypeDbHelper.Companion.createTable(db);
         NatureInfoDbHelper.Companion.createTable(db);
+        PaymentDbHelper.Companion.createTable(db);
     }
 
     @Override
@@ -43,6 +45,7 @@ public class IDbHelper extends SQLiteOpenHelper {
         BigTypeDbHelper.Companion.dropTable(db);
 
         NatureInfoDbHelper.Companion.dropTable(db);
+        PaymentDbHelper.Companion.dropTable(db);
 
         onCreate(db);
     }

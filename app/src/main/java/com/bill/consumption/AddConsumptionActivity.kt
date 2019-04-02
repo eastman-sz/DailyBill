@@ -6,8 +6,8 @@ import com.bill.base.BaseKotlinActivity
 import com.bill.bill.DailyBillDbHelper
 import com.bill.billbook.BillBook
 import com.bill.consumption.martket.Market
-import com.bill.consumption.martket.MarketSelectDialog
 import com.bill.consumption.nature.NatureInfo
+import com.bill.consumption.payment.Payment
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
 import com.bill.consumption.type.SmallType
@@ -33,6 +33,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
     var bigTypeId = 0 //二级分类ID
     var smallTypeId = 0 //二级分类ID
     var natureId = 0 //性质ID
+    var paymentId = 0 //支付方式
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,6 +86,9 @@ class AddConsumptionActivity : BaseKotlinActivity() {
         //默认消费地点:沃尔玛
         marketId = 1
         pointNameTextView.text = "沃尔玛"
+        //支付方式
+        paymentId = 1
+        paymentTextView.text = "现金"
 
         freshBtn()
     }
@@ -150,6 +154,18 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                 })
             }
 
+            paymentLayout ->{
+                //支付方式
+                DialogHelper.showPaymentSelectDialog(context , object : OnCommonItemClickListener<Payment>(){
+                    override fun onItemClick(it: Payment) {
+                        paymentId = it.paymentId
+                        runOnUiThread {
+                            paymentTextView.text = it.paymentName
+                        }
+                    }
+                })
+            }
+
             bookLayout ->{
                 //帐本：默认
                 DialogHelper.showBillBookSelectDialog(context , object : OnCommonItemClickListener<BillBook>(){
@@ -168,7 +184,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                 val amount = amountTextView.text.toString().toFloat()
                 val remarks = remarksTextView.text.toString()
 
-                DailyBillDbHelper.save(bookId , amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId)
+                DailyBillDbHelper.save(bookId , amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId , paymentId)
 
                 onBackPressed()
 

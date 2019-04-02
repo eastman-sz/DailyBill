@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="46dp"
+    tools:context="com.bill.billbook.AddBillbookActivity"
+    android:orientation="horizontal"
+    android:background="@drawable/list_item_selector"
+    android:id="@+id/billBookFilterLayout"
+    >
+
+    <com.common.base.CustomFontTextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textSize="@dimen/s4"
+        android:textColor="@color/c13"
+        android:text="帐本选择"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        />
+
+    <com.common.base.CustomFontTextView
+        android:id="@+id/billBookNameTextView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|right"
+        android:paddingRight="15dp"
+        android:textSize="@dimen/s6"
+        android:textColor="@color/c2"
+        android:drawableRight="@drawable/nextstep_right_arrow_n"
+        android:drawablePadding="10dp"
+        android:text="全部帐本"
+        />
+</LinearLayout>

@@ -3,6 +3,7 @@ package com.bill.bill
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import com.bill.consumption.payment.Payment
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
@@ -12,7 +13,8 @@ class DailyBillDbHelper {
 
     companion object {
 
-        fun save(bookId: Long , amount: Float, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int, smallTypeId: Int, natureId: Int) {
+        fun save(bookId: Long , amount: Float, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int,
+                 smallTypeId: Int, natureId: Int , paymentId: Int) {
             val values = ContentValues()
             values.put("bookId", bookId)
             val bid = System.currentTimeMillis()//唯一id
@@ -25,6 +27,7 @@ class DailyBillDbHelper {
             values.put("bigTypeId", bigTypeId)
             values.put("smallTypeId", smallTypeId)
             values.put("natureId", natureId)
+            values.put("paymentId", paymentId)
 
             val db = ISqliteDataBase.getSqLiteDatabase()
             val count = db.update(DBNAME, values, "bid = ? ", arrayOf(bid.toString()))
@@ -115,6 +118,25 @@ class DailyBillDbHelper {
             return list
         }
 
+        //某一时间段的数据统计
+        fun getDailyBillAmount(startTime: Long, endTime: Long): Float {
+            var totalAmount = 0F
+            var cursor: Cursor? = null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.rawQuery("select sum(amount) AS amount from ".plus(DBNAME).plus(" where billTime > ? and billTime < ? ")  , arrayOf(startTime.toString(), endTime.toString()))
+                if (null != cursor && cursor.moveToNext()){
+                    cursor.moveToFirst()
+                    totalAmount = CursorHelper.getFloat(cursor , "amount")
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                cursor?.close()
+            }
+            return totalAmount
+        }
+
         //删除某一帐本下的数据
         fun deleteBook(bookId: Long) {
             val db = ISqliteDataBase.getSqLiteDatabase()
@@ -139,6 +161,7 @@ class DailyBillDbHelper {
             var bigTypeId = CursorHelper.getInt(cursor , "bigTypeId")
             var smallTypeId = CursorHelper.getInt(cursor , "smallTypeId")
             var natureId = CursorHelper.getInt(cursor , "natureId")
+            var paymentId = CursorHelper.getInt(cursor , "paymentId")
 
             val dailyBill = DailyBill()
             dailyBill.bid = bid
@@ -151,6 +174,7 @@ class DailyBillDbHelper {
             dailyBill.bigTypeId = bigTypeId
             dailyBill.smallTypeId = smallTypeId
             dailyBill.natureId = natureId
+            dailyBill.paymentId = paymentId
 
             return dailyBill
         }
@@ -169,6 +193,7 @@ class DailyBillDbHelper {
                     .addColumn_Integer("bigTypeId")
                     .addColumn_Integer("smallTypeId")
                     .addColumn_Integer("natureId")
+                    .addColumn_Integer("paymentId")
 
                     .buildTable(db)
         }

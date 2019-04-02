@@ -4,6 +4,7 @@ import com.bill.billbook.BillBookDbHelper
 import com.bill.consumption.martket.MarketDbHelper
 import com.bill.consumption.nature.NatureInfo
 import com.bill.consumption.nature.NatureInfoDbHelper
+import com.bill.consumption.payment.PaymentDbHelper
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
 import com.bill.consumption.type.SmallType
@@ -62,10 +63,15 @@ class DataInitHelper {
                         smallTypeList.add(SmallType(1 ,13 , "晚餐"))
 
                         smallTypeList.add(SmallType(2 ,20 , "默认"))
-                        smallTypeList.add(SmallType(2 ,21 , "穿"))
+                        smallTypeList.add(SmallType(2 ,21 , "外套"))
+                        smallTypeList.add(SmallType(2 ,22 , "内衣"))
+                        smallTypeList.add(SmallType(2 ,23 , "裤子"))
+                        smallTypeList.add(SmallType(2 ,24 , "鞋子"))
 
                         smallTypeList.add(SmallType(3 ,30 , "默认"))
-                        smallTypeList.add(SmallType(3 ,31 , "住"))
+                        smallTypeList.add(SmallType(3 ,31 , "房贷"))
+                        smallTypeList.add(SmallType(3 ,32 , "房租"))
+                        smallTypeList.add(SmallType(3 ,33 , "酒店"))
 
                         smallTypeList.add(SmallType(4 ,40 , "默认"))
                         smallTypeList.add(SmallType(4 ,41 , "公交"))
@@ -74,13 +80,15 @@ class DataInitHelper {
                         smallTypeList.add(SmallType(4 ,44 , "网约车"))
 
                         smallTypeList.add(SmallType(5 ,50 , "默认"))
-                        smallTypeList.add(SmallType(5 ,51 , "娱"))
+                        smallTypeList.add(SmallType(5 ,51 , "KTV"))
+                        smallTypeList.add(SmallType(5 ,52 , "酒吧"))
 
                         smallTypeList.add(SmallType(6 ,60 , "默认"))
-                        smallTypeList.add(SmallType(6 ,61 , "学"))
+                        smallTypeList.add(SmallType(6 ,61 , "进修"))
 
                         smallTypeList.add(SmallType(7 ,70 , "默认"))
-                        smallTypeList.add(SmallType(7 ,71 , "医"))
+                        smallTypeList.add(SmallType(7 ,71 , "住院"))
+                        smallTypeList.add(SmallType(7 ,72 , "保健品"))
 
                         smallTypeList.forEach {
                             SmallTypeDbHelper.save(it.bigTypeId , it.typeId , it.typeName!!)
@@ -95,6 +103,18 @@ class DataInitHelper {
                         natureList.forEach {
 
                             NatureInfoDbHelper.save(it.natureName!!)
+                        }
+
+                        //支付方式
+                        val paymentList = ArrayList<String>()
+                        paymentList.add("现金")
+                        paymentList.add("支付宝")
+                        paymentList.add("微信")
+                        paymentList.add("信用卡")
+                        paymentList.add("储蓄卡")
+
+                        paymentList.forEach {
+                            PaymentDbHelper.save(it)
                         }
                     }
                 }catch (e : Exception){

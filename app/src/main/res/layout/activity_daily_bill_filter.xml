@@ -18,14 +18,28 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white"
+        android:layout_marginTop="10dp"
         >
         <com.bill.daylist.CommonDateFilterView
             android:id="@+id/commonDateFilterView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:paddingTop="10dp"
             />
 
+        <ImageView style="@style/full_line_style" />
+
+        <com.bill.daylist.filter.BillBookFilterView
+            android:id="@+id/billBookFilterView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView style="@style/full_line_style" />
+
+        <com.bill.daylist.filter.TypeFilterView
+            android:id="@+id/typeFilterView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

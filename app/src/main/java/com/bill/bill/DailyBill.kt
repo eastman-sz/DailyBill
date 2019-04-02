@@ -13,6 +13,7 @@ class DailyBill {
     var bigTypeId = 0 //一级分类ID
     var smallTypeId = 0 //二级分类ID
     var natureId = 0 //性质ID
+    var paymentId = 0 //支付方式
 
     var dayAmount = 0f
     var weekAmount = 0f
