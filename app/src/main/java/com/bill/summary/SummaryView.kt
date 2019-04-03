@@ -41,6 +41,7 @@ class SummaryView : BaseBillView{
 
     fun freshData(){
         totalSummaryView.getPeriodSummary()
+//        latest7DayChartView.freshData()
     }
 
     override fun onAttachedToWindow() {

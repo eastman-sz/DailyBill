@@ -150,7 +150,7 @@
                 android:textSize="@dimen/s4"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:text="地点"
+                android:text="商家"
                 />
 
             <com.common.base.CustomFontTextView
@@ -187,7 +187,7 @@
                 android:textSize="@dimen/s4"
                 android:gravity="center_vertical"
                 android:paddingLeft="15dp"
-                android:text="性质"
+                android:text="消费性质"
                 />
 
             <com.common.base.CustomFontTextView

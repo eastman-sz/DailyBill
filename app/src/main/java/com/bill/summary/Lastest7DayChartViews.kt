@@ -34,6 +34,14 @@ class Lastest7DayChartViews : ChartView {
         init()
     }
 
+    override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
+        super.onLayout(changed, l, t, r, b)
+        mWidth = measuredWidth
+        mHeight = measuredHeight
+
+        refreshChart()
+    }
+
     override fun init() {
         super.init()
 
@@ -42,7 +50,7 @@ class Lastest7DayChartViews : ChartView {
         initBasic()
     }
 
-    fun initBasic(){
+    private fun initBasic(){
         mWidth = measuredWidth
         mHeight = measuredHeight
         xStart = DeviceInfo.dip2px(context , 15f)
@@ -55,11 +63,11 @@ class Lastest7DayChartViews : ChartView {
 
     override fun render(canvas: Canvas?) {
         initBasic()
-        drawaLines(canvas)
+        drawLines(canvas)
 
     }
 
-    fun drawaLines(canvas: Canvas?){
+    private fun drawLines(canvas: Canvas?){
         var maxAmount = 0f
 
         list.forEach {

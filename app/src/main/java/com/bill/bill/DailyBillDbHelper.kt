@@ -105,7 +105,7 @@ class DailyBillDbHelper {
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
                 cursor = db.query(DBNAME, null, "billTime > ? and billTime < ? ",
-                        arrayOf(startTime.toString(), endTime.toString()), null, null, "billTime desc")
+                        arrayOf(startTime.toString(), endTime.toString()), null, null, "billTime asc")
                 while (null != cursor && cursor.moveToNext()) {
                     val dailyBill = fromCursor(cursor)
 
