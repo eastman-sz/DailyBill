@@ -47,7 +47,7 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         val bigTypeAdapter = BigTypeWheelViewAdapter(context , bigList)
         bigTypeWheelView.viewAdapter = bigTypeAdapter
         bigTypeWheelView.visibleItems = 7
-        bigTypeWheelView.setCurrentItem(5 , false)
+        bigTypeWheelView.setCurrentItem(2 , false)
         bigTypeWheelView.addScrollingListener(object : OnWheelScrollListener {
             override fun onScrollingStarted(wheelView: HorizontalWheelView) {
             }
@@ -72,7 +72,7 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         val smallTypeAdapter = SmallTypeWheelViewAdapter(context , smallList)
         smallTypeWheelView.viewAdapter = smallTypeAdapter
         smallTypeWheelView.visibleItems = 7
-        smallTypeWheelView.setCurrentItem(5 , false)
+        smallTypeWheelView.setCurrentItem(1 , false)
         smallTypeWheelView.addScrollingListener(object : OnWheelScrollListener{
             override fun onScrollingStarted(wheelView: HorizontalWheelView) {
             }

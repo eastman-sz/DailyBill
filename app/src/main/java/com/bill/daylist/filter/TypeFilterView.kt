@@ -3,6 +3,10 @@ package com.bill.daylist.filter
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import com.bill.consumption.type.BigType
+import com.bill.consumption.type.OnConsumptionTypeSelectListener
+import com.bill.consumption.type.SmallType
+import com.bill.dialog.DialogHelper
 import com.common.base.BaseKotlinRelativeLayout
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.type_filter_view.view.*
@@ -11,6 +15,9 @@ import kotlinx.android.synthetic.main.type_filter_view.view.*
  * @author E
  */
 class TypeFilterView : BaseKotlinRelativeLayout{
+
+    var smallTypeId = 0
+    var bigTypeId = 0
 
     constructor(context: Context) : super(context){
         init()
@@ -26,7 +33,14 @@ class TypeFilterView : BaseKotlinRelativeLayout{
 
     override fun initListener() {
         typeFilterLayout.setOnClickListener {
+            DialogHelper.showTypeSelectDialog(context , object : OnConsumptionTypeSelectListener{
+                override fun onTypeSelect(smallType: SmallType, bigType: BigType) {
+                    smallTypeId = smallType.typeId
+                    bigTypeId = bigType.typeId
+                    typeNameTextView.text = bigType.typeName.plus(" > ${smallType.typeName}")
 
+                }
+            })
         }
     }
 

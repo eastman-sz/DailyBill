@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.bill.consumption.payment.Payment
+import com.bill.daylist.DailyBillFilter
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
@@ -113,6 +114,65 @@ class DailyBillDbHelper {
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
+                cursor?.close()
+            }
+            return list
+        }
+
+        //根据过滤条件来筛选数据
+        fun getFilterDailyBill(it : DailyBillFilter) : List<DailyBill>{
+            var selection = ""
+            val agsList = ArrayList<String>()
+            if (it.startTimestamp > 0 && it.endTimestamp > 0){
+                selection = selection.plus("billTime > ? and billTime < ? ")
+
+                agsList.add(it.startTimestamp.toString())
+                agsList.add(it.endTimestamp.toString())
+            }
+            if (it.bookId > 0){
+                selection = selection.plus("and bookId = ? ")
+
+                agsList.add(it.bookId.toString())
+            }
+            if (it.marketId > 0){
+                selection = selection.plus("and marketId = ? ")
+
+                agsList.add(it.marketId.toString())
+            }
+            if (it.bigTypeId > 0){
+                selection = selection.plus("and bigTypeId = ? and smallTypeId = ? ")
+
+                agsList.add(it.bigTypeId.toString())
+                agsList.add(it.smallTypeId.toString())
+            }
+            if (it.natureId > 0){
+                selection = selection.plus("and natureId = ? ")
+
+                agsList.add(it.natureId.toString())
+            }
+            if (it.paymentId > 0){
+                selection = selection.plus("and paymentId = ? ")
+
+                agsList.add(it.paymentId.toString())
+            }
+            if (selection.startsWith("and ")){
+                selection = selection.substring(4)
+            }
+
+            var whereArgs = agsList.toTypedArray()
+            val list = ArrayList<DailyBill>()
+            var cursor: Cursor? = null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME, null, selection, whereArgs, null, null, "billTime desc")
+                while (null != cursor && cursor.moveToNext()) {
+                    val dailyBill = fromCursor(cursor)
+
+                    list.add(dailyBill)
+                }
+            }catch (e : java.lang.Exception){
+                e.printStackTrace()
+            }finally {
                 cursor?.close()
             }
             return list

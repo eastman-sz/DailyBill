@@ -41,6 +41,27 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
+        <ImageView style="@style/full_line_style" />
+
+        <com.bill.daylist.filter.NatureFilterView
+            android:id="@+id/natureFilterView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView style="@style/full_line_style" />
+
+        <com.bill.daylist.filter.PaymentFilterView
+            android:id="@+id/paymentFilterView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView style="@style/full_line_style" />
+
+        <com.bill.daylist.filter.MarketFilterView
+            android:id="@+id/marketFilterView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 
 

@@ -99,7 +99,7 @@ class DailyBillListView : BaseBillView {
     }
 
     private fun onFilter(it : DailyBillFilter){
-        DailyBillDataFetchHelper.getAllDailyBills(it.startTimestamp , it.endTimestamp, object : OnCommonRequestListener<List<BillList>>(){
+        DailyBillDataFetchHelper.getAllDailyBills(it, object : OnCommonRequestListener<List<BillList>>(){
             override fun onSuccess(it: List<BillList>) {
                 list.clear()
                 list.addAll(it)

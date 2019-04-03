@@ -53,8 +53,16 @@ class DailyBillFilterActivity : BaseKotlinActivity() {
                     dailyBillFilter.startTimestamp = startTimestamp
                     dailyBillFilter.endTimestamp = endTimestamp
 
-                    ListenerConfig.onDailyBillFilterParamSetListener?.onResult(dailyBillFilter)
+                    dailyBillFilter.bookId = billBookFilterView.bookId
 
+                    dailyBillFilter.bigTypeId = typeFilterView.bigTypeId
+                    dailyBillFilter.smallTypeId = typeFilterView.smallTypeId
+
+                    dailyBillFilter.natureId = natureFilterView.natureId
+                    dailyBillFilter.paymentId = paymentFilterView.paymentId
+                    dailyBillFilter.marketId = marketFilterView.marketId
+
+                    ListenerConfig.onDailyBillFilterParamSetListener?.onResult(dailyBillFilter)
                 }
             }
         }

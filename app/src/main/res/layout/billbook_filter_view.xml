@@ -30,6 +30,6 @@
         android:textColor="@color/c2"
         android:drawableRight="@drawable/nextstep_right_arrow_n"
         android:drawablePadding="10dp"
-        android:text="全部帐本"
+        android:text="全部"
         />
 </LinearLayout>

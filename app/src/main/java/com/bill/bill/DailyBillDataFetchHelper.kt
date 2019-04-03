@@ -1,6 +1,7 @@
 package com.bill.bill
 
 import com.bill.base.OnCommonRequestListener
+import com.bill.daylist.DailyBillFilter
 import com.utils.lib.ss.common.DateHepler
 import com.utils.lib.ss.common.MathUtil
 import org.jetbrains.anko.doAsync
@@ -34,10 +35,10 @@ class DailyBillDataFetchHelper {
             }
         }
 
-        //某个时间段内的所有记帐数据
-        fun getAllDailyBills(startTime : Long  , endTime : Long , onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
+        //某个过滤条件下的所有记帐数据
+        fun getAllDailyBills(dailyBillFilter: DailyBillFilter , onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
             doAsync {
-                val dailyBillList = DailyBillDbHelper.getDailyBills(startTime , endTime)
+                val dailyBillList = DailyBillDbHelper.getFilterDailyBill(dailyBillFilter)
                 uiThread {
                     getGroupedBillList(dailyBillList , onCommonRequestListener)
                 }

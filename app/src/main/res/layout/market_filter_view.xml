@@ -7,7 +7,7 @@
     tools:context="com.bill.billbook.AddBillbookActivity"
     android:orientation="horizontal"
     android:background="@drawable/list_item_selector"
-    android:id="@+id/typeFilterLayout"
+    android:id="@+id/marketFilterLayout"
     >
 
     <com.common.base.CustomFontTextView
@@ -15,13 +15,13 @@
         android:layout_height="match_parent"
         android:textSize="@dimen/s4"
         android:textColor="@color/c13"
-        android:text="选择分类"
+        android:text="商家"
         android:paddingLeft="15dp"
         android:gravity="center_vertical"
         />
 
     <com.common.base.CustomFontTextView
-        android:id="@+id/typeNameTextView"
+        android:id="@+id/marketNameTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"
