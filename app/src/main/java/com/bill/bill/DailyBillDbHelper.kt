@@ -215,6 +215,45 @@ class DailyBillDbHelper {
             }
         }
 
+        //一级分类数据
+        fun getGroupByBigType() : List<DailyBill>{
+            return getGroupByWhats("bigTypeId")
+        }
+
+        //分组:market
+        fun getGroupByMarket() : List<DailyBill>{
+            return getGroupByWhats("marketId")
+        }
+
+        //分组:natureId
+        fun getGroupByNature() : List<DailyBill>{
+            return getGroupByWhats("natureId")
+        }
+
+        //分组:paymentId
+        fun getGroupByPayment() : List<DailyBill>{
+            return getGroupByWhats("paymentId")
+        }
+
+        //分组统计数据
+        private fun getGroupByWhats(whats : String) : List<DailyBill>{
+            val list = ArrayList<DailyBill>()
+            var cursor: Cursor? = null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME , arrayOf("*" ,"sum(amount) as amount") , null , null , whats, null, null)
+                while(null != cursor && cursor.moveToNext()){
+                    val it = fromCursor(cursor)
+                    list.add(it)
+                    ILog.e("====结果====marketId: ${it.marketId}     ${it.amount}")
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }finally {
+                cursor?.close()
+            }
+            return list
+        }
 
         //删除某一帐本下的数据
         fun deleteBook(bookId: Long) {

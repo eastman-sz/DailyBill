@@ -3,6 +3,7 @@ package com.bill.consumption.payment
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.util.SparseArray
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
@@ -39,6 +40,25 @@ class PaymentDbHelper {
             }
             return list
         }
+
+        fun getPaymentNameArray() : SparseArray<String>{
+            val array = SparseArray<String>()
+            var cursor : Cursor ?= null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME, null , null, null , null , null , null)
+                while (null != cursor &&cursor.moveToNext()){
+                    val it = fromCursor(cursor)
+                    array.put(it.paymentId , it.paymentName)
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }finally {
+                cursor?.close()
+            }
+            return array
+        }
+
 
         private fun getMaxPaymentId(): Int {
             var typeId = 0

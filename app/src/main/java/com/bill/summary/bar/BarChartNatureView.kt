@@ -7,15 +7,15 @@ import com.bill.base.BaseKotlinRelativeLayout
 import com.bill.bill.DailyBill
 import com.bill.bill.DailyBillDbHelper
 import com.sz.kk.daily.bill.R
-import kotlinx.android.synthetic.main.bar_chart_type_view.view.*
+import kotlinx.android.synthetic.main.bar_chart_market_view.view.*
 /**
- * BarChartTypeView. Total data grouped by bigType.
+ * BarChart show data grouped by nature.
  * @author E
  */
-class BarChartTypeView : BaseKotlinRelativeLayout {
+class BarChartNatureView : BaseKotlinRelativeLayout {
 
     private val list = ArrayList<DailyBill>()
-    private var adapter : BarChartTypeAdapter ?= null
+    private var adapter : BarChartNatureAdapter ?= null
 
     constructor(context: Context) : super(context){
         init()
@@ -26,17 +26,18 @@ class BarChartTypeView : BaseKotlinRelativeLayout {
     }
 
     override fun initViews() {
-        View.inflate(context , R.layout.bar_chart_type_view , this)
+        View.inflate(context , R.layout.bar_chart_nature_view , this)
 
-        adapter = BarChartTypeAdapter(context , list)
+        adapter = BarChartNatureAdapter(context , list)
         listView.adapter = adapter
 
         getData()
     }
 
     private fun getData(){
-        list.addAll(DailyBillDbHelper.getGroupByBigType())
+        list.addAll(DailyBillDbHelper.getGroupByNature())
         adapter?.notifyDataSetChanged()
     }
+
 
 }

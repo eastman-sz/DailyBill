@@ -7,15 +7,12 @@ import com.bill.base.BaseKotlinRelativeLayout
 import com.bill.bill.DailyBill
 import com.bill.bill.DailyBillDbHelper
 import com.sz.kk.daily.bill.R
-import kotlinx.android.synthetic.main.bar_chart_type_view.view.*
-/**
- * BarChartTypeView. Total data grouped by bigType.
- * @author E
- */
-class BarChartTypeView : BaseKotlinRelativeLayout {
+import kotlinx.android.synthetic.main.bar_chart_payment_view.view.*
+
+class BarChartPaymentView : BaseKotlinRelativeLayout {
 
     private val list = ArrayList<DailyBill>()
-    private var adapter : BarChartTypeAdapter ?= null
+    private var adapter : BarChartPaymentAdapter ?= null
 
     constructor(context: Context) : super(context){
         init()
@@ -26,16 +23,16 @@ class BarChartTypeView : BaseKotlinRelativeLayout {
     }
 
     override fun initViews() {
-        View.inflate(context , R.layout.bar_chart_type_view , this)
+        View.inflate(context , R.layout.bar_chart_payment_view , this)
 
-        adapter = BarChartTypeAdapter(context , list)
+        adapter = BarChartPaymentAdapter(context , list)
         listView.adapter = adapter
 
         getData()
     }
 
     private fun getData(){
-        list.addAll(DailyBillDbHelper.getGroupByBigType())
+        list.addAll(DailyBillDbHelper.getGroupByPayment())
         adapter?.notifyDataSetChanged()
     }
 

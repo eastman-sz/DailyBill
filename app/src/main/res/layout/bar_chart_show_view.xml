@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.billbook.AddBillbookActivity"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+
+    <com.bill.summary.bar.BarChartTypeView
+        android:id="@+id/barChartTypeView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <com.bill.summary.bar.BarChartMarketView
+        android:id="@+id/barChartMarketView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <com.bill.summary.bar.BarChartNatureView
+        android:id="@+id/barChartNatureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <com.bill.summary.bar.BarChartPaymentView
+        android:id="@+id/barChartPaymentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+</LinearLayout>
