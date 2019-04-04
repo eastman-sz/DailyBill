@@ -25,6 +25,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/transparent"
+        android:visibility="gone"
+        />
+
+    <com.bill.summary.pie.PieChartView
+        android:id="@+id/pieChartView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
         />
 
 </LinearLayout>

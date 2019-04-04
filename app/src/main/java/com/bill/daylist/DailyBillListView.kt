@@ -39,11 +39,13 @@ class DailyBillListView : BaseBillView {
         commonTitleView.setRightBtnText("筛选")
         commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onRightBtnClick() {
-                DialogHelper.showDailyBillFilter(context , object : OnDailyBillFilterParamSetListener{
+                DailyBillDbHelper.getGroup()
+
+/*                DialogHelper.showDailyBillFilter(context , object : OnDailyBillFilterParamSetListener{
                     override fun onResult(it : DailyBillFilter) {
                         onFilter(it)
                     }
-                })
+                })*/
             }
         }
     }

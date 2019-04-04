@@ -3,6 +3,7 @@ package com.bill.consumption.type
 import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.util.SparseArray
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
@@ -65,6 +66,24 @@ class BigTypeDbHelper {
                 cursor?.close()
             }
             return list
+        }
+
+        fun getBigTypeNameArray() : SparseArray<String>{
+            val array = SparseArray<String>()
+            var cursor : Cursor ?= null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME , null , null, null , null , null , null)
+                while (null != cursor &&cursor.moveToNext()){
+                    val it = fromCursor(cursor)
+                    array.put(it.typeId , it.typeName)
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }finally {
+                cursor?.close()
+            }
+            return array
         }
 
         fun getBigType(typeId : Int) : BigType?{

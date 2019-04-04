@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.billbook.AddBillbookActivity"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_selector"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:background="@color/transparent"
+        >
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/transparent"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="15dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:background="@color/transparent"
+                    >
+                    <com.common.base.CustomFontTextView
+                        android:id="@+id/typeNameTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/c8"
+                        android:textSize="@dimen/s6"
+                        android:gravity="center_horizontal"
+                        android:text="行"
+                        />
+
+                    <com.common.base.CustomFontDigitTextView
+                        android:id="@+id/percentTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/s5"
+                        android:textColor="@color/c13"
+                        android:gravity="center"
+                        android:text="25%"
+                        android:paddingLeft="10dp"
+                        />
+                    <com.common.base.CustomFontDigitTextView
+                        android:id="@+id/amountTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical|right"
+                        android:textSize="@dimen/s8"
+                        android:textColor="@color/c8"
+                        android:text="125"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/nextstep_right_arrow_n"
+            android:paddingRight="15dp"
+            android:paddingLeft="10dp"
+            />
+    </LinearLayout>
+
+    <ImageView style="@style/full_line_style" />
+
+</LinearLayout>

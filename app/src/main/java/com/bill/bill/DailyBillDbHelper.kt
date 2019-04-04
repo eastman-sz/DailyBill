@@ -8,6 +8,7 @@ import com.bill.daylist.DailyBillFilter
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
+import com.bill.util.ILog
 import java.util.ArrayList
 
 class DailyBillDbHelper {
@@ -196,6 +197,24 @@ class DailyBillDbHelper {
             }
             return totalAmount
         }
+
+        fun getGroup(){
+            var cursor: Cursor? = null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME , arrayOf("*" ,"sum(amount) as amount") , null , null , "marketId", null, null)
+                while(null != cursor && cursor.moveToNext()){
+                    val it = fromCursor(cursor)
+
+                    ILog.e("====结果====marketId: ${it.marketId}     ${it.amount}")
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }finally {
+                cursor?.close()
+            }
+        }
+
 
         //删除某一帐本下的数据
         fun deleteBook(bookId: Long) {
