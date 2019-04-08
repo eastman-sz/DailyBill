@@ -19,6 +19,8 @@ import com.bill.consumption.type.add.EditSmallTypeNameDialog
 import com.bill.daylist.DailyBillFilterActivity
 import com.bill.daylist.ListenerConfig
 import com.bill.daylist.OnDailyBillFilterParamSetListener
+import com.bill.summary.bar.filter.BarChartTypeSelectDialog
+import com.bill.wheelview.barChart.BarChart
 import com.common.dialog.CommonDialog
 import com.common.dialog.OnCommonItemClickListener
 import org.jetbrains.anko.startActivity
@@ -104,6 +106,13 @@ class DialogHelper {
         //支付方式
         fun showPaymentSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<Payment> ?){
             val dialog = PaymentSelectDialog(context)
+            dialog.show()
+            dialog.onCommonItemClickListener = onCommonItemClickListener
+        }
+
+        //条形图要展示的数据的类型选择
+        fun showBarChartTypeSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<BarChart> ?){
+            val dialog = BarChartTypeSelectDialog(context)
             dialog.show()
             dialog.onCommonItemClickListener = onCommonItemClickListener
         }

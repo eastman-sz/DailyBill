@@ -11,7 +11,7 @@ import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.ToastHelper
 import kotlinx.android.synthetic.main.activity_add_billbook.*
 
-class AddBillbookActivity : BaseKotlinActivity() {
+class AddBillBookActivity : BaseKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

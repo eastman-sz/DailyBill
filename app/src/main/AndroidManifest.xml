@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bill.consumption.type.add.EditSmallTypeActivity"></activity>
+        <activity android:name="com.bill.summary.bar.filter.BarChartFilterActivity"></activity>
+        <activity android:name="com.bill.consumption.type.add.EditSmallTypeActivity" />
         <activity android:name="com.bill.consumption.type.add.EditTypeActivity" />
         <activity
             android:name="com.bill.start.StartActivity"
@@ -37,7 +38,7 @@
             android:name="com.bill.consumption.AddConsumptionActivity"
             android:screenOrientation="portrait" />
         <activity android:name="com.bill.bill.BillListActivity" />
-        <activity android:name="com.bill.billbook.AddBillbookActivity" />
+        <activity android:name="com.bill.billbook.AddBillBookActivity" />
 
         <meta-data
             android:name="UMENG_APPKEY"

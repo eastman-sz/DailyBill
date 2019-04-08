@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.bill.billbook.AddBillBookActivity"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_selector"
+    >
+    <RelativeLayout
+        android:id="@+id/filterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/transparent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical"
+            >
+            <com.common.base.CustomFontDigitTextView
+                android:id="@+id/durationTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c8"
+                android:textSize="@dimen/s5"
+                android:gravity="center_vertical"
+                android:text="2012"
+                />
+
+            <com.common.base.CustomFontTextView
+                android:id="@+id/typeNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/c8"
+                android:textSize="@dimen/s4"
+                android:gravity="center_vertical"
+                android:text="数据分类"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/nextstep_right_arrow_n"
+            android:layout_alignParentRight="true"
+            android:paddingRight="15dp"
+            android:paddingLeft="10dp"
+            />
+    </RelativeLayout>
+
+</LinearLayout>

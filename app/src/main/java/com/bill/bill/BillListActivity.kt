@@ -48,7 +48,7 @@ class BillListActivity : BaseKotlinActivity() {
 
         addEmptyView(sticky_list.refreshableView)
 
-        sticky_list.refreshableView.setOnItemClickListener { parent, view, position, id ->
+        sticky_list.refreshableView.setOnItemClickListener { _, _, position, _ ->
             val billList = list[position -1]
 
             ILog.e("billList: " + billList.amount)

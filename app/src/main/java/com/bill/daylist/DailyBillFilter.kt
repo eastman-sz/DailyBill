@@ -8,7 +8,7 @@ class DailyBillFilter {
     var startTimestamp = 0L
     var endTimestamp = 0L
 
-    var bookId = 0L
+    var bookId = 0
     var marketId = 0
     var natureId = 0
     var paymentId = 0

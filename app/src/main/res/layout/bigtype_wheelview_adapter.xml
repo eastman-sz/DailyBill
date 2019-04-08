@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="40dp"
-    tools:context="com.bill.billbook.AddBillbookActivity"
+    tools:context="com.bill.billbook.AddBillBookActivity"
     android:orientation="vertical"
     >
     <com.common.base.CustomFontTextView

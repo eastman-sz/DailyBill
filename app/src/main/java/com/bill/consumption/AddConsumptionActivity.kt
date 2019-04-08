@@ -29,7 +29,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
     var timeRight = false
 
     var marketId = 0 //地点ID
-    var bookId = 0L //帐本
+    var bookId = 0 //帐本
     var bigTypeId = 0 //二级分类ID
     var smallTypeId = 0 //二级分类ID
     var natureId = 0 //性质ID
@@ -46,7 +46,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
     }
 
     override fun getIntentData() {
-        bookId = intent.getLongExtra("bookId" , 0)
+        bookId = intent.getIntExtra("bookId" , 0)
     }
 
     override fun initTitle() {

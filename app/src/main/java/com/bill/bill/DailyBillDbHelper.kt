@@ -15,7 +15,7 @@ class DailyBillDbHelper {
 
     companion object {
 
-        fun save(bookId: Long , amount: Float, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int,
+        fun save(bookId: Int , amount: Float, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int,
                  smallTypeId: Int, natureId: Int , paymentId: Int) {
             val values = ContentValues()
             values.put("bookId", bookId)
@@ -269,7 +269,7 @@ class DailyBillDbHelper {
 
         private fun fromCursor(cursor: Cursor) : DailyBill{
             var bid = CursorHelper.getLong(cursor , "bid")
-            var bookId = CursorHelper.getLong(cursor , "bookId")
+            var bookId = CursorHelper.getInt(cursor , "bookId")
             var amount = CursorHelper.getFloat(cursor , "amount")
             var billTime = CursorHelper.getLong(cursor , "billTime")
             var cTime = CursorHelper.getLong(cursor , "cTime")
@@ -302,7 +302,7 @@ class DailyBillDbHelper {
         fun createTable(db: SQLiteDatabase) {
             DbTableHelper.fromTableName(DBNAME)
                     .addColumn_Long("bid")
-                    .addColumn_Long("bookId")
+                    .addColumn_Integer("bookId")
                     .addColumn_Float("amount")
                     .addColumn_Long("billTime")
                     .addColumn_Long("cTime")

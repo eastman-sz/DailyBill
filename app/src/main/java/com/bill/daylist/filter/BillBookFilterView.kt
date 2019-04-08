@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.billbook_filter_view.view.*
  */
 class BillBookFilterView : BaseKotlinRelativeLayout{
 
-    var bookId = 0L
+    var bookId = 0
 
     constructor(context: Context) : super(context){
         init()

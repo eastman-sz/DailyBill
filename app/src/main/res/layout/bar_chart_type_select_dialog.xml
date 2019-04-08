@@ -13,13 +13,13 @@
         android:layout_height="42dp"
         android:gravity="center"
         android:textColor="@color/c13"
-        android:text="支付方式"
+        android:text="类型选择"
         />
 
     <ImageView style="@style/full_line_style"/>
 
-    <com.bill.wheelview.PaymentWheelView
-        android:id="@+id/paymentWheelView"
+    <com.bill.wheelview.barChart.BarChartTypeWheelView
+        android:id="@+id/barChartTypeWheelView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

@@ -3,7 +3,7 @@ package com.bill.bill
 class DailyBill {
 
     var bid = 0L //相当于某一笔记帐的流水号
-    var bookId = 0L
+    var bookId = 0
     var amount = 0F
     var billTime = 0L
     var cTime = 0L

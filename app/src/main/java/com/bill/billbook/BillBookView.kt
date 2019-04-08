@@ -32,7 +32,7 @@ class BillBookView : BaseBillView{
         commonTitleView.setRightBtnText("新建账簿")
         commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
             override fun onRightBtnClick() {
-                context.startActivity<AddBillbookActivity>()
+                context.startActivity<AddBillBookActivity>()
             }
         }
     }

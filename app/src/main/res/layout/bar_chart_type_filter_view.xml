@@ -7,22 +7,21 @@
     tools:context="com.bill.billbook.AddBillBookActivity"
     android:orientation="horizontal"
     android:background="@drawable/list_item_selector"
-    android:id="@+id/natureFilterLayout"
+    android:id="@+id/barChartTypeFilterLayout"
     android:clickable="true"
     >
-
     <com.common.base.CustomFontTextView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:textSize="@dimen/s4"
         android:textColor="@color/c13"
-        android:text="消费性质"
+        android:text="数据类型"
         android:paddingLeft="15dp"
         android:gravity="center_vertical"
         />
 
     <com.common.base.CustomFontTextView
-        android:id="@+id/natureNameTextView"
+        android:id="@+id/barChartNameTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_vertical|right"
@@ -33,4 +32,5 @@
         android:drawablePadding="10dp"
         android:text="全部"
         />
+
 </LinearLayout>

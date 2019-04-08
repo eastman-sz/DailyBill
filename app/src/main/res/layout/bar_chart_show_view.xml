@@ -4,10 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bill.billbook.AddBillbookActivity"
+    tools:context="com.bill.billbook.AddBillBookActivity"
     android:orientation="vertical"
     android:background="@color/white"
     >
+
+    <com.bill.summary.bar.filter.BarChartFilterView
+        android:id="@+id/barChartFilterView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView style="@style/full_line_style" />
 
     <com.bill.summary.bar.BarChartTypeView
         android:id="@+id/barChartTypeView"
@@ -32,6 +39,13 @@
 
     <com.bill.summary.bar.BarChartPaymentView
         android:id="@+id/barChartPaymentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        />
+
+    <com.bill.summary.bar.BarChartBookView
+        android:id="@+id/barChartBookView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
