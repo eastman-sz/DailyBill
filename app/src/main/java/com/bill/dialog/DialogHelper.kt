@@ -19,7 +19,9 @@ import com.bill.consumption.type.add.EditSmallTypeNameDialog
 import com.bill.daylist.DailyBillFilterActivity
 import com.bill.daylist.ListenerConfig
 import com.bill.daylist.OnDailyBillFilterParamSetListener
+import com.bill.summary.bar.filter.BarChartFilterActivity
 import com.bill.summary.bar.filter.BarChartTypeSelectDialog
+import com.bill.summary.bar.filter.OnBarChartFilterParamSetListener
 import com.bill.wheelview.barChart.BarChart
 import com.common.dialog.CommonDialog
 import com.common.dialog.OnCommonItemClickListener
@@ -39,6 +41,11 @@ class DialogHelper {
         fun showDailyBillFilter(context: Context , onDailyBillFilterParamSetListener : OnDailyBillFilterParamSetListener?){
             ListenerConfig.onDailyBillFilterParamSetListener = onDailyBillFilterParamSetListener
             context.startActivity<DailyBillFilterActivity>()
+        }
+
+        fun showBarChartFilter(context: Context , onBarChartFilterParamSetListener : OnBarChartFilterParamSetListener?){
+            ListenerConfig.onBarChartFilterParamSetListener = onBarChartFilterParamSetListener
+            context.startActivity<BarChartFilterActivity>()
         }
 
         fun showCommonDialog(context: Context , content : String , leftBtnText : String , rightBtnText : String ,

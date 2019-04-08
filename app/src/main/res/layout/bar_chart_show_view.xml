@@ -16,6 +16,15 @@
 
     <ImageView style="@style/full_line_style" />
 
+    <com.bill.base.IViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:fadeScrollbars="true"
+        />
+
     <com.bill.summary.bar.BarChartTypeView
         android:id="@+id/barChartTypeView"
         android:layout_width="match_parent"
@@ -48,5 +57,6 @@
         android:id="@+id/barChartBookView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         />
 </LinearLayout>

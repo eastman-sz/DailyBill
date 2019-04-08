@@ -3,16 +3,16 @@ package com.bill.summary.bar
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import com.bill.base.BaseKotlinRelativeLayout
 import com.bill.bill.DailyBill
 import com.bill.bill.DailyBillDbHelper
+import com.bill.summary.BaseSummaryView
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bar_chart_type_view.view.*
 /**
  * BarChartTypeView. Total data grouped by bigType.
  * @author E
  */
-class BarChartTypeView : BaseKotlinRelativeLayout {
+class BarChartTypeView : BaseSummaryView {
 
     private val list = ArrayList<DailyBill>()
     private var adapter : BarChartTypeAdapter ?= null
@@ -35,8 +35,13 @@ class BarChartTypeView : BaseKotlinRelativeLayout {
     }
 
     private fun getData(){
-        list.addAll(DailyBillDbHelper.getGroupByBigType())
+        list.clear()
+        list.addAll(DailyBillDbHelper.getPeriodGroupByBigType(startTimestamp , endTimestamp))
         adapter?.notifyDataSetChanged()
+    }
+
+    override fun onSummaryRefresh() {
+        getData()
     }
 
 }

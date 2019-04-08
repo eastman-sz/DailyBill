@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.bar_chart_type_filter_view.view.*
 class BarChartTypeFilterView : BaseKotlinRelativeLayout{
 
     var barChartTypeId = 0
+    var barChartTypeName : String ?= "分类"
 
     constructor(context: Context) : super(context){
         init()
@@ -31,7 +32,9 @@ class BarChartTypeFilterView : BaseKotlinRelativeLayout{
             DialogHelper.showBarChartTypeSelectDialog(context , object : OnCommonItemClickListener<BarChart>(){
                 override fun onItemClick(it: BarChart) {
                     barChartTypeId = it.typeId
-                    barChartNameTextView.text = it.name
+                    barChartTypeName = it.name
+
+                    barChartNameTextView.text = "按 '$barChartTypeName' 划分"
                 }
             })
         }

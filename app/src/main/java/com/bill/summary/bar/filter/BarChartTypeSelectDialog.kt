@@ -26,7 +26,7 @@ class BarChartTypeSelectDialog : BaseUpGlideDialog {
 
     override fun initListeners() {
         sureBtnTextView.setOnClickListener {
-            init()
+            dismiss()
 
             val barChart = barChartTypeWheelView.getBarChart()
             onCommonItemClickListener?.onItemClick(barChart)

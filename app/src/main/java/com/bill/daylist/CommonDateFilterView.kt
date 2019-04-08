@@ -30,6 +30,12 @@ class CommonDateFilterView : BaseKotlinRelativeLayout {
 
     override fun initViews() {
         View.inflate(context , R.layout.common_date_filter_view , this)
+        //今年
+        val year = DateHepler.getYear()
+        startTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
+        endTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
+
+        showTimestamp()
     }
 
     override fun initListener() {

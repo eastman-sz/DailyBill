@@ -1,6 +1,7 @@
 package com.bill.summary.bar.filter
 
 import android.os.Bundle
+import com.bill.daylist.ListenerConfig
 import com.common.base.BaseAppCompactActivity
 import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
@@ -24,6 +25,25 @@ class BarChartFilterActivity : BaseAppCompactActivity() {
         }
     }
 
+    override fun initListener() {
+        sureBtnTextView.setOnClickListener {
+            finish()
+
+            var startTimestamp = commonDateFilterView.startTimestamp
+            var endTimestamp = commonDateFilterView.endTimestamp
+
+            var barChartTypeId = barChartTypeFilterView.barChartTypeId
+            var barChartTypeName = barChartTypeFilterView.barChartTypeName
+
+            val barChartFilter = BarChartFilter()
+            barChartFilter.startTimestamp = startTimestamp
+            barChartFilter.endTimestamp = endTimestamp
+            barChartFilter.barChartGroupId = barChartTypeId
+            barChartFilter.barChartGroupName = barChartTypeName
+
+            ListenerConfig.onBarChartFilterParamSetListener?.onResult(barChartFilter)
+        }
+    }
 
 
 

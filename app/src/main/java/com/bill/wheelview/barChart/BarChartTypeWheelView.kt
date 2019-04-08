@@ -43,11 +43,11 @@ class BarChartTypeWheelView : BaseKotlinRelativeLayout {
     private fun createBarCharts(){
         list.clear()
 
-        val barChart1 = BarChart(1 , "分类")
-        val barChart2 = BarChart(2 , "商家")
-        val barChart3 = BarChart(3 , "消费性质")
-        val barChart4 = BarChart(4 , "支付方式")
-        val barChart5 = BarChart(5 , "帐本")
+        val barChart1 = BarChart(0 , "分类")
+        val barChart2 = BarChart(1 , "商家")
+        val barChart3 = BarChart(2 , "消费性质")
+        val barChart4 = BarChart(3 , "支付方式")
+        val barChart5 = BarChart(4 , "帐本")
 
         list.add(barChart1)
         list.add(barChart2)

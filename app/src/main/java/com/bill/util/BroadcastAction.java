@@ -12,4 +12,7 @@ public class BroadcastAction {
     public final static String smallTypeFresh = "smallTypeFresh";
     //添加新的二级分类
     public final static String bigTypeFresh = "bigTypeFresh";
+    //过滤时，时间范围变化
+    public final static String filterTimeRangeChanged = "filterTimeRangeChanged";
+
 }
