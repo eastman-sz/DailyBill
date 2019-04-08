@@ -26,8 +26,6 @@ class DailyBillListView : BaseBillView {
     val list = ArrayList<BillList>()
     var adapter : BillListAdapter?= null
 
-    private val newAddConsumptionBroadcastReceiveListener = NewAddConsumptionBroadcastReceiveListener()
-
     constructor(context: Context) : super(context){
         init()
     }
@@ -79,12 +77,8 @@ class DailyBillListView : BaseBillView {
         }
     }
 
-    override fun initListener() {
-        newAddConsumptionBroadcastReceiveListener.onNewAddConsumptionBroadcastReceiveListener = object : OnNewAddConsumptionBroadcastReceiveListener(){
-            override fun onNewAddConsumption() {
-                freshBillListData()
-            }
-        }
+    override fun onSummaryRefresh() {
+        freshBillListData()
     }
 
     private fun freshBillListData(){
@@ -124,16 +118,6 @@ class DailyBillListView : BaseBillView {
 
     override fun freshByHand(forceUpdate: Boolean) {
         freshBillListData()
-    }
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        newAddConsumptionBroadcastReceiveListener.register()
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        newAddConsumptionBroadcastReceiveListener.unRegister()
     }
 
 }

@@ -50,11 +50,11 @@ class BillBookView : BaseBillView{
         listView.setOnItemClickListener { parent, view, position, id ->
             val billBook = list[position]
 
-            context.startActivity(Intent(context , BillListActivity::class.java).putExtra("bookId" , billBook.bookId))
+            context.startActivity<BillListActivity>("bookId" to billBook.bookId)
 
         }
 
-        listView.setOnItemLongClickListener { parent, view, position, id ->
+        listView.setOnItemLongClickListener { _, _, position, _ ->
            DialogHelper.showCommonDialog(context , "确定删除此账簿吗" , "取消" , "确定"   , object : OnCommonItemClickListener<Int>() {
                override fun onItemClick(it: Int) {
                    when(it){
