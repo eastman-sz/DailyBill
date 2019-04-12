@@ -47,7 +47,7 @@ class BillBookView : BaseBillView{
 
         addEmptyView()
 
-        listView.setOnItemClickListener { parent, view, position, id ->
+        listView.setOnItemClickListener { _, _, position, _ ->
             val billBook = list[position]
 
             context.startActivity<BillListActivity>("bookId" to billBook.bookId)
