@@ -23,7 +23,7 @@ class StartActivity : BaseKotlinActivity() {
                 startActivity<MainActivity>()
                 finish()
             }
-        } , 300)
+        } , 200)
     }
 
     override fun onResume() {
