@@ -39,11 +39,22 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:scrollbars="none"
         android:divider="@null"
         android:fadeScrollbars="true"
         android:overScrollMode="never"
         />
 
+    <com.common.base.CustomFontTextView
+        android:id="@+id/addBigTypeTextView"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/c27"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:textSize="@dimen/s6"
+        android:text="添加一级分类"
+        />
 </LinearLayout>

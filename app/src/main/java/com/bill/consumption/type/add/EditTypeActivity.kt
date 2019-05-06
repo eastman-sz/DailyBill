@@ -7,6 +7,7 @@ import com.bill.consumption.type.BigTypeDbHelper
 import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_edit_type.*
+import org.jetbrains.anko.startActivity
 
 class EditTypeActivity : BaseKotlinActivity() {
 
@@ -50,6 +51,12 @@ class EditTypeActivity : BaseKotlinActivity() {
                 freshViews()
             }
         }
+
+        //添加一级分类
+        addBigTypeTextView.setOnClickListener {
+            startActivity<AddBigTypeActivity>()
+        }
+
     }
 
     override fun onDestroy() {

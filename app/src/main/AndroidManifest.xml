@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bill.summary.bar.filter.BarChartFilterActivity"></activity>
+        <activity android:name="com.bill.consumption.type.add.AddBigTypeActivity"></activity>
+        <activity android:name="com.bill.summary.bar.filter.BarChartFilterActivity" />
         <activity android:name="com.bill.consumption.type.add.EditSmallTypeActivity" />
         <activity android:name="com.bill.consumption.type.add.EditTypeActivity" />
         <activity
