@@ -3,13 +3,21 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
+    signingConfigs {
+        smilefuns {
+            storeFile file('D:\\key_space\\zz\\smilefuns.jks')
+            storePassword 'smilefuns'
+            keyAlias = 'smilefuns'
+            keyPassword 'smilefuns'
+        }
+    }
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
 
     defaultConfig {
-        applicationId "com.sz.kk.daily.bill.n"
+        applicationId "com.sz.kk.daily.bill"
         minSdkVersion 21
-        targetSdkVersion 26
+        targetSdkVersion (26)
         versionCode 1
         versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -18,6 +26,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.smilefuns
         }
     }
     sourceSets {
@@ -50,6 +59,8 @@ dependencies {
 
     implementation 'com.umeng.sdk:common:1.5.0'
     implementation 'com.umeng.sdk:analytics:7.5.0'
+
+    implementation 'com.google.android.gms:play-services-ads:17.2.0'
 
 
 }

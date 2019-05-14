@@ -48,6 +48,10 @@
             android:name="UMENG_CHANNEL"
             android:value="100000" />
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3628895359109901~3411197712"/>
+
         <activity android:name="com.bill.daylist.DailyBillFilterActivity" />
         <activity android:name="com.bill.base.BaseKotlinActivity" />
     </application>

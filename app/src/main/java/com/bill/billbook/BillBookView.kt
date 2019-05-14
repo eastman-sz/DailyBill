@@ -11,6 +11,7 @@ import com.bill.empty.BaseEmptyView
 import com.bill.util.BroadcastAction
 import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.OnCommonItemClickListener
+import com.google.android.gms.ads.AdRequest
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bill_book_view.view.*
 import org.jetbrains.anko.startActivity
@@ -39,6 +40,9 @@ class BillBookView : BaseBillView{
 
     override fun initViews() {
         View.inflate(context , R.layout.bill_book_view , this)
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         adapter = BillbookAdapter(context , list)
         listView.adapter = adapter
