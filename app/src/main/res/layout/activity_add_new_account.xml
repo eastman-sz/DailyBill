@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bill.start.StartActivity"
+    tools:context="com.bill.add.AddNewAccountActivity"
     android:orientation="vertical"
     android:background="@color/sfs_page_bg_color"
     >
@@ -13,26 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <ListView
-        android:id="@+id/listView"
+    <com.bill.add.AddNewAccountHeaderView
+        android:id="@+id/addNewAccountHeaderView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@null"
+        android:layout_height="wrap_content"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:scrollbars="none"
         android:fadingEdge="none"
         android:overScrollMode="never"
         />
-
-<!--    <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-3628895359109901/8298237479"
-        />-->
-    <!-- =test=ca-app-pub-3940256099942544/6300978111=== -->
-
 </LinearLayout>

@@ -43,7 +43,7 @@ class BillBookView : BaseBillView{
     override fun initViews() {
         View.inflate(context , R.layout.bill_book_view , this)
 
-        val adRequest = AdRequest.Builder().build()
+/*        val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
         adView.adListener = object : AdListener(){
             override fun onAdLoaded() {
@@ -67,7 +67,7 @@ class BillBookView : BaseBillView{
             override fun onAdOpened() {
                 ILog.e("=========onAdOpened===========")
             }
-        }
+        }*/
 
         adapter = BillbookAdapter(context , list)
         listView.adapter = adapter
