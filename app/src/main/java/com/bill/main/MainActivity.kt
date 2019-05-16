@@ -1,12 +1,11 @@
 package com.bill.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
+import com.bill.add.AddNewAccountActivity
 import com.bill.base.BaseKotlinActivity
 import com.bill.billbook.BillBookView
-import com.bill.consumption.AddConsumptionActivity
 import com.bill.daylist.DailyBillListView
 import com.bill.summary.SummaryView
 import com.common.base.BasePagerAdapter
@@ -14,6 +13,7 @@ import com.common.base.BaseRelativeLayout
 import com.common.base.OnIPageChangeListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.startActivity
 /**
  * Main Page.
  * @author E
@@ -52,7 +52,8 @@ class MainActivity : BaseKotlinActivity() {
     fun onBtnClick(v : View){
         when(v){
             addConsumptionBtnTextView ->{
-                startActivity(Intent(context , AddConsumptionActivity::class.java))
+//                startActivity(Intent(context , AddConsumptionActivity::class.java))
+                startActivity<AddNewAccountActivity>()
             }
 
             item1TextView ->{

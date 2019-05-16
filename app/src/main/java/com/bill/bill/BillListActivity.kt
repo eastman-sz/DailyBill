@@ -1,13 +1,12 @@
 package com.bill.bill
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import com.bill.add.AddNewAccountActivity
 import com.bill.base.BaseKotlinActivity
 import com.bill.base.OnCommonRequestListener
-import com.bill.consumption.AddConsumptionActivity
 import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
 import com.bill.util.ILog
@@ -15,6 +14,7 @@ import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_bill_list.*
+import org.jetbrains.anko.startActivity
 
 class BillListActivity : BaseKotlinActivity() {
 
@@ -92,7 +92,9 @@ class BillListActivity : BaseKotlinActivity() {
     fun onBtnClick(view : View){
         when(view){
             addBillBtnTextView -> {
-                startActivity(Intent(context , AddConsumptionActivity::class.java).putExtra("bookId" , bookId))
+//                startActivity(Intent(context , AddConsumptionActivity::class.java).putExtra("bookId" , bookId))
+
+                startActivity<AddNewAccountActivity>()
             }
         }
     }
