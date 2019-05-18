@@ -20,7 +20,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.bill.add.AddNewAccountActivity"></activity>
+        <activity android:name="com.bill.base.BaseNewKotlinActivity"></activity>
+        <activity android:name="com.bill.add.AddNewAccountActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.bill.consumption.type.add.AddBigTypeActivity"
             android:screenOrientation="portrait" />

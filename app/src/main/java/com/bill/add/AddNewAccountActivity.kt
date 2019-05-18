@@ -5,7 +5,9 @@ import com.bill.add.consumption.ConsumptionView
 import com.bill.add.income.InComeView
 import com.bill.base.BaseKotlinActivity
 import com.bill.base.BaseKotlinRelativeLayout
+import com.bill.base.BaseNewKotlinActivity
 import com.common.base.BasePagerAdapter
+import com.common.base.OnCommonTitleClickListener
 import com.common.base.OnIPageChangeListener
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
@@ -14,7 +16,7 @@ import kotlinx.android.synthetic.main.activity_add_new_account.*
  * Add new Account including consumption and income.
  * @author E
  */
-class AddNewAccountActivity : BaseKotlinActivity() {
+class AddNewAccountActivity : BaseNewKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +24,21 @@ class AddNewAccountActivity : BaseKotlinActivity() {
         initActivity()
     }
 
-    override fun initViews() {
-        val list = ArrayList<BaseKotlinRelativeLayout>()
-        list.add(ConsumptionView(context))
-        list.add(InComeView(context))
+    override fun initTitle() {
+        commonTitleView.setCenterTitle("记一笔")
+        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
+            override fun onLeftBtnClick() {
+                finish()
+            }
+        }
+    }
 
-        val adapter = BasePagerAdapter<BaseKotlinRelativeLayout>(context , list)
+    override fun initViews() {
+        val list = ArrayList<BaseAddBillView>()
+        list.add(ConsumptionView(context!!))
+        list.add(InComeView(context!!))
+
+        val adapter = BasePagerAdapter<BaseAddBillView>(context , list)
         viewPager.adapter = adapter
         viewPager.addOnPageChangeListener(object : OnIPageChangeListener(){
             override fun onPageSelected(index: Int) {

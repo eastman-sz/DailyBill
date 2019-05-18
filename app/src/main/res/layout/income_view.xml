@@ -9,5 +9,139 @@
     android:background="@color/sfs_page_bg_color"
     >
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/transparent"
+        android:orientation="horizontal">
+
+        <com.bill.consumption.AmountEditText
+            android:id="@+id/amountTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/input_bg"
+            android:digits="@string/digits_money"
+            android:gravity="center_vertical"
+            android:hint="请输入金额"
+            android:inputType="numberDecimal"
+            android:maxLength="12"
+            android:maxLines="1"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:textColor="@color/c1"
+            android:textColorHint="@color/c14"
+            android:textSize="@dimen/s10"
+            android:textStyle="bold" />
+
+        <com.common.base.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:paddingRight="15dp"
+            android:text="元"
+            android:textColor="@color/c8"
+            android:textSize="@dimen/s2" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/c10"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/typeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@drawable/list_item_selector"
+            android:orientation="horizontal">
+
+            <com.common.base.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="分类"
+                android:textColor="@color/c13"
+                android:textSize="@dimen/s4" />
+
+            <com.common.base.CustomFontTextView
+                android:id="@+id/typeNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/nextstep_right_arrow_n"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical|right"
+                android:hint="请选择"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/c8"
+                android:textSize="@dimen/s4" />
+        </LinearLayout>
+
+        <ImageView style="@style/full_line_style" />
+
+        <LinearLayout
+            android:id="@+id/bookLayout"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:background="@drawable/list_item_selector"
+            android:clickable="true"
+            android:orientation="horizontal">
+
+            <com.common.base.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:text="帐本"
+                android:textColor="@color/c13"
+                android:textSize="@dimen/s4" />
+
+            <com.common.base.CustomFontTextView
+                android:id="@+id/bookTextView"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/nextstep_right_arrow_n"
+                android:drawablePadding="10dp"
+                android:gravity="center_vertical|right"
+                android:hint="请选择"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/c8"
+                android:textSize="@dimen/s4" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <com.common.base.CustomFontTextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+
+    <com.common.base.CustomFontTextView
+        android:id="@+id/saveBtnTextView"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:textColor="@color/c10"
+        android:textSize="@dimen/s6"
+        android:text="保存"
+        android:background="@drawable/gray_disabled_retangle_selector"
+        android:onClick="onBtnClick"
+        android:clickable="true"
+        android:enabled="false"
+        />
 
 </LinearLayout>

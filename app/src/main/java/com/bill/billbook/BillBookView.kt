@@ -9,11 +9,8 @@ import com.bill.bill.BillListActivity
 import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
 import com.bill.util.BroadcastAction
-import com.bill.util.ILog
 import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.OnCommonItemClickListener
-import com.google.android.gms.ads.AdListener
-import com.google.android.gms.ads.AdRequest
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bill_book_view.view.*
 import org.jetbrains.anko.startActivity
