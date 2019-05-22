@@ -10,8 +10,6 @@ import com.bill.bill.BillList
 import com.bill.bill.BillListAdapter
 import com.bill.bill.DailyBillDataFetchHelper
 import com.bill.bill.DailyBillDbHelper
-import com.bill.consumption.NewAddConsumptionBroadcastReceiveListener
-import com.bill.consumption.OnNewAddConsumptionBroadcastReceiveListener
 import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
 import com.common.base.OnCommonTitleClickListener
@@ -54,7 +52,7 @@ class DailyBillListView : BaseBillView {
 
         addEmptyView()
 
-        sticky_list.refreshableView.setOnItemLongClickListener { parent, view, position, id ->
+        sticky_list.refreshableView.setOnItemLongClickListener { _, _, position, _ ->
             DialogHelper.showCommonDialog(context , "确定要删除此条记录吗？" , "确定" , "取消" , object : OnCommonItemClickListener<Int>(){
                 override fun onItemClick(it: Int) {
                     when(it){

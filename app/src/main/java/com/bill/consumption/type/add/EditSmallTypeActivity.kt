@@ -2,10 +2,7 @@ package com.bill.consumption.type.add
 
 import android.os.Bundle
 import com.bill.base.BaseKotlinActivity
-import com.bill.consumption.type.BigType
-import com.bill.consumption.type.BigTypeDbHelper
-import com.bill.consumption.type.SmallType
-import com.bill.consumption.type.SmallTypeDbHelper
+import com.bill.consumption.type.*
 import com.bill.dialog.DialogHelper
 import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.OnCommonItemClickListener
@@ -79,7 +76,7 @@ class EditSmallTypeActivity : BaseKotlinActivity() {
         }
 
         list.clear()
-        list.addAll(SmallTypeDbHelper.getSmallTypeS(bigTypeId))
+        list.addAll(SmallTypeDbHelper.getSmallTypeS(SuperType.Expense.type , bigTypeId))
         adapter?.notifyDataSetChanged()
     }
 

@@ -5,6 +5,9 @@ import android.util.SparseArray
 import android.view.View
 import com.bill.consumption.martket.Market
 import com.bill.consumption.martket.MarketDbHelper
+import com.bill.consumption.type.SmallType
+import com.bill.consumption.type.SmallTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.util.CommonUtil
 import com.common.base.CustomFontDigitTextView
 import com.common.base.CustomFontTextView
@@ -17,28 +20,34 @@ import com.utils.lib.ss.common.DateHepler
  */
 class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
-    var marketArray : SparseArray<Market> ?= null
+    private val marketArray = MarketDbHelper.getMarketArray()
+    private val incomeSmallTypeNameArray = SmallTypeDbHelper.getNameArray(SuperType.Income.type)
 
     constructor(context: Context , list : List<BillList>) :
             super(context , list , R.layout.bill_list_adapter_view , R.layout.adapter_header_view){
-        marketArray = MarketDbHelper.getMarketArray()
     }
 
-    override fun getConvertView(convertView: View?, list: MutableList<BillList>?, position: Int) {
-        val amountTextView = ViewHolder.getView(convertView , R.id.amountTextView) as CustomFontDigitTextView
-        val marketTextView = ViewHolder.getView(convertView , R.id.marketTextView) as CustomFontTextView
-        val timeTextView = ViewHolder.getView(convertView , R.id.timeTextView) as CustomFontDigitTextView
-        val remarksTextView = ViewHolder.getView(convertView , R.id.remarksTextView) as CustomFontTextView
+    override fun getConvertView(convertView: View?, list: List<BillList>, position: Int) {
+        val amountTextView = ViewHolder.getView<CustomFontDigitTextView>(convertView , R.id.amountTextView)
+        val marketTextView = ViewHolder.getView<CustomFontTextView>(convertView , R.id.marketTextView)
+        val timeTextView = ViewHolder.getView<CustomFontDigitTextView>(convertView , R.id.timeTextView)
+        val remarksTextView = ViewHolder.getView<CustomFontTextView>(convertView , R.id.remarksTextView)
 
-        val billList = list?.get(position)
-        val marketId = billList!!.marketId
-        val amount = billList?.amount
-        val billTime = billList?.billtime
-        val remarks = billList?.remarks
+        val billList = list[position]
+
+        val superType = billList.superType
+        val marketId = billList.marketId
+        val amount = billList.amount
+        val billTime = billList.billtime
+        val remarks = billList.remarks
         val dayOfWeek = DateHepler.getDayOfWeekString(billTime)
 
-
-        marketTextView.text = marketArray?.get(marketId)?.marketName
+        if (superType == SuperType.Expense.type){
+            marketTextView.text = marketArray.get(marketId)?.marketName
+        }else{
+            val smallTypeId = billList.smallTypeId
+            marketTextView.text = incomeSmallTypeNameArray.get(smallTypeId)
+        }
         amountTextView.text = CommonUtil.trimLastZero(amount.toString())
         timeTextView.text = DateHepler.timestampFormat(billTime , "MM-dd").plus("   ").plus(dayOfWeek)
         remarksTextView.text = "备注: ".plus(if (remarks.isEmpty()){"无"}else{remarks})

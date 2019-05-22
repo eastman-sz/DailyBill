@@ -23,7 +23,7 @@ class AddNewAccountHeaderView : BaseKotlinRelativeLayout {
     override fun initViews() {
         View.inflate(context , R.layout.add_new_account_header_view , this)
 
-        color0 = ContextCompat.getColor(context , R.color.c8)
+        color0 = ContextCompat.getColor(context , R.color.c2)
         color1 = ContextCompat.getColor(context , R.color.c14)
 
     }
@@ -41,7 +41,10 @@ class AddNewAccountHeaderView : BaseKotlinRelativeLayout {
 
     fun onItemChange(item : Int){
         item0TextView.setTextColor(if (0 == item) color0 else color1)
+        line1ImgView.visibility = if (0 == item) View.VISIBLE else View.GONE
+
         item1TextView.setTextColor(if (1 == item) color0 else color1)
+        line2ImgView.visibility = if (1 == item) View.VISIBLE else View.GONE
     }
 
 

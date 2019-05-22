@@ -11,6 +11,7 @@ import com.bill.consumption.payment.Payment
 import com.bill.consumption.payment.PaymentSelectDialog
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
+import com.bill.consumption.type.SuperType
 import com.bill.consumption.type.TypeSelectDialog
 import com.bill.consumption.type.add.AddSmallTypeDialog
 import com.bill.consumption.type.add.BigTypeSelectDialog
@@ -55,8 +56,8 @@ class DialogHelper {
             dialog.setParams(content , leftBtnText , rightBtnText , onCommonItemClickListener)
         }
 
-        fun showTypeSelectDialog(context: Context , onConsumptionTypeSelectListener : OnConsumptionTypeSelectListener){
-            val dialog = TypeSelectDialog(context)
+        fun showTypeSelectDialog(context: Context , superType: Int ,onConsumptionTypeSelectListener : OnConsumptionTypeSelectListener){
+            val dialog = TypeSelectDialog(context , superType)
             dialog.show()
             dialog.onConsumptionTypeSelectListener = onConsumptionTypeSelectListener
         }

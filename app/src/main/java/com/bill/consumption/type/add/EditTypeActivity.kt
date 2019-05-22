@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.bill.base.BaseKotlinActivity
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_edit_type.*
@@ -41,7 +42,7 @@ class EditTypeActivity : BaseKotlinActivity() {
 
     private fun freshViews(){
         list.clear()
-        list.addAll(BigTypeDbHelper.getBigTypeS())
+        list.addAll(BigTypeDbHelper.getBigTypeS(SuperType.Expense.type))
         adapter?.notifyDataSetChanged()
     }
 

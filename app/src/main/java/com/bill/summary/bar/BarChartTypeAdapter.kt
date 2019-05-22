@@ -5,6 +5,7 @@ import android.util.SparseArray
 import android.view.View
 import com.bill.bill.DailyBill
 import com.bill.consumption.type.BigTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.util.CommonUtil
 import com.common.base.CustomFontDigitTextView
 import com.common.base.CustomFontTextView
@@ -22,7 +23,7 @@ class BarChartTypeAdapter : IBaseAdapter<DailyBill> {
     private var totalAmount = 0f
 
     constructor(context: Context , list: List<DailyBill>) : super(context, list, R.layout.bar_chart_type_adapter){
-        bigTypeNameArray = BigTypeDbHelper.getBigTypeNameArray()
+        bigTypeNameArray = BigTypeDbHelper.getBigTypeNameArray(SuperType.Expense.type)
     }
 
     override fun getConvertView(convertView: View, list: List<DailyBill>, position: Int) {

@@ -3,6 +3,7 @@ package com.bill.consumption.type.add
 import android.content.Context
 import android.os.Bundle
 import com.bill.consumption.type.SmallTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.dialog.BaseFullScreenDialog
 import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
@@ -41,7 +42,7 @@ class EditSmallTypeNameDialog : BaseFullScreenDialog {
     fun setSmallTypeId(smallTypeId : Int){
         this.smallTypeId = smallTypeId
 
-        val smallType = SmallTypeDbHelper.getSmallType(smallTypeId)
+        val smallType = SmallTypeDbHelper.getSmallType(SuperType.Expense.type , smallTypeId)
         curNameTextView.text = "当前名称: ${smallType?.typeName}"
     }
 
@@ -53,7 +54,7 @@ class EditSmallTypeNameDialog : BaseFullScreenDialog {
             return
         }
         dismiss()
-        SmallTypeDbHelper.updateTypeName(smallTypeId , text)
+        SmallTypeDbHelper.updateTypeName(SuperType.Expense.type, smallTypeId , text)
     }
 
 }

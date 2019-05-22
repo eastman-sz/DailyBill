@@ -6,10 +6,7 @@ import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
 import com.bill.base.BaseKotlinRelativeLayout
-import com.bill.consumption.type.BigType
-import com.bill.consumption.type.BigTypeDbHelper
-import com.bill.consumption.type.SmallType
-import com.bill.consumption.type.SmallTypeDbHelper
+import com.bill.consumption.type.*
 import com.bill.consumption.type.add.OnTypeFreshBroadcastReceiveListener
 import com.bill.consumption.type.add.TypeFreshBroadcastReceiveListener
 import com.sz.kk.daily.bill.R
@@ -21,6 +18,7 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
 
     private val bigList = ArrayList<BigType>()
     private val smallList = ArrayList<SmallType>()
+    private var superType = SuperType.Expense.type
 
     private val typeFreshBroadcastReceiveListener = TypeFreshBroadcastReceiveListener()
 
@@ -36,18 +34,19 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         View.inflate(context , R.layout.type_select_wheelview , this)
     }
 
-    fun showType(smallType : Int){
+    fun showType(superType : Int){
+        this.superType = superType
         freshAll()
     }
 
     private fun freshAll(){
         bigList.clear()
-        bigList.addAll(BigTypeDbHelper.getBigTypeS())
+        bigList.addAll(BigTypeDbHelper.getBigTypeS(superType))
 
         val bigTypeAdapter = BigTypeWheelViewAdapter(context , bigList)
         bigTypeWheelView.viewAdapter = bigTypeAdapter
         bigTypeWheelView.visibleItems = 7
-        bigTypeWheelView.setCurrentItem(2 , false)
+        bigTypeWheelView.setCurrentItem(0 , false)
         bigTypeWheelView.addScrollingListener(object : OnWheelScrollListener {
             override fun onScrollingStarted(wheelView: HorizontalWheelView) {
             }
@@ -67,12 +66,12 @@ class TypeSelectWheelView : BaseKotlinRelativeLayout {
         smallList.clear()
         val curPosition = bigTypeWheelView.currentItem
         val bigTypeId = bigList[curPosition].typeId
-        smallList.addAll(SmallTypeDbHelper.getSmallTypeS(bigTypeId))
+        smallList.addAll(SmallTypeDbHelper.getSmallTypeS(superType , bigTypeId))
 
         val smallTypeAdapter = SmallTypeWheelViewAdapter(context , smallList)
         smallTypeWheelView.viewAdapter = smallTypeAdapter
         smallTypeWheelView.visibleItems = 7
-        smallTypeWheelView.setCurrentItem(1 , false)
+        smallTypeWheelView.setCurrentItem(0 , false)
         smallTypeWheelView.addScrollingListener(object : OnWheelScrollListener{
             override fun onScrollingStarted(wheelView: HorizontalWheelView) {
             }

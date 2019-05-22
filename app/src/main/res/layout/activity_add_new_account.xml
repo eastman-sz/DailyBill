@@ -8,23 +8,80 @@
     android:orientation="vertical"
     android:background="@color/sfs_page_bg_color"
     >
-    <com.common.base.CommonTitleView
-        android:id="@+id/commonTitleView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="48dp"
+        android:background="@color/c8"
+        >
+        <ImageView
+            android:id="@+id/returnImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@drawable/sfs_back_sel"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/s6"
+            android:layout_centerInParent="true"
+            android:text="记一笔"
+            />
+    </RelativeLayout>
 
     <com.bill.add.AddNewAccountHeaderView
         android:id="@+id/addNewAccountHeaderView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:scrollbars="none"
-        android:fadingEdge="none"
-        android:overScrollMode="never"
-        />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:fadeScrollbars="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/transparent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/transparent"
+                android:orientation="vertical"
+                >
+                <ListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@null"
+                    android:scrollbars="none"
+                    android:fadeScrollbars="true"
+                    android:overScrollMode="never"
+                    />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="550dp"
+                    android:scrollbars="none"
+                    android:fadingEdge="none"
+                    android:overScrollMode="never"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
 
 </LinearLayout>

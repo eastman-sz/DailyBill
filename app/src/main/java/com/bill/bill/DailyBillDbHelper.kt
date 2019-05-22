@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import com.bill.consumption.payment.Payment
+import com.bill.consumption.type.SuperType
 import com.bill.daylist.DailyBillFilter
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
@@ -15,9 +16,10 @@ class DailyBillDbHelper {
 
     companion object {
 
-        fun save(bookId: Int , amount: Float, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int,
+        fun saveExpense(bookId: Int , amount: Float, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int,
                  smallTypeId: Int, natureId: Int , paymentId: Int) {
             val values = ContentValues()
+            values.put("superType", SuperType.Expense.type)
             values.put("bookId", bookId)
             val bid = System.currentTimeMillis()//唯一id
             values.put("bid", bid)
@@ -30,6 +32,26 @@ class DailyBillDbHelper {
             values.put("smallTypeId", smallTypeId)
             values.put("natureId", natureId)
             values.put("paymentId", paymentId)
+
+            val db = ISqliteDataBase.getSqLiteDatabase()
+            val count = db.update(DBNAME, values, "bid = ? ", arrayOf(bid.toString()))
+            if (count < 1) {
+                db.insert(DBNAME, null, values)
+            }
+        }
+
+        fun saveIncome(bookId: Int , amount: Float, billTime: Long, remarks: String, bigTypeId: Int, smallTypeId: Int){
+            val values = ContentValues()
+            values.put("superType", SuperType.Income.type)
+            values.put("bookId", bookId)
+            val bid = System.currentTimeMillis()//唯一id
+            values.put("bid", bid)
+            values.put("billTime", billTime)
+            values.put("cTime", bid)
+            values.put("remarks", remarks)
+            values.put("amount", amount)
+            values.put("bigTypeId", bigTypeId)
+            values.put("smallTypeId", smallTypeId)
 
             val db = ISqliteDataBase.getSqLiteDatabase()
             val count = db.update(DBNAME, values, "bid = ? ", arrayOf(bid.toString()))
@@ -319,6 +341,7 @@ class DailyBillDbHelper {
         }
 
         private fun fromCursor(cursor: Cursor) : DailyBill{
+            var superType = CursorHelper.getInt(cursor , "superType")
             var bid = CursorHelper.getLong(cursor , "bid")
             var bookId = CursorHelper.getInt(cursor , "bookId")
             var amount = CursorHelper.getFloat(cursor , "amount")
@@ -333,6 +356,7 @@ class DailyBillDbHelper {
             var paymentId = CursorHelper.getInt(cursor , "paymentId")
 
             val dailyBill = DailyBill()
+            dailyBill.superType = superType
             dailyBill.bid = bid
             dailyBill.bookId = bookId
             dailyBill.amount = amount
@@ -352,6 +376,7 @@ class DailyBillDbHelper {
 
         fun createTable(db: SQLiteDatabase) {
             DbTableHelper.fromTableName(DBNAME)
+                    .addColumn_Integer("superType")
                     .addColumn_Long("bid")
                     .addColumn_Integer("bookId")
                     .addColumn_Float("amount")

@@ -9,12 +9,15 @@ import com.utils.lib.ss.common.DateHepler;
  */
 public class BillList extends IGroup implements Comparable<BillList>{
 
+    private int superType = 0 ;//超级大类 0代表支出 1代表收入
     private long bid = 0L;
     private float amount = 0f;
     private long billtime = 0L;//唯一
     private long ctime = 0L;
     private String remarks = "";
-    private int marketId = 0; //细分二级
+    private int marketId = 0; //商场
+    private int bigTypeId = 0; //一级分类ID
+    private int smallTypeId = 0; //二级分类ID
 
     private float dayAmount = 0f;//某一天总额
     private float weekAmount = 0f;//周总额
@@ -32,6 +35,9 @@ public class BillList extends IGroup implements Comparable<BillList>{
         billList.setCtime(bill.getCTime());
         billList.setRemarks(bill.getRemarks());
         billList.setMarketId(bill.getMarketId());
+        billList.setSuperType(bill.getSuperType());
+        billList.setBigTypeId(bill.getBigTypeId());
+        billList.setSmallTypeId(bill.getSmallTypeId());
         return billList;
     }
 
@@ -113,6 +119,30 @@ public class BillList extends IGroup implements Comparable<BillList>{
 
     public void setYearAmount(float yearAmount) {
         this.yearAmount = yearAmount;
+    }
+
+    public int getSuperType() {
+        return superType;
+    }
+
+    public void setSuperType(int superType) {
+        this.superType = superType;
+    }
+
+    public int getBigTypeId() {
+        return bigTypeId;
+    }
+
+    public void setBigTypeId(int bigTypeId) {
+        this.bigTypeId = bigTypeId;
+    }
+
+    public int getSmallTypeId() {
+        return smallTypeId;
+    }
+
+    public void setSmallTypeId(int smallTypeId) {
+        this.smallTypeId = smallTypeId;
     }
 
     @Override

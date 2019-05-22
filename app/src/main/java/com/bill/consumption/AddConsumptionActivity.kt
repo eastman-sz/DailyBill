@@ -11,6 +11,7 @@ import com.bill.consumption.payment.Payment
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.OnConsumptionTypeSelectListener
 import com.bill.consumption.type.SmallType
+import com.bill.consumption.type.SuperType
 import com.bill.dialog.DateTimeSelectDialog
 import com.bill.dialog.DialogHelper
 import com.bill.util.BroadcastAction
@@ -125,7 +126,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
 
             typeLayout ->{
                 //分类选择
-                DialogHelper.showTypeSelectDialog(context , object : OnConsumptionTypeSelectListener{
+                DialogHelper.showTypeSelectDialog(context , SuperType.Expense.type , object : OnConsumptionTypeSelectListener{
                     override fun onTypeSelect(smallType: SmallType, bigType: BigType) {
                         runOnUiThread {
                             bigTypeId = bigType.typeId
@@ -184,7 +185,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                 val amount = amountTextView.text.toString().toFloat()
                 val remarks = remarksTextView.text.toString()
 
-                DailyBillDbHelper.save(bookId , amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId , paymentId)
+                DailyBillDbHelper.saveExpense(bookId , amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId , paymentId)
 
                 onBackPressed()
 

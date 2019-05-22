@@ -3,11 +3,8 @@ package com.bill.add
 import android.os.Bundle
 import com.bill.add.consumption.ConsumptionView
 import com.bill.add.income.InComeView
-import com.bill.base.BaseKotlinActivity
-import com.bill.base.BaseKotlinRelativeLayout
 import com.bill.base.BaseNewKotlinActivity
 import com.common.base.BasePagerAdapter
-import com.common.base.OnCommonTitleClickListener
 import com.common.base.OnIPageChangeListener
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
@@ -25,11 +22,8 @@ class AddNewAccountActivity : BaseNewKotlinActivity() {
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitle("记一笔")
-        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
-            override fun onLeftBtnClick() {
-                finish()
-            }
+        returnImgView.setOnClickListener {
+            finish()
         }
     }
 

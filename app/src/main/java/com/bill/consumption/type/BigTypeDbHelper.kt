@@ -15,9 +15,10 @@ class BigTypeDbHelper {
 
     companion object {
 
-        fun save(typeName : String){
+        fun save(superType : Int , typeName : String){
             val values = ContentValues()
-            values.put("typeId" , getMaxTypeId() + 1)
+            values.put("superType" , superType)
+            values.put("typeId" , getMaxTypeId(superType) + 1)
             values.put("typeName" , typeName)
             values.put("cTime" , System.currentTimeMillis()/1000)
             values.put("updateTime" , System.currentTimeMillis()/1000)
@@ -27,8 +28,9 @@ class BigTypeDbHelper {
         }
 
         //只在初始化时用
-        fun save(typeId : Int , typeName : String){
+        fun save(superType : Int , typeId : Int , typeName : String){
             val values = ContentValues()
+            values.put("superType" , superType)
             values.put("typeId" , typeId)
             values.put("typeName" , typeName)
             values.put("cTime" , System.currentTimeMillis()/1000)
@@ -38,8 +40,9 @@ class BigTypeDbHelper {
             db.insert(DBNAME , null , values)
         }
 
-        fun updateTypeName(typeId : Int , typeName : String){
+        fun updateTypeName(superType : Int , typeId : Int , typeName : String){
             val values = ContentValues()
+            values.put("superType" , superType)
             values.put("typeId" , typeId)
             values.put("typeName" , typeName)
             values.put("updateTime" , System.currentTimeMillis()/1000)
@@ -51,12 +54,12 @@ class BigTypeDbHelper {
             BroadcastUtil.sendBroadCast(BroadcastAction.bigTypeFresh)
         }
 
-        fun getBigTypeS() : List<BigType>{
+        fun getBigTypeS(superType : Int) : List<BigType>{
             val list = ArrayList<BigType>()
             var cursor : Cursor ?= null
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
-                cursor = db.query(DBNAME , null , null, null , null , null , null)
+                cursor = db.query(DBNAME , null , "superType = ? ", arrayOf(superType.toString()) , null , null , null)
                 while (null != cursor &&cursor.moveToNext()){
                     list.add(fromCursor(cursor))
                 }
@@ -68,12 +71,12 @@ class BigTypeDbHelper {
             return list
         }
 
-        fun getBigTypeNameArray() : SparseArray<String>{
+        fun getBigTypeNameArray(superType : Int) : SparseArray<String>{
             val array = SparseArray<String>()
             var cursor : Cursor ?= null
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
-                cursor = db.query(DBNAME , null , null, null , null , null , null)
+                cursor = db.query(DBNAME , null , "superType = ? ", arrayOf(superType.toString()) , null , null , null)
                 while (null != cursor &&cursor.moveToNext()){
                     val it = fromCursor(cursor)
                     array.put(it.typeId , it.typeName)
@@ -104,12 +107,12 @@ class BigTypeDbHelper {
             return bigType
         }
 
-        private fun getMaxTypeId(): Int {
+        private fun getMaxTypeId(superType : Int): Int {
             var typeId = 0
             var cursor: Cursor? = null
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
-                cursor = db.query(DBNAME, null, null, null, null, null, "typeId desc")
+                cursor = db.query(DBNAME, null, "superType = ? ", arrayOf(superType.toString()), null, null, "typeId desc")
                 if (null != cursor && cursor.moveToNext()) {
                     cursor.moveToFirst()
                     typeId = CursorHelper.getInt(cursor, "typeId")
@@ -149,6 +152,7 @@ class BigTypeDbHelper {
 
         fun createTable(db: SQLiteDatabase) {
             DbTableHelper.fromTableName(DBNAME)
+                    .addColumn_Integer("superType")
                     .addColumn_Integer("typeId")
                     .addColumn_Varchar("typeName" , 20)
                     .addColumn_Long("cTime")

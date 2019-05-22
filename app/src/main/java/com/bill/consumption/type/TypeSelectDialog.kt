@@ -12,7 +12,11 @@ class TypeSelectDialog : BaseUpGlideDialog {
 
     var onConsumptionTypeSelectListener : OnConsumptionTypeSelectListener ?= null
 
-    constructor(context: Context) : super(context)
+    private var superType = SuperType.Expense.type
+
+    constructor(context: Context , superType : Int) : super(context){
+        this.superType = superType
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +26,7 @@ class TypeSelectDialog : BaseUpGlideDialog {
     }
 
     override fun initViews() {
-        typeSelectWheelView.showType(1)
+        typeSelectWheelView.showType(superType)
     }
 
     override fun initListeners() {

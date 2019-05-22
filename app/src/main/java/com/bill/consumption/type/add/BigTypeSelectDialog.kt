@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.BaseFullScreenDialog
 import com.common.dialog.OnCommonItemClickListener
@@ -35,7 +36,7 @@ class BigTypeSelectDialog : BaseFullScreenDialog {
 
     override fun initViews() {
         val list = ArrayList<BigType>()
-        list.addAll(BigTypeDbHelper.getBigTypeS())
+        list.addAll(BigTypeDbHelper.getBigTypeS(SuperType.Expense.type))
 
         val adapter = BigTypeSelectAdapter(context, list)
         listView.adapter = adapter

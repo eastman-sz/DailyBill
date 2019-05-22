@@ -17,7 +17,7 @@ public class IDbHelper extends SQLiteOpenHelper {
     /**
      * 更新历史
      */
-    private static final int VERSION = 1; //2018-01-26
+    private static final int VERSION = 2; //2018-01-26
     private static final String DBNAME =  "dailybillMaindb";
 
     public IDbHelper(Context context){

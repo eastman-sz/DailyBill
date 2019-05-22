@@ -3,6 +3,7 @@ package com.bill.consumption.type.add
 import android.content.Context
 import android.os.Bundle
 import com.bill.consumption.type.BigTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.dialog.BaseFullScreenDialog
 import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
@@ -52,7 +53,7 @@ class EditBigTypeNameDialog : BaseFullScreenDialog {
             return
         }
         dismiss()
-        BigTypeDbHelper.updateTypeName(bigTypeId , text)
+        BigTypeDbHelper.updateTypeName(SuperType.Expense.type , bigTypeId , text)
     }
 
 }

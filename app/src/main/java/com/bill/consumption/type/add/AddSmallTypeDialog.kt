@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import com.bill.consumption.type.SmallTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
 import com.common.base.ITextChangedListener
@@ -63,7 +64,7 @@ class AddSmallTypeDialog : BaseFullScreenDialog {
             ToastHelper.makeText(context , "请输入名称")
             return
         }
-        SmallTypeDbHelper.save(bigTypeId , text)
+        SmallTypeDbHelper.save(SuperType.Expense.type, bigTypeId , text)
         dismiss()
 
         //发送广播

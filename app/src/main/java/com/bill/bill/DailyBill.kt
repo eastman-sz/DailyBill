@@ -15,6 +15,8 @@ class DailyBill {
     var natureId = 0 //性质ID
     var paymentId = 0 //支付方式
 
+    var superType = 0 //超级大类 0代表支出 1代表收入
+
     var dayAmount = 0f
     var weekAmount = 0f
     var monthAmount = 0f

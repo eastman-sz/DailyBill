@@ -3,6 +3,7 @@ package com.bill.consumption.type.add
 import android.os.Bundle
 import android.view.View
 import com.bill.consumption.type.BigTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
 import com.common.base.BaseAppCompactActivity
@@ -34,7 +35,7 @@ class AddBigTypeActivity : BaseAppCompactActivity() {
             }
             override fun onRightBtnClick() {
                 //保存一级分类
-                BigTypeDbHelper.save(editText.text.toString())
+                BigTypeDbHelper.save(SuperType.Expense.type , editText.text.toString())
                 finish()
 
                 //发送广播
