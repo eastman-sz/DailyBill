@@ -22,5 +22,5 @@ public class CursorHelper {
 	
 	public static float getFloat(Cursor cursor , String columnName){
 		return cursor.getFloat(cursor.getColumnIndex(columnName));
-	}	
+	}
 }

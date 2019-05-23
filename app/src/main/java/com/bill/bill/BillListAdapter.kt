@@ -12,7 +12,7 @@ import com.common.base.CustomFontTextView
 import com.common.base.ViewHolder
 import com.handmark.base.IBaseStickyListAdapter
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 /**
  * Created by E on 2018/3/9.
  */
@@ -41,7 +41,7 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
         val amount = billList.amount
         val billTime = billList.billtime
         val remarks = billList.remarks
-        val dayOfWeek = DateHepler.getDayOfWeekString(billTime)
+        val dayOfWeek = DateHelper.getDayOfWeekString(billTime)
 
         if (superType == SuperType.Expense.type){
             marketTextView.text = marketArray.get(marketId)?.marketName
@@ -52,7 +52,7 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
             amountTextView.setTextColor(color2)
         }
         amountTextView.text = CommonUtil.trimLastZero(amount.toString())
-        timeTextView.text = DateHepler.timestampFormat(billTime , "MM-dd").plus("   ").plus(dayOfWeek)
+        timeTextView.text = DateHelper.timestampFormat(billTime , "MM-dd").plus("   ").plus(dayOfWeek)
         remarksTextView.text = "备注: ".plus(if (remarks.isEmpty()){"无"}else{remarks})
         remarksTextView.visibility = if (remarks.isEmpty()){View.GONE}else{View.VISIBLE}
     }
@@ -65,7 +65,7 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
         val billTime = billList?.billtime as Long
         val monthAmount = billList?.monthAmount
 
-        headerTextView.text = DateHepler.timestampFormat(billTime , "yyyy年MM月")
+        headerTextView.text = DateHelper.timestampFormat(billTime , "yyyy年MM月")
         monthAmountTextView.text = "支出: ".plus(CommonUtil.trimLastZero(monthAmount.toString())).plus(" 元")
     }
 

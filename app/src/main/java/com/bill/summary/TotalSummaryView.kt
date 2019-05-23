@@ -7,7 +7,7 @@ import com.bill.bill.DailyBillDbHelper
 import com.bill.util.CommonUtil
 import com.common.base.BaseKotlinRelativeLayout
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import kotlinx.android.synthetic.main.total_summary_view.view.*
 /**
  * 总数概括性统计显示。
@@ -30,22 +30,22 @@ class TotalSummaryView : BaseKotlinRelativeLayout {
     fun getPeriodSummary(){
         val cTime = System.currentTimeMillis()
         //今日
-        val todayStartTimestamp = DateHepler.getDayStartTimestamp(cTime)
-        val todayEndTimestamp = DateHepler.getDayEndTimestamp(cTime)
+        val todayStartTimestamp = DateHelper.getDayStartTimestamp(cTime)
+        val todayEndTimestamp = DateHelper.getDayEndTimestamp(cTime)
         val todayTotalAmount = DailyBillDbHelper.getDailyBillAmount(todayStartTimestamp , todayEndTimestamp)
         //本周
-        val weekStartTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getWeekStartTimestamp(cTime))
-        val weekEndTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getWeekEndTimestamp(cTime))
+        val weekStartTimestamp = DateHelper.getDayStartTimestamp(DateHelper.getWeekStartTimestamp(cTime))
+        val weekEndTimestamp = DateHelper.getDayEndTimestamp(DateHelper.getWeekEndTimestamp(cTime))
         val weekTotalAmount = DailyBillDbHelper.getDailyBillAmount(weekStartTimestamp , weekEndTimestamp)
         //本月
-        val year = DateHepler.getYear()
-        val month = DateHepler.getMonthOfYear()
-        val monthStartTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstdayOfMonthInTimestamp(year , month))
-        val monthEndTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastdayOfMonthInTimestamp(year , month))
+        val year = DateHelper.getYear()
+        val month = DateHelper.getMonthOfYear()
+        val monthStartTimestamp = DateHelper.getDayStartTimestamp(DateHelper.getFirstDayOfMonthInTimestamp(year , month))
+        val monthEndTimestamp = DateHelper.getDayEndTimestamp(DateHelper.getLastDayOfMonthInTimestamp(year , month))
         val monthTotalAmount = DailyBillDbHelper.getDailyBillAmount(monthStartTimestamp , monthEndTimestamp)
         //今年
-        val day1OfYearStartTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
-        val dayEndOfYearStartTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
+        val day1OfYearStartTimestamp = DateHelper.getDayStartTimestamp(DateHelper.getFirstDayOfYear(year).time)
+        val dayEndOfYearStartTimestamp = DateHelper.getDayEndTimestamp(DateHelper.getLastDayOfYear(year).time)
         val yearTotalAmount = DailyBillDbHelper.getDailyBillAmount(day1OfYearStartTimestamp , dayEndOfYearStartTimestamp)
 
         setTotalSummary(todayTotalAmount , weekTotalAmount , monthTotalAmount , yearTotalAmount)

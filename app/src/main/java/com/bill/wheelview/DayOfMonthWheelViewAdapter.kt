@@ -6,7 +6,7 @@ import com.common.base.CustomFontDigitTextView
 import com.common.base.CustomFontTextView
 import com.common.base.ViewHolder
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import com.wheelview.adapter.BaseWheelAdapter
 
 class DayOfMonthWheelViewAdapter : BaseWheelAdapter<String> {
@@ -29,8 +29,8 @@ class DayOfMonthWheelViewAdapter : BaseWheelAdapter<String> {
 
         val date = year.plus("-$month").plus("-$text")
 
-        val timeStamp = DateHepler.dateFormatString2Timestamp(date , "yyyy-MM-dd")
-        val dayOfWeekText = DateHepler.getDayOfWeekString(timeStamp)
+        val timeStamp = DateHelper.dateFormatString2Timestamp(date , "yyyy-MM-dd")
+        val dayOfWeekText = DateHelper.getDayOfWeekString(timeStamp)
 
         dayOfWeekTextView.text = dayOfWeekText
 

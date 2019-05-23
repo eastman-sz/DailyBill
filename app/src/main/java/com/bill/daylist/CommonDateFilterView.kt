@@ -9,7 +9,7 @@ import com.bill.base.BaseKotlinRelativeLayout
 import com.bill.dialog.DateTimeSelectDialog
 import com.bill.dialog.DialogHelper
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import kotlinx.android.synthetic.main.common_date_filter_view.view.*
 /**
  * @author E
@@ -35,9 +35,9 @@ class CommonDateFilterView : BaseKotlinRelativeLayout {
     }
 
     private fun initTimestamp(){
-        val year = DateHepler.getYear()
-        this.startTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
-        this.endTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
+        val year = DateHelper.getYear()
+        this.startTimestamp = DateHelper.getDayStartTimestamp(DateHelper.getFirstDayOfYear(year).time)
+        this.endTimestamp = DateHelper.getDayEndTimestamp(DateHelper.getLastDayOfYear(year).time)
 
         showTimestamp()
     }
@@ -54,30 +54,30 @@ class CommonDateFilterView : BaseKotlinRelativeLayout {
         when(it){
             todayTextView ->{
                 val ctime = System.currentTimeMillis()/1000
-                startTimestamp = DateHepler.getDayStartTimestamp(ctime)
-                endTimestamp = DateHepler.getDayEndTimestamp(ctime)
+                startTimestamp = DateHelper.getDayStartTimestamp(ctime)
+                endTimestamp = DateHelper.getDayEndTimestamp(ctime)
 
                 showTimestamp()
             }
             weekTextView ->{
                 val ctime = System.currentTimeMillis()/1000
-                startTimestamp = DateHepler.getWeekStartTimestamp(ctime)
-                endTimestamp = DateHepler.getWeekEndTimestamp(ctime)
+                startTimestamp = DateHelper.getWeekStartTimestamp(ctime)
+                endTimestamp = DateHelper.getWeekEndTimestamp(ctime)
 
-                startTimestamp = DateHepler.getDayStartTimestamp(startTimestamp)
-                endTimestamp = DateHepler.getDayEndTimestamp(endTimestamp)
+                startTimestamp = DateHelper.getDayStartTimestamp(startTimestamp)
+                endTimestamp = DateHelper.getDayEndTimestamp(endTimestamp)
 
                 showTimestamp()
             }
             monthTextView ->{
-                val year = DateHepler.getYear()
-                val month = DateHepler.getMonthOfYear()
+                val year = DateHelper.getYear()
+                val month = DateHelper.getMonthOfYear()
 
-                startTimestamp = DateHepler.getFirstdayOfMonthInTimestamp(year , month)
-                endTimestamp = DateHepler.getLastdayOfMonthInTimestamp(year , month)
+                startTimestamp = DateHelper.getFirstDayOfMonthInTimestamp(year , month)
+                endTimestamp = DateHelper.getLastDayOfMonthInTimestamp(year , month)
 
-                startTimestamp = DateHepler.getDayStartTimestamp(startTimestamp)
-                endTimestamp = DateHepler.getDayEndTimestamp(endTimestamp)
+                startTimestamp = DateHelper.getDayStartTimestamp(startTimestamp)
+                endTimestamp = DateHelper.getDayEndTimestamp(endTimestamp)
 
                 showTimestamp()
             }
@@ -106,10 +106,10 @@ class CommonDateFilterView : BaseKotlinRelativeLayout {
 
     private fun showTimestamp(){
         android.os.Handler(Looper.getMainLooper()).post {
-            startTimeTextView.text = if (0L == startTimestamp ) "开始时间" else DateHepler.timestampFormat(startTimestamp , "yyyy-MM-dd HH:mm:ss")
+            startTimeTextView.text = if (0L == startTimestamp ) "开始时间" else DateHelper.timestampFormat(startTimestamp , "yyyy-MM-dd HH:mm:ss")
         }
         Handler(Looper.getMainLooper()).post {
-            endTimeTextView.text = if (0L == endTimestamp) "结束时间" else DateHepler.timestampFormat(endTimestamp , "yyyy-MM-dd HH:mm:ss")
+            endTimeTextView.text = if (0L == endTimestamp) "结束时间" else DateHelper.timestampFormat(endTimestamp , "yyyy-MM-dd HH:mm:ss")
         }
     }
 

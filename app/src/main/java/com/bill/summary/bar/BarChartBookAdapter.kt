@@ -12,6 +12,7 @@ import com.common.base.IBaseAdapter
 import com.common.base.ViewHolder
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.MathUtil
+import java.math.BigDecimal
 
 class BarChartBookAdapter : IBaseAdapter<DailyBill>{
 
@@ -31,19 +32,19 @@ class BarChartBookAdapter : IBaseAdapter<DailyBill>{
         val dailyBill = list[position]
         val bookId = dailyBill.bookId
         val amount = dailyBill.amount
-        val percent = MathUtil.divideF (amount*100 , totalAmount , 2)
+        val percent = MathUtil.divideF ((amount* BigDecimal(100)).toFloat() , totalAmount , 2)
 
         typeNameTextView.text = billBookNameArray?.get(bookId , "--")
         percentTextView.text = percent.toString().plus("%")
         amountTextView.text = CommonUtil.trimLastZero(amount.toString())
 
-        progressChartView.setProgress(totalAmount , amount)
+        progressChartView.setProgress(totalAmount , amount.toFloat())
     }
 
     override fun notifyDataSetChanged() {
         totalAmount = 0F
         list.forEach {
-            totalAmount += it.amount
+            totalAmount += it.amount.toFloat()
         }
         super.notifyDataSetChanged()
     }

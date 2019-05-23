@@ -8,7 +8,7 @@ import com.bill.bill.DailyBill
 import com.bill.bill.DailyBillDbHelper
 import com.common.base.BaseRelativeLayout
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import kotlinx.android.synthetic.main.lastest_seven_day_layoutview.view.*
 
 class Latest7DayChartView : BaseRelativeLayout{
@@ -37,8 +37,8 @@ class Latest7DayChartView : BaseRelativeLayout{
 
     fun freshData(){
         val cTime = System.currentTimeMillis()
-        val startTimeStamp = DateHepler.getWeekStartTimestamp(cTime)
-        val endTimeStamp = DateHepler.getWeekEndTimestamp(cTime)
+        val startTimeStamp = DateHelper.getWeekStartTimestamp(cTime)
+        val endTimeStamp = DateHelper.getWeekEndTimestamp(cTime)
 
         val bills = DailyBillDbHelper.getDailyBills(startTimeStamp , endTimeStamp)
         showBillList(bills)

@@ -19,7 +19,7 @@ import com.bill.util.BroadcastUtil
 import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import kotlinx.android.synthetic.main.activity_add_consumption.*
 
 class AddConsumptionActivity : BaseKotlinActivity() {
@@ -75,7 +75,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
         bookId = 0
         bookTextView.text = "默认"
         //默认时间:当前时间
-        dateTimeTextView.text = DateHepler.timestampFormat(billTime , "yyyy年MM月dd日 HH:mm:ss")
+        dateTimeTextView.text = DateHelper.timestampFormat(billTime , "yyyy年MM月dd日 HH:mm:ss")
         timeRight = true
         //默认分类 吃> 中餐
         bigTypeId = 1
@@ -102,7 +102,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
                         runOnUiThread {
                             billTime = timestamp
                             timeRight = true
-                            dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy年MM月dd日 HH:mm:ss")
+                            dateTimeTextView.text = DateHelper.timestampFormat(timestamp , "yyyy年MM月dd日 HH:mm:ss")
                             freshBtn()
                         }
                     }
@@ -182,7 +182,7 @@ class AddConsumptionActivity : BaseKotlinActivity() {
             }
 
             saveBtnTextView -> {
-                val amount = amountTextView.text.toString().toFloat()
+                val amount = amountTextView.text.toString().toDouble()
                 val remarks = remarksTextView.text.toString()
 
                 DailyBillDbHelper.saveExpense(bookId , amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId , paymentId)

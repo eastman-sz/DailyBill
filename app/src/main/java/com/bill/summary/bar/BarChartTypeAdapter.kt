@@ -35,19 +35,19 @@ class BarChartTypeAdapter : IBaseAdapter<DailyBill> {
         val dailyBill = list[position]
         val bigTypeId = dailyBill.bigTypeId
         val amount = dailyBill.amount
-        val percent = MathUtil.divideF (amount*100 , totalAmount , 2)
+        val percent = MathUtil.divideF ((amount*100.toBigDecimal()).toFloat() , totalAmount , 2)
 
         typeNameTextView.text = bigTypeNameArray?.get(bigTypeId , "--")
         percentTextView.text = percent.toString().plus("%")
         amountTextView.text = CommonUtil.trimLastZero(amount.toString())
 
-        progressChartView.setProgress(totalAmount , amount)
+        progressChartView.setProgress(totalAmount , amount.toFloat())
     }
 
     override fun notifyDataSetChanged() {
         totalAmount = 0F
         list.forEach {
-            totalAmount += it.amount
+            totalAmount += it.amount.toFloat()
         }
         super.notifyDataSetChanged()
     }

@@ -38,6 +38,11 @@ public final class DbTableHelper {
         return dbTableHelper;
     }
 
+    public DbTableHelper addColumn_Decimal(String columnName){
+        builder.append(columnName + " DECIMAL,");
+        return dbTableHelper;
+    }
+
     public DbTableHelper addColumn_Varchar(String columnName , int length){
         builder.append(columnName + " varchar(" + length + "),");
         return dbTableHelper;

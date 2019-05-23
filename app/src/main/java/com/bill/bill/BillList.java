@@ -3,7 +3,10 @@ package com.bill.bill;
 import android.support.annotation.NonNull;
 
 import com.handmark.base.IGroup;
-import com.utils.lib.ss.common.DateHepler;
+import com.utils.lib.ss.common.DateHelper;
+
+import java.math.BigDecimal;
+
 /**
  * Created by E on 2018/3/9.
  */
@@ -11,7 +14,7 @@ public class BillList extends IGroup implements Comparable<BillList>{
 
     private int superType = 0 ;//超级大类 0代表支出 1代表收入
     private long bid = 0L;
-    private float amount = 0f;
+    private BigDecimal amount = new BigDecimal(0);
     private long billtime = 0L;//唯一
     private long ctime = 0L;
     private String remarks = "";
@@ -19,10 +22,10 @@ public class BillList extends IGroup implements Comparable<BillList>{
     private int bigTypeId = 0; //一级分类ID
     private int smallTypeId = 0; //二级分类ID
 
-    private float dayAmount = 0f;//某一天总额
-    private float weekAmount = 0f;//周总额
-    private float monthAmount = 0f;//月总额
-    private float yearAmount = 0f;//年总额
+    private BigDecimal dayAmount = new BigDecimal(0);//某一天总额
+    private BigDecimal weekAmount =new BigDecimal(0);//周总额
+    private BigDecimal monthAmount = new BigDecimal(0);//月总额
+    private BigDecimal yearAmount = new BigDecimal(0);//年总额
 
     public BillList() {
     }
@@ -41,11 +44,11 @@ public class BillList extends IGroup implements Comparable<BillList>{
         return billList;
     }
 
-    public float getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(float amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
@@ -89,35 +92,35 @@ public class BillList extends IGroup implements Comparable<BillList>{
         this.marketId = marketId;
     }
 
-    public float getDayAmount() {
+    public BigDecimal getDayAmount() {
         return dayAmount;
     }
 
-    public void setDayAmount(float dayAmount) {
+    public void setDayAmount(BigDecimal dayAmount) {
         this.dayAmount = dayAmount;
     }
 
-    public float getWeekAmount() {
+    public BigDecimal getWeekAmount() {
         return weekAmount;
     }
 
-    public void setWeekAmount(float weekAmount) {
+    public void setWeekAmount(BigDecimal weekAmount) {
         this.weekAmount = weekAmount;
     }
 
-    public float getMonthAmount() {
+    public BigDecimal getMonthAmount() {
         return monthAmount;
     }
 
-    public void setMonthAmount(float monthAmount) {
+    public void setMonthAmount(BigDecimal monthAmount) {
         this.monthAmount = monthAmount;
     }
 
-    public float getYearAmount() {
+    public BigDecimal getYearAmount() {
         return yearAmount;
     }
 
-    public void setYearAmount(float yearAmount) {
+    public void setYearAmount(BigDecimal yearAmount) {
         this.yearAmount = yearAmount;
     }
 
@@ -147,7 +150,7 @@ public class BillList extends IGroup implements Comparable<BillList>{
 
     @Override
     protected int getIgroup() {
-        return DateHepler.getYear(billtime) + DateHepler.getMonthOfYear(billtime);
+        return DateHelper.getYear(billtime) + DateHelper.getMonthOfYear(billtime);
     }
 
     @Override

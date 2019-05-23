@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import com.bill.base.BaseKotlinRelativeLayout
 import com.bill.consumption.NewAddConsumptionBroadcastReceiveListener
 import com.bill.consumption.OnNewAddConsumptionBroadcastReceiveListener
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 
 open class BaseSummaryView : BaseKotlinRelativeLayout {
 
@@ -20,9 +20,9 @@ open class BaseSummaryView : BaseKotlinRelativeLayout {
 
     override fun init() {
         //今年
-        val year = DateHepler.getYear()
-        startTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
-        endTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
+        val year = DateHelper.getYear()
+        startTimestamp = DateHelper.getDayStartTimestamp(DateHelper.getFirstDayOfYear(year).time)
+        endTimestamp = DateHelper.getDayEndTimestamp(DateHelper.getLastDayOfYear(year).time)
 
         super.init()
         newAddConsumptionBroadcastReceiveListener.onNewAddConsumptionBroadcastReceiveListener = object : OnNewAddConsumptionBroadcastReceiveListener(){

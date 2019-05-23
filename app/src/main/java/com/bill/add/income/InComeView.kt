@@ -20,7 +20,7 @@ import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import com.utils.lib.ss.common.ToastHelper
 import kotlinx.android.synthetic.main.income_view.view.*
 
@@ -60,7 +60,7 @@ class InComeView : BaseAddBillView{
         bookId = 0
         bookTextView.text = "默认"
 
-        dateTimeTextView.text = DateHepler.timestampFormat(billTime , "yyyy年MM月dd日 HH:mm")
+        dateTimeTextView.text = DateHelper.timestampFormat(billTime , "yyyy年MM月dd日 HH:mm")
         timeRight = true
 
         typeNameTextView.text = "职业收入 > 工资收入"
@@ -84,7 +84,7 @@ class InComeView : BaseAddBillView{
                         mHandler.post {
                             billTime = timestamp
                             timeRight = true
-                            dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy年MM月dd日 HH:mm")
+                            dateTimeTextView.text = DateHelper.timestampFormat(timestamp , "yyyy年MM月dd日 HH:mm")
 
                             freshBtn()
                         }
@@ -131,7 +131,7 @@ class InComeView : BaseAddBillView{
     }
 
     fun save(){
-        val amount = amountTextView.text.toString().toFloat()
+        val amount = amountTextView.text.toString().toDouble()
         DailyBillDbHelper.saveIncome(bookId , amount , billTime , "" , incomeBigType , incomeSmallType)
 
         //send broadcast

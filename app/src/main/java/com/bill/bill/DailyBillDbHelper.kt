@@ -10,13 +10,14 @@ import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
 import com.bill.util.ILog
+import java.math.BigDecimal
 import java.util.ArrayList
 
 class DailyBillDbHelper {
 
     companion object {
 
-        fun saveExpense(bookId: Int , amount: Float, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int,
+        fun saveExpense(bookId: Int , amount: Double, billTime: Long, remarks: String, marketId: Int, bigTypeId: Int,
                  smallTypeId: Int, natureId: Int , paymentId: Int) {
             val values = ContentValues()
             values.put("superType", SuperType.Expense.type)
@@ -40,7 +41,7 @@ class DailyBillDbHelper {
             }
         }
 
-        fun saveIncome(bookId: Int , amount: Float, billTime: Long, remarks: String, bigTypeId: Int, smallTypeId: Int){
+        fun saveIncome(bookId: Int , amount: Double, billTime: Long, remarks: String, bigTypeId: Int, smallTypeId: Int){
             val values = ContentValues()
             values.put("superType", SuperType.Income.type)
             values.put("bookId", bookId)
@@ -351,7 +352,7 @@ class DailyBillDbHelper {
             var superType = CursorHelper.getInt(cursor , "superType")
             var bid = CursorHelper.getLong(cursor , "bid")
             var bookId = CursorHelper.getInt(cursor , "bookId")
-            var amount = CursorHelper.getFloat(cursor , "amount")
+            var amount = CursorHelper.getString(cursor , "amount")
             var billTime = CursorHelper.getLong(cursor , "billTime")
             var cTime = CursorHelper.getLong(cursor , "cTime")
             var remarks = CursorHelper.getString(cursor , "remarks")
@@ -366,7 +367,10 @@ class DailyBillDbHelper {
             dailyBill.superType = superType
             dailyBill.bid = bid
             dailyBill.bookId = bookId
-            dailyBill.amount = amount
+
+            ILog.e("--------amount---------: $amount")
+
+            dailyBill.amount = BigDecimal(amount)
             dailyBill.billTime = billTime
             dailyBill.cTime = cTime
             dailyBill.remarks = remarks
@@ -386,7 +390,7 @@ class DailyBillDbHelper {
                     .addColumn_Integer("superType")
                     .addColumn_Long("bid")
                     .addColumn_Integer("bookId")
-                    .addColumn_Float("amount")
+                    .addColumn_Decimal("amount")
                     .addColumn_Long("billTime")
                     .addColumn_Long("cTime")
                     .addColumn_Varchar("remarks", 60)

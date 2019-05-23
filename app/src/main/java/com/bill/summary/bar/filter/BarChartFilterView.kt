@@ -9,7 +9,7 @@ import com.bill.dialog.DialogHelper
 import com.bill.util.BroadcastHelper
 import com.bill.util.CommonUtil
 import com.sz.kk.daily.bill.R
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import kotlinx.android.synthetic.main.bar_chart_filter_view.view.*
 /**
  * Filter view for bar chart.
@@ -31,9 +31,9 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
         View.inflate(context , R.layout.bar_chart_filter_view , this)
 
         //今年
-        val year = DateHepler.getYear()
-        val day1OfYearStartTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
-        val dayEndOfYearStartTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
+        val year = DateHelper.getYear()
+        val day1OfYearStartTimestamp = DateHelper.getDayStartTimestamp(DateHelper.getFirstDayOfYear(year).time)
+        val dayEndOfYearStartTimestamp = DateHelper.getDayEndTimestamp(DateHelper.getLastDayOfYear(year).time)
 
         initTimeStamp(day1OfYearStartTimestamp , dayEndOfYearStartTimestamp)
 
@@ -61,8 +61,8 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
     }
 
     private fun initTimeStamp(startTimestamp : Long , endTimestamp : Long){
-        durationTextView.text = "时间范围: ${DateHepler.timestampFormat(startTimestamp , "yyyy年MM月dd日")} ~ " +
-                "${DateHepler.timestampFormat(endTimestamp , "yyyy年MM月dd日")}"
+        durationTextView.text = "时间范围: ${DateHelper.timestampFormat(startTimestamp , "yyyy年MM月dd日")} ~ " +
+                "${DateHelper.timestampFormat(endTimestamp , "yyyy年MM月dd日")}"
     }
 
     private fun initGroupName(groupName : String?){

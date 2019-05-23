@@ -1,10 +1,12 @@
 package com.bill.bill
 
+import java.math.BigDecimal
+
 class DailyBill {
 
     var bid = 0L //相当于某一笔记帐的流水号
     var bookId = 0
-    var amount = 0F
+    var amount = BigDecimal("0")
     var billTime = 0L
     var cTime = 0L
     var remarks : String ?= null

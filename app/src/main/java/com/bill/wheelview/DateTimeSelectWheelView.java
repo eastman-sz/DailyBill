@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import com.bill.util.ILog;
 import com.common.base.BaseRelativeLayout;
 import com.sz.kk.daily.bill.R;
-import com.utils.lib.ss.common.DateHepler;
+import com.utils.lib.ss.common.DateHelper;
 import com.wheelview.HorizontalWheelView;
 import com.wheelview.OnWheelScrollListener;
 import com.wheelview.WheelView;
@@ -94,7 +94,7 @@ public class DateTimeSelectWheelView extends BaseRelativeLayout {
             timestamp = System.currentTimeMillis()/1000;
         }
         this.cTimeStamp = timestamp;
-        this.cDate = DateHepler.timestampFormat(timestamp,"yyyy-MM-dd-HH-mm-ss");
+        this.cDate = DateHelper.timestampFormat(timestamp,"yyyy-MM-dd-HH-mm-ss");
         freshViews();
     }
 
@@ -111,7 +111,7 @@ public class DateTimeSelectWheelView extends BaseRelativeLayout {
             }
             @Override
             public void onScrollingFinished(HorizontalWheelView horizontalWheelView) {
-                onMonthScrollChg(date ,DateHepler.getMonthOfYear(cTimeStamp));
+                onMonthScrollChg(date ,DateHelper.getMonthOfYear(cTimeStamp));
             }
         });
 
@@ -129,7 +129,7 @@ public class DateTimeSelectWheelView extends BaseRelativeLayout {
             }
         });
 
-        onMonthScrollChg(date ,DateHepler.getMonthOfYear(cTimeStamp));
+        onMonthScrollChg(date ,DateHelper.getMonthOfYear(cTimeStamp));
 
         WheelViewTextAdapter hourAdapter = new WheelViewTextAdapter(context , hours);
         hoursWheelView.setViewAdapter(hourAdapter);

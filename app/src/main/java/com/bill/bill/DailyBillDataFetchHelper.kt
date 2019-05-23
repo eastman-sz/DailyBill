@@ -2,10 +2,11 @@ package com.bill.bill
 
 import com.bill.base.OnCommonRequestListener
 import com.bill.daylist.DailyBillFilter
-import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.DateHelper
 import com.utils.lib.ss.common.MathUtil
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import java.math.BigDecimal
 
 /**
  * Helper class for fetch special daily bill data.
@@ -52,7 +53,7 @@ class DailyBillDataFetchHelper {
             }
 
             //每月总额
-            val monthAmountMap = HashMap<String , Float>()
+            val monthAmountMap = HashMap<String , BigDecimal>()
 
             doAsync {
                 dailyBills.forEach {
@@ -60,14 +61,14 @@ class DailyBillDataFetchHelper {
 
                     list.add(billList)
 
-                    val mmOfYear = DateHepler.timestampFormat(billList.billtime , "yyyy-MM")
+                    val mmOfYear = DateHelper.timestampFormat(billList.billtime , "yyyy-MM")
                     val amount = billList.amount
 
                     val containsKey = monthAmountMap.containsKey(mmOfYear)
                     when(containsKey){
                         true -> {
                             val monthAmount = monthAmountMap[mmOfYear]
-                            monthAmountMap.put(mmOfYear , MathUtil.addF(monthAmount!! , amount , 2))
+                            monthAmountMap.put(mmOfYear , MathUtil.addBigDecimal(monthAmount!! , amount , 2))
                         }
 
                         false ->{
@@ -77,7 +78,7 @@ class DailyBillDataFetchHelper {
                 }
 
                 list.forEach {
-                    val mmOfYear = DateHepler.timestampFormat(it.billtime , "yyyy-MM")
+                    val mmOfYear = DateHelper.timestampFormat(it.billtime , "yyyy-MM")
 
                     it.monthAmount = monthAmountMap[mmOfYear]!!
 

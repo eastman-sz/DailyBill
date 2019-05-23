@@ -11,6 +11,7 @@ import com.bill.util.ILog
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.MathUtil
 import com.utils.lib.ss.info.DeviceInfo
+import java.math.BigDecimal
 import java.util.ArrayList
 
 class Lastest7DayChartViews : ChartView {
@@ -68,7 +69,7 @@ class Lastest7DayChartViews : ChartView {
     }
 
     private fun drawLines(canvas: Canvas?){
-        var maxAmount = 0f
+        var maxAmount = BigDecimal("0")
 
         list.forEach {
             if (it.amount > maxAmount){
