@@ -1,10 +1,15 @@
 package com.bill.summary.bar.filter
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
 import com.bill.base.BaseKotlinRelativeLayout
 import com.bill.bill.DailyBillDbHelper
+import com.bill.consumption.NewAddConsumptionBroadcastReceiveListener
+import com.bill.consumption.OnNewAddConsumptionBroadcastReceiveListener
+import com.bill.consumption.type.SuperType
 import com.bill.dialog.DialogHelper
 import com.bill.util.BroadcastHelper
 import com.bill.util.CommonUtil
@@ -18,6 +23,11 @@ import kotlinx.android.synthetic.main.bar_chart_filter_view.view.*
 class BarChartFilterView : BaseKotlinRelativeLayout{
 
     var onBarChartFilterParamSetListener : OnBarChartFilterParamSetListener ?= null
+
+    private val newAddConsumptionBroadcastReceiveListener = NewAddConsumptionBroadcastReceiveListener()
+
+    private var startTimestamp = 0L
+    private var endTimestamp = 0L
 
     constructor(context: Context) : super(context){
         init()
@@ -37,19 +47,26 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
 
         initTimeStamp(day1OfYearStartTimestamp , dayEndOfYearStartTimestamp)
 
+        startTimestamp = day1OfYearStartTimestamp
+        endTimestamp = dayEndOfYearStartTimestamp
+
         initGroupName("分类")
+
+        showTotalAmount()
     }
 
     override fun initListener() {
         filterLayout.setOnClickListener {
             DialogHelper.showBarChartFilter(context , object : OnBarChartFilterParamSetListener{
                 override fun onResult(it: BarChartFilter) {
+                    startTimestamp = it.startTimestamp
+                    endTimestamp = it.endTimestamp
+
                     initTimeStamp(it.startTimestamp , it.endTimestamp)
 
                     initGroupName(it.barChartGroupName)
 
-                    val totalAmount = DailyBillDbHelper.getDailyBillAmount(it.startTimestamp , it.endTimestamp)
-                    totalAmountTextView.text = CommonUtil.trimLastZero(totalAmount.toString())
+                    showTotalAmount()
 
                     //callback it to out
                     BroadcastHelper.onFilterTimeRangeChanged(it.startTimestamp , it.endTimestamp)
@@ -58,6 +75,19 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
                 }
             })
         }
+
+        newAddConsumptionBroadcastReceiveListener.onNewAddConsumptionBroadcastReceiveListener = object : OnNewAddConsumptionBroadcastReceiveListener(){
+            override fun onNewAddConsumption() {
+                Handler(Looper.getMainLooper()).post {
+                    showTotalAmount()
+                }
+            }
+        }
+    }
+
+    private fun showTotalAmount(){
+        val totalAmount = DailyBillDbHelper.getDailyBillAmount(SuperType.Expense.type , startTimestamp , endTimestamp)
+        totalAmountTextView.text = CommonUtil.trimLastZero(totalAmount.toString())
     }
 
     private fun initTimeStamp(startTimestamp : Long , endTimestamp : Long){
@@ -67,6 +97,16 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
 
     private fun initGroupName(groupName : String?){
         typeNameTextView.text = "数据分组: 按 '$groupName' 划分"
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        newAddConsumptionBroadcastReceiveListener.register()
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        newAddConsumptionBroadcastReceiveListener.unRegister()
     }
 
 }

@@ -25,7 +25,7 @@
             android:background="@drawable/input_bg"
             android:digits="@string/digits_money"
             android:gravity="center_vertical"
-            android:hint="请输入金额"
+            android:hint="0.00"
             android:inputType="numberDecimal"
             android:maxLength="12"
             android:maxLines="1"

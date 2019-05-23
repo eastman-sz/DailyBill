@@ -57,16 +57,19 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
         remarksTextView.visibility = if (remarks.isEmpty()){View.GONE}else{View.VISIBLE}
     }
 
-    override fun getHeaderConvertView(convertView: View?, list: MutableList<BillList>?, position: Int) {
+    override fun getHeaderConvertView(convertView: View, list: List<BillList>, position: Int) {
         val headerTextView = ViewHolder.getView(convertView , R.id.headerTextView) as CustomFontTextView
-        val monthAmountTextView = ViewHolder.getView(convertView , R.id.monthAmountTextView) as CustomFontDigitTextView
+        val monthExpanseAmountTextView = ViewHolder.getView<CustomFontDigitTextView>(convertView , R.id.monthExpanseAmountTextView)
+        val monthIncomeAmountTextView = ViewHolder.getView<CustomFontDigitTextView>(convertView , R.id.monthIncomeAmountTextView)
 
-        val billList = list?.get(position)
-        val billTime = billList?.billtime as Long
-        val monthAmount = billList?.monthAmount
+        val billList = list[position]
+        val billTime = billList.billtime
+        val monthAmount = billList.monthExpanseAmount
+        val monthIncomeAmount = billList.monthIncomeAmount
 
         headerTextView.text = DateHelper.timestampFormat(billTime , "yyyy年MM月")
-        monthAmountTextView.text = "支出: ".plus(CommonUtil.trimLastZero(monthAmount.toString())).plus(" 元")
+        monthExpanseAmountTextView.text = "支出: ".plus(CommonUtil.trimLastZero(monthAmount.toString()))
+        monthIncomeAmountTextView.text = "收入: ".plus(CommonUtil.trimLastZero(monthIncomeAmount.toString()))
     }
 
 }

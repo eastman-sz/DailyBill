@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.View
 import com.bill.bill.DailyBill
 import com.bill.bill.DailyBillDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.summary.BaseSummaryView
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bar_chart_payment_view.view.*
@@ -13,6 +14,8 @@ class BarChartPaymentView : BaseSummaryView {
 
     private val list = ArrayList<DailyBill>()
     private var adapter : BarChartPaymentAdapter ?= null
+
+    var superType = SuperType.Expense.type
 
     constructor(context: Context) : super(context){
         init()
@@ -33,7 +36,7 @@ class BarChartPaymentView : BaseSummaryView {
 
     private fun getData(){
         list.clear()
-        list.addAll(DailyBillDbHelper.getPeriodGroupByPayment(startTimestamp , endTimestamp))
+        list.addAll(DailyBillDbHelper.getPeriodGroupByPayment(superType ,startTimestamp , endTimestamp))
         adapter?.notifyDataSetChanged()
     }
 

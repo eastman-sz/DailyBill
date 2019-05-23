@@ -210,15 +210,17 @@ class DailyBillDbHelper {
         }
 
         //某一时间段的数据统计
-        fun getDailyBillAmount(startTime: Long, endTime: Long): Float {
-            var totalAmount = 0F
+        fun getDailyBillAmount(superType: Int , startTime: Long, endTime: Long): BigDecimal {
+            var totalAmount = 0.toBigDecimal()
             var cursor: Cursor? = null
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
-                cursor = db.rawQuery("select sum(amount) AS amount from ".plus(DBNAME).plus(" where billTime > ? and billTime < ? ")  , arrayOf(startTime.toString(), endTime.toString()))
+                cursor = db.rawQuery("select sum(amount) AS amount from ".plus(DBNAME).plus(" where billTime > ? and billTime < ? and superType = ?")
+                        , arrayOf(startTime.toString(), endTime.toString() , superType.toString()))
                 if (null != cursor && cursor.moveToNext()){
                     cursor.moveToFirst()
-                    totalAmount = CursorHelper.getFloat(cursor , "amount")
+
+                    totalAmount = CursorHelper.getString(cursor , "amount").toBigDecimal()
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -251,8 +253,8 @@ class DailyBillDbHelper {
         }
 
         //时间段内一级分类数据
-        fun getPeriodGroupByBigType(startTime: Long , endTime: Long) : List<DailyBill>{
-            return getPeriodGroupByWhats("bigTypeId" , startTime , endTime)
+        fun getPeriodGroupByBigType(superType: Int, startTime: Long , endTime: Long) : List<DailyBill>{
+            return getPeriodGroupByWhats(superType ,"bigTypeId" , startTime , endTime)
         }
 
         //分组:market
@@ -261,8 +263,8 @@ class DailyBillDbHelper {
         }
 
         //分组:时间段内market
-        fun getPeriodGroupByMarket(startTime: Long , endTime: Long) : List<DailyBill>{
-            return getPeriodGroupByWhats("marketId" , startTime , endTime)
+        fun getPeriodGroupByMarket(superType: Int, startTime: Long , endTime: Long) : List<DailyBill>{
+            return getPeriodGroupByWhats(superType ,"marketId" , startTime , endTime)
         }
 
         //分组:natureId
@@ -271,8 +273,8 @@ class DailyBillDbHelper {
         }
 
         //分组:时间段内natureId
-        fun getPeriodGroupByNature(startTime: Long , endTime: Long) : List<DailyBill>{
-            return getPeriodGroupByWhats("natureId" , startTime , endTime)
+        fun getPeriodGroupByNature(superType: Int, startTime: Long , endTime: Long) : List<DailyBill>{
+            return getPeriodGroupByWhats(superType ,"natureId" , startTime , endTime)
         }
 
         //分组:paymentId
@@ -281,8 +283,8 @@ class DailyBillDbHelper {
         }
 
         //分组:时间段内paymentId
-        fun getPeriodGroupByPayment(startTime: Long , endTime: Long) : List<DailyBill>{
-            return getPeriodGroupByWhats("paymentId" , startTime , endTime)
+        fun getPeriodGroupByPayment(superType: Int, startTime: Long , endTime: Long) : List<DailyBill>{
+            return getPeriodGroupByWhats(superType ,"paymentId" , startTime , endTime)
         }
 
         //分组:bookId
@@ -291,8 +293,8 @@ class DailyBillDbHelper {
         }
 
         //分组:bookId
-        fun getPeriodGroupByBillBook(startTime: Long , endTime: Long) : List<DailyBill>{
-            return getPeriodGroupByWhats("bookId" , startTime , endTime)
+        fun getPeriodGroupByBillBook(superType: Int, startTime: Long , endTime: Long) : List<DailyBill>{
+            return getPeriodGroupByWhats(superType ,"bookId" , startTime , endTime)
         }
 
         //分组统计数据
@@ -301,7 +303,8 @@ class DailyBillDbHelper {
             var cursor: Cursor? = null
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
-                cursor = db.query(DBNAME , arrayOf("*" ,"sum(amount) as amount") , null , null , whats, null, null)
+                cursor = db.query(DBNAME , arrayOf("*" ,"sum(amount) as amount") , null,
+                        null , whats, null, null)
                 while(null != cursor && cursor.moveToNext()){
                     val it = fromCursor(cursor)
                     list.add(it)
@@ -316,13 +319,13 @@ class DailyBillDbHelper {
         }
 
         //时间段内分组统计数据
-        private fun getPeriodGroupByWhats(whats : String , startTime: Long , endTime: Long) : List<DailyBill>{
+        private fun getPeriodGroupByWhats(superType: Int, whats : String , startTime: Long , endTime: Long) : List<DailyBill>{
             val list = ArrayList<DailyBill>()
             var cursor: Cursor? = null
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
-                cursor = db.query(DBNAME , arrayOf("*" ,"sum(amount) as amount") , "billTime > ? and billTime < ?" ,
-                        arrayOf(startTime.toString() , endTime.toString()) , whats, null, null)
+                cursor = db.query(DBNAME , arrayOf("*" ,"sum(amount) as amount") , "billTime > ? and billTime < ? and superType = ? " ,
+                        arrayOf(startTime.toString() , endTime.toString() , superType.toString()) , whats, null, null)
                 while(null != cursor && cursor.moveToNext()){
                     val it = fromCursor(cursor)
                     list.add(it)
@@ -368,7 +371,7 @@ class DailyBillDbHelper {
             dailyBill.bid = bid
             dailyBill.bookId = bookId
 
-            ILog.e("--------amount---------: $amount")
+            ILog.e("--------amount---------: $amount    superType: $superType")
 
             dailyBill.amount = BigDecimal(amount)
             dailyBill.billTime = billTime

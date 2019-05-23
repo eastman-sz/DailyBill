@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:textSize="@dimen/s11"
-                android:textColor="@color/c1"
+                android:textColor="@color/c27"
                 android:text="0"
                 android:layout_marginTop="10dp"
                 />
@@ -88,7 +88,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:textSize="@dimen/s8"
-                    android:textColor="@color/c1"
+                    android:textColor="@color/c27"
                     android:text="0"
                     />
                 <com.common.base.CustomFontDigitTextView
@@ -98,7 +98,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:textSize="@dimen/s8"
-                    android:textColor="@color/c1"
+                    android:textColor="@color/c27"
                     android:text="0"
                     />
                 <com.common.base.CustomFontDigitTextView
@@ -108,7 +108,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:textSize="@dimen/s8"
-                    android:textColor="@color/c1"
+                    android:textColor="@color/c27"
                     android:text="0"
                     />
             </LinearLayout>

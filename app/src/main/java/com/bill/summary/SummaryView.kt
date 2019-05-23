@@ -3,6 +3,7 @@ package com.bill.summary
 import android.content.Context
 import android.view.View
 import com.bill.base.BaseBillView
+import com.bill.consumption.type.SuperType
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.summary_view.view.*
 /**
@@ -32,7 +33,7 @@ class SummaryView : BaseBillView{
     }
 
     private fun freshData(){
-        totalSummaryView.getPeriodSummary()
+        totalSummaryView.getPeriodSummary(SuperType.Expense.type)
 //        latest7DayChartView.freshData()
     }
 }

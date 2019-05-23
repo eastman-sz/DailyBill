@@ -1,7 +1,9 @@
 package com.bill.bill
 
 import com.bill.base.OnCommonRequestListener
+import com.bill.consumption.type.SuperType
 import com.bill.daylist.DailyBillFilter
+import com.bill.util.ILog
 import com.utils.lib.ss.common.DateHelper
 import com.utils.lib.ss.common.MathUtil
 import org.jetbrains.anko.doAsync
@@ -53,7 +55,8 @@ class DailyBillDataFetchHelper {
             }
 
             //每月总额
-            val monthAmountMap = HashMap<String , BigDecimal>()
+            val monthExpanseAmountMap = HashMap<String , BigDecimal>()
+            val monthIncomeAmountMap = HashMap<String , BigDecimal>()
 
             doAsync {
                 dailyBills.forEach {
@@ -63,25 +66,51 @@ class DailyBillDataFetchHelper {
 
                     val mmOfYear = DateHelper.timestampFormat(billList.billtime , "yyyy-MM")
                     val amount = billList.amount
+                    val superType = billList.superType
 
-                    val containsKey = monthAmountMap.containsKey(mmOfYear)
-                    when(containsKey){
-                        true -> {
-                            val monthAmount = monthAmountMap[mmOfYear]
-                            monthAmountMap.put(mmOfYear , MathUtil.addBigDecimal(monthAmount!! , amount , 2))
+                    ILog.e("===================superType==================: $superType")
+
+                    when(superType){
+                        SuperType.Expense.type ->{
+                            //支出
+                            val containsKey = monthExpanseAmountMap.containsKey(mmOfYear)
+                            when(containsKey){
+                                true ->{
+                                    val monthAmount = monthExpanseAmountMap[mmOfYear]
+                                    monthExpanseAmountMap.put(mmOfYear , MathUtil.addBigDecimal(monthAmount , amount , 2))
+                                }
+                                false ->{
+                                    monthExpanseAmountMap.put(mmOfYear , amount)
+                                }
+                            }
                         }
 
-                        false ->{
-                            monthAmountMap[mmOfYear] = amount
+                        SuperType.Income.type ->{
+                            //收入
+                            val containsKey = monthIncomeAmountMap.containsKey(mmOfYear)
+                            when(containsKey){
+                                true ->{
+                                    val monthAmount = monthIncomeAmountMap[mmOfYear]
+                                    monthIncomeAmountMap.put(mmOfYear , MathUtil.addBigDecimal(monthAmount!! , amount , 2))
+                                }
+
+                                false ->{
+                                    monthIncomeAmountMap.put(mmOfYear , amount)
+                                }
+                            }
                         }
                     }
                 }
 
                 list.forEach {
-                    val mmOfYear = DateHelper.timestampFormat(it.billtime , "yyyy-MM")
+                    try {
+                        val mmOfYear = DateHelper.timestampFormat(it.billtime , "yyyy-MM")
 
-                    it.monthAmount = monthAmountMap[mmOfYear]!!
-
+                        it.monthExpanseAmount = if (monthExpanseAmountMap.containsKey(mmOfYear)) monthExpanseAmountMap[mmOfYear] else BigDecimal(0)
+                        it.monthIncomeAmount = if (monthIncomeAmountMap.containsKey(mmOfYear)) monthIncomeAmountMap[mmOfYear] else BigDecimal(0)
+                    }catch (e : Exception){
+                        e.printStackTrace()
+                    }
                 }
 
                 list.sort()

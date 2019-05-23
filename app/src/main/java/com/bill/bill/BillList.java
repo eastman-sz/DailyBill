@@ -24,7 +24,8 @@ public class BillList extends IGroup implements Comparable<BillList>{
 
     private BigDecimal dayAmount = new BigDecimal(0);//某一天总额
     private BigDecimal weekAmount =new BigDecimal(0);//周总额
-    private BigDecimal monthAmount = new BigDecimal(0);//月总额
+    private BigDecimal monthExpanseAmount = new BigDecimal(0);//月总额
+    private BigDecimal monthIncomeAmount = new BigDecimal(0);//月总额
     private BigDecimal yearAmount = new BigDecimal(0);//年总额
 
     public BillList() {
@@ -108,12 +109,20 @@ public class BillList extends IGroup implements Comparable<BillList>{
         this.weekAmount = weekAmount;
     }
 
-    public BigDecimal getMonthAmount() {
-        return monthAmount;
+    public BigDecimal getMonthExpanseAmount() {
+        return monthExpanseAmount;
     }
 
-    public void setMonthAmount(BigDecimal monthAmount) {
-        this.monthAmount = monthAmount;
+    public void setMonthExpanseAmount(BigDecimal monthExpanseAmount) {
+        this.monthExpanseAmount = monthExpanseAmount;
+    }
+
+    public BigDecimal getMonthIncomeAmount() {
+        return monthIncomeAmount;
+    }
+
+    public void setMonthIncomeAmount(BigDecimal monthIncomeAmount) {
+        this.monthIncomeAmount = monthIncomeAmount;
     }
 
     public BigDecimal getYearAmount() {
