@@ -146,12 +146,19 @@ class DailyBillDbHelper {
         fun getFilterDailyBill(it : DailyBillFilter) : List<DailyBill>{
             var selection = ""
             val agsList = ArrayList<String>()
+
             if (it.startTimestamp > 0 && it.endTimestamp > 0){
                 selection = selection.plus("billTime > ? and billTime < ? ")
 
                 agsList.add(it.startTimestamp.toString())
                 agsList.add(it.endTimestamp.toString())
             }
+            if (it.superType != SuperType.ALL.type){
+                selection = selection.plus("and superType = ? ")
+
+                agsList.add(it.superType.toString())
+            }
+
             if (it.bookId > 0){
                 selection = selection.plus("and bookId = ? ")
 

@@ -66,7 +66,7 @@ class ConsumptionView : BaseAddBillView {
         timeRight = true
         //默认分类 食品酒水 > 中餐
         bigTypeId = 1
-        smallTypeId = 12
+        smallTypeId = 101
         typeNameTextView.text = "食品酒水  >  中餐"
         //默认性质:日常消费
         natureId = 1

@@ -31,9 +31,13 @@ class CommonDateFilterView : BaseKotlinRelativeLayout {
     override fun initViews() {
         View.inflate(context , R.layout.common_date_filter_view , this)
         //今年
+        initTimestamp()
+    }
+
+    private fun initTimestamp(){
         val year = DateHepler.getYear()
-        startTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
-        endTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
+        this.startTimestamp = DateHepler.getDayStartTimestamp(DateHepler.getFirstDayOfYear(year).time)
+        this.endTimestamp = DateHepler.getDayEndTimestamp(DateHepler.getLastDayOfYear(year).time)
 
         showTimestamp()
     }
@@ -107,6 +111,10 @@ class CommonDateFilterView : BaseKotlinRelativeLayout {
         Handler(Looper.getMainLooper()).post {
             endTimeTextView.text = if (0L == endTimestamp) "结束时间" else DateHepler.timestampFormat(endTimestamp , "yyyy-MM-dd HH:mm:ss")
         }
+    }
+
+    fun reset(){
+        initTimestamp()
     }
 
 }

@@ -41,6 +41,11 @@ class BillBookFilterView : BaseKotlinRelativeLayout{
         }
     }
 
+    fun reset(){
+        bookId = 0
+        billBookNameTextView.text = "全部"
+    }
+
 
 
 

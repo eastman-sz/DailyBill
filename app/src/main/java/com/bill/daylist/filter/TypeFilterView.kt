@@ -17,6 +17,8 @@ import kotlinx.android.synthetic.main.type_filter_view.view.*
  */
 class TypeFilterView : BaseKotlinRelativeLayout{
 
+    var superType = SuperType.Expense.type
+
     var smallTypeId = 0
     var bigTypeId = 0
 
@@ -34,15 +36,21 @@ class TypeFilterView : BaseKotlinRelativeLayout{
 
     override fun initListener() {
         typeFilterLayout.setOnClickListener {
-            DialogHelper.showTypeSelectDialog(context , SuperType.Expense.type , object : OnConsumptionTypeSelectListener{
+            DialogHelper.showTypeSelectDialog(context , superType , object : OnConsumptionTypeSelectListener{
                 override fun onTypeSelect(smallType: SmallType, bigType: BigType) {
                     smallTypeId = smallType.typeId
                     bigTypeId = bigType.typeId
                     typeNameTextView.text = bigType.typeName.plus(" > ${smallType.typeName}")
-
                 }
             })
         }
+    }
+
+    fun reset(){
+        this.smallTypeId = 0
+        this.bigTypeId = 0
+
+        typeNameTextView.text = "全部"
     }
 
 }

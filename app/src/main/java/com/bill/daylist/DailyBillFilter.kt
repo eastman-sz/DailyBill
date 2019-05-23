@@ -1,4 +1,7 @@
 package com.bill.daylist
+
+import com.bill.consumption.type.SuperType
+
 /**
  * 过滤的数据。
  * @author E
@@ -15,5 +18,7 @@ class DailyBillFilter {
 
     var smallTypeId = 0
     var bigTypeId = 0
+
+    var superType = SuperType.Expense.type
 
 }

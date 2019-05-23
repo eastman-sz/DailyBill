@@ -42,4 +42,9 @@ class PaymentFilterView : BaseKotlinRelativeLayout {
         }
     }
 
+    fun reset(){
+        this.paymentId = 0
+        paymentNameTextView.text = "全部"
+    }
+
 }

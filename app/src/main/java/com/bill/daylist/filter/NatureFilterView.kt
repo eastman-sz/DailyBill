@@ -41,4 +41,9 @@ class NatureFilterView : BaseKotlinRelativeLayout{
         }
     }
 
+    fun reset(){
+        this.natureId = 0
+        natureNameTextView.text = "全部"
+    }
+
 }

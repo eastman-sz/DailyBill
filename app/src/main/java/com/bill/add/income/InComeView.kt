@@ -42,7 +42,7 @@ class InComeView : BaseAddBillView{
         billTime = System.currentTimeMillis()/1000
 
         incomeBigType = 1
-        incomeSmallType = 10
+        incomeSmallType = 10000
     }
 
     override fun initViews() {

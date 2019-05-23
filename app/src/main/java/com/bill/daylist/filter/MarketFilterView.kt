@@ -41,6 +41,11 @@ class MarketFilterView : BaseKotlinRelativeLayout{
         }
     }
 
+    fun reset(){
+        this.marketId = 0
+        marketNameTextView.text = "全部"
+    }
+
 
 
 
