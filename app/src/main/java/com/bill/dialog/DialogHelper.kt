@@ -63,29 +63,29 @@ class DialogHelper {
         }
 
         //选择一级分类
-        fun showBigTypeSelectDialog(context: Context , onCommonItemClickListener : OnCommonItemClickListener<BigType> ?){
-            val dialog = BigTypeSelectDialog(context)
+        fun showBigTypeSelectDialog(context: Context , superType: Int ,onCommonItemClickListener : OnCommonItemClickListener<BigType> ?){
+            val dialog = BigTypeSelectDialog(context , superType)
             dialog.show()
             dialog.onCommonItemClickListener = onCommonItemClickListener
         }
 
         //添加二级分类
-        fun showAddSmallTypeDialog(context: Context , bigTypeId : Int){
-            val dialog = AddSmallTypeDialog(context)
+        fun showAddSmallTypeDialog(context: Context , superType: Int , bigTypeId : Int){
+            val dialog = AddSmallTypeDialog(context , superType)
             dialog.show()
             dialog.bigTypeId = bigTypeId
         }
 
         //修改二级分类名称
-        fun showEditSmallTypeNameDialog(context: Context , smallTypeId : Int){
-            val dialog = EditSmallTypeNameDialog(context)
+        fun showEditSmallTypeNameDialog(context: Context , superType: Int , smallTypeId : Int){
+            val dialog = EditSmallTypeNameDialog(context , superType)
             dialog.show()
             dialog.setSmallTypeId(smallTypeId)
         }
 
         //修改一级分类名称
-        fun showEditEditBigTypeNameDialog(context: Context , typeId : Int){
-            val dialog = EditBigTypeNameDialog(context)
+        fun showEditEditBigTypeNameDialog(context: Context , superType : Int , typeId : Int){
+            val dialog = EditBigTypeNameDialog(context , superType)
             dialog.show()
             dialog.setBigTypeId(typeId)
         }

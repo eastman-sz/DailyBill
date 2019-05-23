@@ -15,12 +15,18 @@ class EditTypeActivity : BaseKotlinActivity() {
     private val list = ArrayList<BigType>()
     private var adapter : BigTypeAdapter ?= null
 
+    private var superType = SuperType.Expense.type
+
     private val typeFreshBroadcastReceiveListener = TypeFreshBroadcastReceiveListener()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_type)
         initActivity()
+    }
+
+    override fun getIntentData() {
+        superType = intent.getIntExtra("superType" , SuperType.Expense.type)
     }
 
     override fun initTitle() {
@@ -35,6 +41,7 @@ class EditTypeActivity : BaseKotlinActivity() {
 
     override fun initViews() {
         adapter = BigTypeAdapter(context, list)
+        adapter?.superType = superType
         listView.adapter = adapter
 
         freshViews()
@@ -42,7 +49,7 @@ class EditTypeActivity : BaseKotlinActivity() {
 
     private fun freshViews(){
         list.clear()
-        list.addAll(BigTypeDbHelper.getBigTypeS(SuperType.Expense.type))
+        list.addAll(BigTypeDbHelper.getBigTypeS(superType))
         adapter?.notifyDataSetChanged()
     }
 

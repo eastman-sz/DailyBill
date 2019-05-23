@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import com.bill.consumption.type.BigType
 import com.bill.consumption.type.BigTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.dialog.DialogHelper
 import com.common.base.CustomFontTextView
 import com.common.base.IBaseAdapter
@@ -13,6 +14,8 @@ import com.sz.kk.daily.bill.R
 import org.jetbrains.anko.startActivity
 
 class BigTypeAdapter : IBaseAdapter<BigType>{
+
+    var superType = SuperType.Expense.type
 
     constructor(context: Context , list: List<BigType>) : super(context, list, R.layout.bigtype_adapter)
 
@@ -26,21 +29,20 @@ class BigTypeAdapter : IBaseAdapter<BigType>{
 
         textView.text = bigType.typeName
 
-
         textView.setOnClickListener {
-            context.startActivity<EditSmallTypeActivity>("bigTypeId" to bigType.typeId)
+            context.startActivity<EditSmallTypeActivity>("superType" to superType , "bigTypeId" to bigType.typeId)
         }
 
         removeTextView.setOnClickListener {
             swipeMenuLayout.smoothClose()
             //删除
-            BigTypeDbHelper.delete(bigType.typeId)
+            BigTypeDbHelper.delete(superType , bigType.typeId)
         }
 
         reNameTextView.setOnClickListener {
             swipeMenuLayout.smoothClose()
             //改名
-            DialogHelper.showEditEditBigTypeNameDialog(context , bigType.typeId)
+            DialogHelper.showEditEditBigTypeNameDialog(context , superType , bigType.typeId)
         }
     }
 

@@ -20,11 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.bill.base.BaseNewKotlinActivity"></activity>
-        <activity android:name="com.bill.add.AddNewAccountActivity"
+        <activity android:name="com.bill.add.AddActivity"></activity>
+        <activity android:name="com.bill.base.BaseNewKotlinActivity" />
+        <activity
+            android:name="com.bill.add.AddNewAccountActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/fullScreen"
-            />
+            android:theme="@style/fullScreen" />
         <activity
             android:name="com.bill.consumption.type.add.AddBigTypeActivity"
             android:screenOrientation="portrait" />

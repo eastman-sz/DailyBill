@@ -1,13 +1,11 @@
 package com.bill.bill
 
 import android.content.Context
-import android.util.SparseArray
 import android.view.View
-import com.bill.consumption.martket.Market
 import com.bill.consumption.martket.MarketDbHelper
-import com.bill.consumption.type.SmallType
 import com.bill.consumption.type.SmallTypeDbHelper
 import com.bill.consumption.type.SuperType
+import com.bill.util.ColorHelper
 import com.bill.util.CommonUtil
 import com.common.base.CustomFontDigitTextView
 import com.common.base.CustomFontTextView
@@ -22,6 +20,9 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
     private val marketArray = MarketDbHelper.getMarketArray()
     private val incomeSmallTypeNameArray = SmallTypeDbHelper.getNameArray(SuperType.Income.type)
+
+    private val color1 = ColorHelper.getExpenseTextColor()
+    private val color2 = ColorHelper.getIncomeTextColor()
 
     constructor(context: Context , list : List<BillList>) :
             super(context , list , R.layout.bill_list_adapter_view , R.layout.adapter_header_view){
@@ -44,9 +45,11 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
         if (superType == SuperType.Expense.type){
             marketTextView.text = marketArray.get(marketId)?.marketName
+            amountTextView.setTextColor(color1)
         }else{
             val smallTypeId = billList.smallTypeId
             marketTextView.text = incomeSmallTypeNameArray.get(smallTypeId)
+            amountTextView.setTextColor(color2)
         }
         amountTextView.text = CommonUtil.trimLastZero(amount.toString())
         timeTextView.text = DateHepler.timestampFormat(billTime , "MM-dd").plus("   ").plus(dayOfWeek)

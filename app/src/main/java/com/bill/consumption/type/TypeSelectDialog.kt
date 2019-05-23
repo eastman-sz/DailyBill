@@ -31,7 +31,7 @@ class TypeSelectDialog : BaseUpGlideDialog {
 
     override fun initListeners() {
         editTypeTextView.setOnClickListener {
-            context.startActivity<EditTypeActivity>()
+            context.startActivity<EditTypeActivity>("superType" to superType)
         }
 
         sureBtnTextView.setOnClickListener {

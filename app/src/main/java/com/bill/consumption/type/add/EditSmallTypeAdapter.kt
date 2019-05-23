@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.View
 import com.bill.consumption.type.SmallType
 import com.bill.consumption.type.SmallTypeDbHelper
+import com.bill.consumption.type.SuperType
 import com.bill.dialog.DialogHelper
 import com.common.base.CustomFontTextView
 import com.common.base.IBaseAdapter
@@ -12,6 +13,8 @@ import com.common.swipe.SwipeMenuLayout
 import com.sz.kk.daily.bill.R
 
 class EditSmallTypeAdapter : IBaseAdapter<SmallType>{
+
+    var superType = SuperType.Expense.type
 
     constructor(context: Context , list: List<SmallType>) : super(context, list, R.layout.edit_smalltype_adapter)
 
@@ -33,7 +36,7 @@ class EditSmallTypeAdapter : IBaseAdapter<SmallType>{
         reNameTextView.setOnClickListener {
             swipeMenuLayout.smoothClose()
 
-            DialogHelper.showEditSmallTypeNameDialog(context , smallType.typeId)
+            DialogHelper.showEditSmallTypeNameDialog(context , superType , smallType.typeId)
         }
     }
 

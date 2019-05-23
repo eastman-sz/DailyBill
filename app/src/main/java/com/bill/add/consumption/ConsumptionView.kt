@@ -1,5 +1,6 @@
 package com.bill.add.consumption
 
+import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
@@ -24,6 +25,7 @@ import com.bill.util.BroadcastUtil
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.ToastHelper
 import kotlinx.android.synthetic.main.activity_add_consumption.*
 import kotlinx.android.synthetic.main.consumption_view.view.*
 
@@ -60,12 +62,12 @@ class ConsumptionView : BaseAddBillView {
         bookId = 0
         bookTextView.text = "默认"
         //默认时间:当前时间
-        dateTimeTextView.text = DateHepler.timestampFormat(billTime , "yyyy年MM月dd日 HH:mm:ss")
+        dateTimeTextView.text = DateHepler.timestampFormat(billTime , "yyyy年MM月dd日 HH:mm")
         timeRight = true
-        //默认分类 吃> 中餐
+        //默认分类 食品酒水 > 中餐
         bigTypeId = 1
         smallTypeId = 12
-        typeNameTextView.text = "吃  >  中餐"
+        typeNameTextView.text = "食品酒水  >  中餐"
         //默认性质:日常消费
         natureId = 1
         natureTextView.text = "日常消费"
@@ -102,7 +104,7 @@ class ConsumptionView : BaseAddBillView {
                         mHandler.post {
                             billTime = timestamp
                             timeRight = true
-                            dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy年MM月dd日 HH:mm:ss")
+                            dateTimeTextView.text = DateHepler.timestampFormat(timestamp , "yyyy年MM月dd日 HH:mm")
 
                             freshBtn()
                         }
@@ -198,6 +200,13 @@ class ConsumptionView : BaseAddBillView {
         DailyBillDbHelper.saveExpense(bookId , amount, billTime , remarks , marketId , bigTypeId , smallTypeId , natureId , paymentId)
         //send broadcast
         BroadcastUtil.sendBroadCast(BroadcastAction.NEW_ADD_CONSUMPTION)
+
+        ToastHelper.makeText(context , "保存成功")
+
+        mHandler.postDelayed({
+            (context as Activity).finish()
+        } , 300)
+
     }
 
     fun freshBtn(){

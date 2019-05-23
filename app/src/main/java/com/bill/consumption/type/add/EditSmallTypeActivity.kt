@@ -16,6 +16,7 @@ class EditSmallTypeActivity : BaseKotlinActivity() {
     //监听变化
     private val typeFreshBroadcastReceiveListener = TypeFreshBroadcastReceiveListener()
 
+    private var superType = SuperType.Expense.type
     private var bigTypeId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,7 @@ class EditSmallTypeActivity : BaseKotlinActivity() {
     }
 
     override fun getIntentData() {
+        superType = intent.getIntExtra("superType" , SuperType.Expense.type)
         bigTypeId = intent.getIntExtra("bigTypeId" , 0)
     }
 
@@ -40,6 +42,7 @@ class EditSmallTypeActivity : BaseKotlinActivity() {
 
     override fun initViews() {
         adapter = EditSmallTypeAdapter(context, list)
+        adapter?.superType = superType
         listView.adapter = adapter
 
         freshViews()
@@ -47,7 +50,7 @@ class EditSmallTypeActivity : BaseKotlinActivity() {
 
     override fun initListener() {
         bigTypeLayout.setOnClickListener {
-            DialogHelper.showBigTypeSelectDialog(context , object : OnCommonItemClickListener<BigType>(){
+            DialogHelper.showBigTypeSelectDialog(context , superType , object : OnCommonItemClickListener<BigType>(){
                 override fun onItemClick(it: BigType) {
                     bigTypeId = it.typeId
 
@@ -58,7 +61,7 @@ class EditSmallTypeActivity : BaseKotlinActivity() {
 
         addTextView.setOnClickListener {
             //添加二级分类
-            DialogHelper.showAddSmallTypeDialog(context , bigTypeId)
+            DialogHelper.showAddSmallTypeDialog(context , superType , bigTypeId)
         }
 
         //监听二级分类变化
@@ -70,13 +73,13 @@ class EditSmallTypeActivity : BaseKotlinActivity() {
     }
 
     private fun freshViews(){
-        val bigType = BigTypeDbHelper.getBigType(bigTypeId)
+        val bigType = BigTypeDbHelper.getBigType(superType , bigTypeId)
         bigType?.let {
             bigTypeNameTextView.text = it.typeName
         }
 
         list.clear()
-        list.addAll(SmallTypeDbHelper.getSmallTypeS(SuperType.Expense.type , bigTypeId))
+        list.addAll(SmallTypeDbHelper.getSmallTypeS(superType , bigTypeId))
         adapter?.notifyDataSetChanged()
     }
 

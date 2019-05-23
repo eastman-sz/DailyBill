@@ -23,7 +23,7 @@ public class DateTimeSelectWheelView extends BaseRelativeLayout {
     private WheelView dayWheelView = null;
     private WheelView hoursWheelView = null;
     private WheelView minutesWheelView = null;
-    private WheelView secondsWheelView = null;
+//    private WheelView secondsWheelView = null;
 
     private ArrayList<String> years = new ArrayList<>();
     private ArrayList<String> months = new ArrayList<>();
@@ -59,7 +59,7 @@ public class DateTimeSelectWheelView extends BaseRelativeLayout {
         dayWheelView = findViewById(R.id.dayWheelview);
         hoursWheelView = findViewById(R.id.hoursWheelview);
         minutesWheelView = findViewById(R.id.minutesWheelview);
-        secondsWheelView = findViewById(R.id.sencondsWheelview);
+//        secondsWheelView = findViewById(R.id.sencondsWheelview);
 
         initData();
     }
@@ -142,10 +142,10 @@ public class DateTimeSelectWheelView extends BaseRelativeLayout {
         minutesWheelView.setVisibleItems(5);
         minutesWheelView.setCurrentItem(culItem(minutes , date[4]));
 
-        WheelViewTextAdapter secondAdapter = new WheelViewTextAdapter(context , seconds);
-        secondsWheelView.setViewAdapter(secondAdapter);
-        secondsWheelView.setVisibleItems(5);
-        secondsWheelView.setCurrentItem(culItem(seconds , date[5]));
+//        WheelViewTextAdapter secondAdapter = new WheelViewTextAdapter(context , seconds);
+//        secondsWheelView.setViewAdapter(secondAdapter);
+//        secondsWheelView.setVisibleItems(5);
+//        secondsWheelView.setCurrentItem(culItem(seconds , date[5]));
     }
 
     private void onMonthScrollChg(String[] date ,int month){
@@ -210,7 +210,7 @@ public class DateTimeSelectWheelView extends BaseRelativeLayout {
         String day = days.get(dayWheelView.getCurrentItem());
         String hour = hours.get(hoursWheelView.getCurrentItem());
         String minute = minutes.get(minutesWheelView.getCurrentItem());
-        String second = seconds.get(secondsWheelView.getCurrentItem());
+        String second = "00";
 
         String dateTime = year+ "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
         Log.e("ilog" , "----dateTime---: " + dateTime);

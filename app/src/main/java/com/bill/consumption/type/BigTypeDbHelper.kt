@@ -89,12 +89,12 @@ class BigTypeDbHelper {
             return array
         }
 
-        fun getBigType(typeId : Int) : BigType?{
+        fun getBigType(superType : Int , typeId : Int) : BigType?{
             var bigType : BigType ?= null
             var cursor : Cursor ?= null
             try {
                 val db = ISqliteDataBase.getSqLiteDatabase()
-                cursor = db.query(DBNAME , null , "typeId = ? ", arrayOf(typeId.toString()) , null , null , null)
+                cursor = db.query(DBNAME , null , "superType = ? and typeId = ? ", arrayOf(superType.toString() ,typeId.toString()) , null , null , null)
                 if (null != cursor &&cursor.moveToNext()){
                     cursor.moveToFirst()
                     bigType = fromCursor(cursor)
@@ -125,9 +125,9 @@ class BigTypeDbHelper {
             return typeId
         }
 
-        fun delete(typeId : Int){
+        fun delete(superType : Int ,  typeId : Int){
             val db = ISqliteDataBase.getSqLiteDatabase()
-            db.delete(DBNAME , "typeId = ? " , arrayOf(typeId.toString()))
+            db.delete(DBNAME , "superType = ? and typeId = ? " , arrayOf(typeId.toString()))
             //发送广播
             BroadcastUtil.sendBroadCast(BroadcastAction.bigTypeFresh)
             //删除相应的子项

@@ -48,11 +48,11 @@ class DailyBillListView : BaseBillView {
         View.inflate(context , R.layout.daily_bill_list_view , this)
 
         adapter = BillListAdapter(context , list)
-        sticky_list.refreshableView.adapter = adapter
+        pullToRefreshStickyListView.refreshableView.adapter = adapter
 
         addEmptyView()
 
-        sticky_list.refreshableView.setOnItemLongClickListener { _, _, position, _ ->
+        pullToRefreshStickyListView.refreshableView.setOnItemLongClickListener { _, _, position, _ ->
             DialogHelper.showCommonDialog(context , "确定要删除此条记录吗？" , "确定" , "取消" , object : OnCommonItemClickListener<Int>(){
                 override fun onItemClick(it: Int) {
                     when(it){
@@ -103,7 +103,7 @@ class DailyBillListView : BaseBillView {
     }
 
     private fun addEmptyView(){
-        val listView = sticky_list.refreshableView
+        val listView = pullToRefreshStickyListView.refreshableView
         val emptyView = listView.emptyView
         if (null != emptyView){
             return

@@ -1,87 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bill.add.AddNewAccountActivity"
     android:orientation="vertical"
-    android:background="@color/sfs_page_bg_color"
+    android:background="@color/c6"
+    android:fillViewport="true"
+    android:fadeScrollbars="true"
     >
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/c8"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/transparent"
         >
-        <ImageView
-            android:id="@+id/returnImgView"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scaleType="center"
-            android:src="@drawable/sfs_back_sel"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@color/c8"
+            >
+            <ImageView
+                android:id="@+id/returnImgView"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="center"
+                android:src="@drawable/sfs_back_sel"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                />
 
-        <com.common.base.CustomFontTextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/s6"
-            android:layout_centerInParent="true"
-            android:text="记一笔"
-            />
-    </RelativeLayout>
+            <com.common.base.CustomFontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/s6"
+                android:layout_centerInParent="true"
+                android:text="记一笔"
+                />
+        </RelativeLayout>
 
-    <com.bill.add.AddNewAccountHeaderView
-        android:id="@+id/addNewAccountHeaderView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        <com.bill.add.AddNewAccountHeaderView
+            android:id="@+id/addNewAccountHeaderView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        android:fadeScrollbars="true"
-        >
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:background="@color/transparent"
             >
-            <LinearLayout
+            <android.support.v4.view.ViewPager
+                android:id="@+id/viewPager"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@color/transparent"
-                android:orientation="vertical"
-                >
-                <ListView
-                    android:id="@+id/listView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="@null"
-                    android:scrollbars="none"
-                    android:fadeScrollbars="true"
-                    android:overScrollMode="never"
-                    />
-
-                <android.support.v4.view.ViewPager
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="550dp"
-                    android:scrollbars="none"
-                    android:fadingEdge="none"
-                    android:overScrollMode="never"
-                    />
-            </LinearLayout>
-
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:fadingEdge="none"
+                android:overScrollMode="never"
+                />
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-
-
-
-</LinearLayout>
+</ScrollView>

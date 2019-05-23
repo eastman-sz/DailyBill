@@ -15,9 +15,13 @@ import kotlinx.android.synthetic.main.edit_smalltype_name_dialog.*
  */
 class EditSmallTypeNameDialog : BaseFullScreenDialog {
 
+    private var superType = SuperType.Expense.type
     private var smallTypeId = 0
 
-    constructor(context: Context) : super(context)
+
+    constructor(context: Context , superType : Int) : super(context){
+        this.superType = superType
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +46,7 @@ class EditSmallTypeNameDialog : BaseFullScreenDialog {
     fun setSmallTypeId(smallTypeId : Int){
         this.smallTypeId = smallTypeId
 
-        val smallType = SmallTypeDbHelper.getSmallType(SuperType.Expense.type , smallTypeId)
+        val smallType = SmallTypeDbHelper.getSmallType(superType , smallTypeId)
         curNameTextView.text = "当前名称: ${smallType?.typeName}"
     }
 
@@ -54,7 +58,7 @@ class EditSmallTypeNameDialog : BaseFullScreenDialog {
             return
         }
         dismiss()
-        SmallTypeDbHelper.updateTypeName(SuperType.Expense.type, smallTypeId , text)
+        SmallTypeDbHelper.updateTypeName(superType, smallTypeId , text)
     }
 
 }

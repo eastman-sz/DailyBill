@@ -1,5 +1,6 @@
 package com.bill.add.income
 
+import android.app.Activity
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
@@ -20,6 +21,7 @@ import com.bill.util.BroadcastUtil
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHepler
+import com.utils.lib.ss.common.ToastHelper
 import kotlinx.android.synthetic.main.income_view.view.*
 
 class InComeView : BaseAddBillView{
@@ -134,6 +136,12 @@ class InComeView : BaseAddBillView{
 
         //send broadcast
         BroadcastUtil.sendBroadCast(BroadcastAction.NEW_ADD_CONSUMPTION)
+
+        ToastHelper.makeText(context , "保存成功")
+
+        mHandler.postDelayed({
+            (context as Activity).finish()
+        } , 300)
     }
 
 }

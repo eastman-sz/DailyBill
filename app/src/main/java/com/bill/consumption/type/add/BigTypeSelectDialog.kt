@@ -15,7 +15,11 @@ class BigTypeSelectDialog : BaseFullScreenDialog {
 
     var onCommonItemClickListener : OnCommonItemClickListener<BigType> ?= null
 
-    constructor(context: Context) : super(context)
+    var superType = SuperType.Expense.type
+
+    constructor(context: Context , superType : Int) : super(context){
+        this.superType = superType
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +40,7 @@ class BigTypeSelectDialog : BaseFullScreenDialog {
 
     override fun initViews() {
         val list = ArrayList<BigType>()
-        list.addAll(BigTypeDbHelper.getBigTypeS(SuperType.Expense.type))
+        list.addAll(BigTypeDbHelper.getBigTypeS(superType))
 
         val adapter = BigTypeSelectAdapter(context, list)
         listView.adapter = adapter

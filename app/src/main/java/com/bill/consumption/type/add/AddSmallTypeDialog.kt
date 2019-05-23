@@ -19,9 +19,13 @@ import kotlinx.android.synthetic.main.add_smalltype_dialog.*
  */
 class AddSmallTypeDialog : BaseFullScreenDialog {
 
+    var superType = SuperType.Expense.type
     var bigTypeId = 0
 
-    constructor(context: Context) : super(context)
+
+    constructor(context: Context , superType : Int) : super(context){
+        this.superType = superType
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +68,7 @@ class AddSmallTypeDialog : BaseFullScreenDialog {
             ToastHelper.makeText(context , "请输入名称")
             return
         }
-        SmallTypeDbHelper.save(SuperType.Expense.type, bigTypeId , text)
+        SmallTypeDbHelper.save(superType, bigTypeId , text)
         dismiss()
 
         //发送广播

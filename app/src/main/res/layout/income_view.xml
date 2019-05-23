@@ -31,7 +31,7 @@
             android:maxLines="1"
             android:paddingLeft="15dp"
             android:singleLine="true"
-            android:textColor="@color/c1"
+            android:textColor="@color/c39"
             android:textColorHint="@color/c14"
             android:textSize="@dimen/s10"
             android:textStyle="bold" />
