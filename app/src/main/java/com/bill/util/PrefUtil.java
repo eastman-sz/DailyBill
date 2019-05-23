@@ -82,6 +82,10 @@ public class PrefUtil {
         return pref.getLong(key, 0);
     }
 
+    public long getLongPref(String key , long  def) {
+        return pref.getLong(key, def);
+    }
+
     public void removePref(String key){
         editor.remove(key);
         editor.commit();

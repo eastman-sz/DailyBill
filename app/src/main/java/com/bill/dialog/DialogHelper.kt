@@ -25,6 +25,7 @@ import com.bill.summary.bar.filter.BarChartTypeSelectDialog
 import com.bill.summary.bar.filter.OnBarChartFilterParamSetListener
 import com.bill.wheelview.barChart.BarChart
 import com.common.dialog.CommonDialog
+import com.common.dialog.CommonTitleDialog
 import com.common.dialog.OnCommonItemClickListener
 import org.jetbrains.anko.startActivity
 
@@ -54,6 +55,13 @@ class DialogHelper {
             val dialog = CommonDialog(context)
             dialog.show()
             dialog.setParams(content , leftBtnText , rightBtnText , onCommonItemClickListener)
+        }
+
+        fun showCommonTitleDialog(context: Context , title : String , content : String , leftBtnText: String , rightBtnText: String , onCommonItemClickListener: OnCommonItemClickListener<Int>?) : CommonTitleDialog{
+            val dialog = CommonTitleDialog(context)
+            dialog.show()
+            dialog.setParams(title , content , leftBtnText , rightBtnText , onCommonItemClickListener)
+            return dialog
         }
 
         fun showTypeSelectDialog(context: Context , superType: Int ,onConsumptionTypeSelectListener : OnConsumptionTypeSelectListener){

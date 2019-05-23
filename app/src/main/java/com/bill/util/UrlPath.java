@@ -9,4 +9,7 @@ public class UrlPath {
 
     public static final String USER_URL = BASE_URL + "/c";
 
+    //2.7.1 应用升级
+    public static String APP_UPDATE_URLS = BASE_URL + "/v2/app/checkUpdate";
+
 }
