@@ -12,7 +12,6 @@ import com.bill.bill.DailyBillDataFetchHelper
 import com.bill.bill.DailyBillDbHelper
 import com.bill.dialog.DialogHelper
 import com.bill.empty.BaseEmptyView
-import com.common.base.OnCommonTitleClickListener
 import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.daily_bill_list_view.view.*
@@ -29,18 +28,12 @@ class DailyBillListView : BaseBillView {
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitle("明细")
-        commonTitleView.setLeftBtnVisibility(View.INVISIBLE)
-        commonTitleView.setRightBtnVisibility(View.VISIBLE)
-        commonTitleView.setRightBtnText("筛选")
-        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
-            override fun onRightBtnClick() {
-                DialogHelper.showDailyBillFilter(context , object : OnDailyBillFilterParamSetListener{
-                    override fun onResult(it : DailyBillFilter) {
-                        onFilter(it)
-                    }
-                })
-            }
+        titleRightBtn.setOnClickListener {
+            DialogHelper.showDailyBillFilter(context , object : OnDailyBillFilterParamSetListener{
+                override fun onResult(it : DailyBillFilter) {
+                    onFilter(it)
+                }
+            })
         }
     }
 

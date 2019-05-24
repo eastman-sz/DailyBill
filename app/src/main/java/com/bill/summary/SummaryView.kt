@@ -1,9 +1,15 @@
 package com.bill.summary
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import com.bill.base.BaseBillView
-import com.bill.consumption.type.SuperType
+import com.bill.summary.expanse.ExpanseSummaryView
+import com.bill.summary.income.IncomeSummaryView
+import com.common.base.BasePagerAdapter
+import com.common.base.BaseRelativeLayout
+import com.common.dialog.OnCommonItemClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.summary_view.view.*
 /**
@@ -15,25 +21,28 @@ class SummaryView : BaseBillView{
         init()
     }
 
-    override fun initTitle() {
-        commonTitleView.setCenterTitle("简报")
-        commonTitleView.setLeftBtnVisibility(View.INVISIBLE)
-    }
-
     override fun initViews() {
         View.inflate(context , R.layout.summary_view , this)
+
+        val list = ArrayList<BaseRelativeLayout>()
+        list.add(ExpanseSummaryView(context!!))
+        list.add(IncomeSummaryView(context!!))
+
+        val adapter = BasePagerAdapter(context , list)
+        viewPager.adapter = adapter
     }
 
-    override fun freshByHand(forceUpdate: Boolean) {
-        freshData()
+    override fun initListener() {
+        summaryHeaderView.onCommonItemClickListener = object : OnCommonItemClickListener<Int>(){
+            override fun onItemClick(it: Int) {
+                mHandler.post {
+                    viewPager.setCurrentItem(it , false)
+                }
+            }
+        }
     }
 
-    override fun onSummaryRefresh() {
-        freshData()
-    }
+    private val mHandler = Handler(Looper.getMainLooper())
 
-    private fun freshData(){
-        totalSummaryView.getPeriodSummary(SuperType.Expense.type)
-//        latest7DayChartView.freshData()
-    }
+
 }

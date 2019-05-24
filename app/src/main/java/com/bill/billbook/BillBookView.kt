@@ -27,13 +27,8 @@ class BillBookView : BaseBillView{
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitle("账簿")
-        commonTitleView.setLeftBtnVisibility(View.INVISIBLE)
-        commonTitleView.setRightBtnText("新建账簿")
-        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
-            override fun onRightBtnClick() {
-                context.startActivity<AddBillBookActivity>()
-            }
+        titleRightBtn.setOnClickListener {
+            context.startActivity<AddBillBookActivity>()
         }
     }
 

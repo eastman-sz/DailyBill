@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.bill.billbook.AddBillBookActivity"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:orientation="horizontal"
+        android:background="@color/transparent"
+        >
+        <RelativeLayout
+            android:id="@+id/expanseLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            >
+            <com.common.base.CustomFontTextView
+                android:id="@+id/expanseTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/c27"
+                android:textSize="14sp"
+                android:text="支出"
+                />
+
+            <ImageView
+                android:id="@+id/expanseLine"
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:background="@color/c27"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                />
+        </RelativeLayout>
+
+        <ImageView
+            style="@style/full_line_style"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            />
+
+        <RelativeLayout
+            android:id="@+id/incomeLayout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:alpha="0.2"
+            >
+            <com.common.base.CustomFontTextView
+                android:id="@+id/incomeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:textColor="@color/c39"
+                android:textSize="14sp"
+                android:text="收入"
+                />
+
+            <ImageView
+                android:id="@+id/incomeLine"
+                android:layout_width="50dp"
+                android:layout_height="1dp"
+                android:background="@color/c39"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageView style="@style/full_line_style" />
+
+</LinearLayout>

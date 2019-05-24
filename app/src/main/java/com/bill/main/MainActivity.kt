@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import com.bill.add.AddNewAccountActivity
 import com.bill.base.BaseKotlinActivity
+import com.bill.base.BaseNewKotlinActivity
 import com.bill.billbook.BillBookView
 import com.bill.daylist.DailyBillListView
 import com.bill.summary.SummaryView
@@ -18,7 +19,7 @@ import org.jetbrains.anko.startActivity
  * Main Page.
  * @author E
  */
-class MainActivity : BaseKotlinActivity() {
+class MainActivity : BaseNewKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,9 +30,9 @@ class MainActivity : BaseKotlinActivity() {
 
     override fun initViews() {
         val list = ArrayList<BaseRelativeLayout>()
-        list.add(BillBookView(context))
-        list.add(SummaryView(context))
-        list.add(DailyBillListView(context))
+        list.add(BillBookView(context!!))
+        list.add(SummaryView(context!!))
+        list.add(DailyBillListView(context!!))
 
         val adapter = BasePagerAdapter(context , list)
         viewPager.adapter = adapter
