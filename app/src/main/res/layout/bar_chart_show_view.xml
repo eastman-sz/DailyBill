@@ -25,7 +25,7 @@
         android:fadeScrollbars="true"
         />
 
-    <com.bill.summary.bar.BarChartTypeView
+<!--    <com.bill.summary.bar.BarChartTypeView
         android:id="@+id/barChartTypeView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,5 +58,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        />
+        />-->
 </LinearLayout>

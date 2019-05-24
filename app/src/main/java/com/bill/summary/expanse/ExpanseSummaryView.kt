@@ -18,6 +18,7 @@ class ExpanseSummaryView : BaseBillView{
 
     override fun initViews() {
         View.inflate(context , R.layout.expanse_summary_view , this)
+        barChartShowView.setViewType(SuperType.Expense.type)
 
         freshData()
     }
@@ -29,6 +30,5 @@ class ExpanseSummaryView : BaseBillView{
     private fun freshData(){
         totalSummaryView.getPeriodSummary(SuperType.Expense.type)
     }
-
 
 }

@@ -26,9 +26,9 @@ public class NetHelper2 extends BaseHttpImp2 {
             return params;
         }
         params.putAll(getCommonParams());
-        String jsonString = JSONHelper.toJSON(params).toString();
+        String jsonString = JSONHelper.toJSON(params);
         params.clear();
-        params.put("data", IAES.getInstance().encode(jsonString));
+        params.put("data", jsonString);
         params.put("appId", 10001);
         return params;
     }
@@ -48,7 +48,6 @@ public class NetHelper2 extends BaseHttpImp2 {
     @Override
     protected String read2String(InputStream inStream) throws Exception {
         String result = super.read2String(inStream);
-        String new_result = IAES.getInstance().decode(result);
-        return new_result;
+        return result;
     }
 }

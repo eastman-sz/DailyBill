@@ -12,8 +12,11 @@
         android:id="@+id/emptyTextView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:gravity="center_vertical|fill_horizontal"
         android:textSize="@dimen/s9"
         android:textColor="@color/c13"
+        android:padding="25dp"
+        android:lineSpacingExtra="1dp"
+        android:lineSpacingMultiplier="1.2"
         />
 </LinearLayout>

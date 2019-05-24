@@ -5,14 +5,14 @@ import android.os.Handler
 import android.os.Looper
 import android.util.AttributeSet
 import android.view.View
-import com.bill.base.BaseKotlinRelativeLayout
+import com.bill.base.BaseBillView
 import com.bill.bill.DailyBillDbHelper
-import com.bill.consumption.NewAddConsumptionBroadcastReceiveListener
-import com.bill.consumption.OnNewAddConsumptionBroadcastReceiveListener
 import com.bill.consumption.type.SuperType
 import com.bill.dialog.DialogHelper
 import com.bill.util.BroadcastHelper
+import com.bill.util.ColorHelper
 import com.bill.util.CommonUtil
+import com.bill.util.ViewHelper
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.DateHelper
 import kotlinx.android.synthetic.main.bar_chart_filter_view.view.*
@@ -20,11 +20,11 @@ import kotlinx.android.synthetic.main.bar_chart_filter_view.view.*
  * Filter view for bar chart.
  * @author E
  */
-class BarChartFilterView : BaseKotlinRelativeLayout{
+class BarChartFilterView : BaseBillView{
 
     var onBarChartFilterParamSetListener : OnBarChartFilterParamSetListener ?= null
 
-    private val newAddConsumptionBroadcastReceiveListener = NewAddConsumptionBroadcastReceiveListener()
+    private var superType = SuperType.Expense.type
 
     private var startTimestamp = 0L
     private var endTimestamp = 0L
@@ -51,12 +51,14 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
         endTimestamp = dayEndOfYearStartTimestamp
 
         initGroupName("分类")
-
-        showTotalAmount()
     }
 
     override fun initListener() {
         filterLayout.setOnClickListener {
+            if (superType != SuperType.Expense.type){
+
+                return@setOnClickListener
+            }
             DialogHelper.showBarChartFilter(context , object : OnBarChartFilterParamSetListener{
                 override fun onResult(it: BarChartFilter) {
                     startTimestamp = it.startTimestamp
@@ -75,18 +77,31 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
                 }
             })
         }
+    }
 
-        newAddConsumptionBroadcastReceiveListener.onNewAddConsumptionBroadcastReceiveListener = object : OnNewAddConsumptionBroadcastReceiveListener(){
-            override fun onNewAddConsumption() {
-                Handler(Looper.getMainLooper()).post {
-                    showTotalAmount()
-                }
-            }
+    override fun onSummaryRefresh() {
+        Handler(Looper.getMainLooper()).post {
+            showTotalAmount()
         }
     }
 
+    fun setViewType(superType: Int){
+        this.superType = superType
+        when(superType){
+            SuperType.Expense.type ->{
+                totalAmountTextView.setTextColor(ColorHelper.getExpenseTextColor())
+            }
+            SuperType.Income.type ->{
+                totalAmountTextView.setTextColor(ColorHelper.getIncomeTextColor())
+                ViewHelper.setLeftCompoundDrawables(context , totalAmountTextView , 0)
+            }
+        }
+
+        showTotalAmount()
+    }
+
     private fun showTotalAmount(){
-        val totalAmount = DailyBillDbHelper.getDailyBillAmount(SuperType.Expense.type , startTimestamp , endTimestamp)
+        val totalAmount = DailyBillDbHelper.getDailyBillAmount(superType , startTimestamp , endTimestamp)
         totalAmountTextView.text = CommonUtil.trimLastZero(totalAmount.toString())
     }
 
@@ -97,16 +112,6 @@ class BarChartFilterView : BaseKotlinRelativeLayout{
 
     private fun initGroupName(groupName : String?){
         typeNameTextView.text = "数据分组: 按 '$groupName' 划分"
-    }
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        newAddConsumptionBroadcastReceiveListener.register()
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        newAddConsumptionBroadcastReceiveListener.unRegister()
     }
 
 }

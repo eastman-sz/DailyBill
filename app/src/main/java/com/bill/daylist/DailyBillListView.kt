@@ -104,7 +104,7 @@ class DailyBillListView : BaseBillView {
         val newEmptyView = BaseEmptyView(context)
         (listView.parent as ViewGroup).addView(newEmptyView)
         listView.emptyView = newEmptyView
-        newEmptyView.setEmptyText("Nothing")
+        newEmptyView.setEmptyText("Write down your income and expense details to improve your finances")
     }
 
     override fun freshByHand(forceUpdate: Boolean) {

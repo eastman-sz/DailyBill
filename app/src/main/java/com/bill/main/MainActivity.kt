@@ -19,7 +19,7 @@ import org.jetbrains.anko.startActivity
  * Main Page.
  * @author E
  */
-class MainActivity : BaseNewKotlinActivity() {
+class MainActivity : BaseMainActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,6 @@ class MainActivity : BaseNewKotlinActivity() {
     fun onBtnClick(v : View){
         when(v){
             addConsumptionBtnTextView ->{
-//                startActivity(Intent(context , AddConsumptionActivity::class.java))
                 startActivity<AddNewAccountActivity>()
             }
 

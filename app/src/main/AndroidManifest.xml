@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name="com.bill.application.IApplication"
@@ -55,6 +57,9 @@
             android:screenOrientation="portrait" />
         <activity android:name="com.bill.bill.BillListActivity" />
         <activity android:name="com.bill.billbook.AddBillBookActivity" />
+        <activity
+            android:name="com.bill.permission.AllNeededPermissionRequestActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <meta-data
             android:name="UMENG_APPKEY"

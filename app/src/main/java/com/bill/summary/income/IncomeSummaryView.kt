@@ -17,6 +17,7 @@ class IncomeSummaryView : BaseBillView {
 
     override fun initViews() {
         View.inflate(context , R.layout.income_summary_view , this)
+        barChartShowView.setViewType(SuperType.Income.type)
 
         freshData()
     }

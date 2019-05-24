@@ -17,7 +17,7 @@ class UpdateProgressDialog : BaseDialog {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.softupdate_progress)
-
+        setCanceledOnTouchOutside(false)
         init()
     }
 

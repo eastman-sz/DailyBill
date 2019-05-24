@@ -266,7 +266,9 @@
         android:layout_marginTop="25dp"
         android:layout_marginRight="15dp"
         android:background="@color/transparent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
 
         <com.common.base.CustomFontEditText
             android:id="@+id/remarksTextView"
