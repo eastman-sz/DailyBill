@@ -93,13 +93,17 @@
 
 
 
-
     <com.common.base.CustomFontTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@color/transparent"
         />
+
+    <com.bill.google.banner.GBannerBView
+        android:id="@+id/gBannerBView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -86,8 +86,8 @@
 
     <com.common.base.CustomFontTextView
         android:id="@+id/addConsumptionBtnTextView"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:background="@drawable/c1_circle_selector"

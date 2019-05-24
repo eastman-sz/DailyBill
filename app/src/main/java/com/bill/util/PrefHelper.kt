@@ -27,6 +27,15 @@ class PrefHelper {
             return diff >= 86400
         }
 
+        private fun updateMainBackPressCount(){
+            val count = PrefUtil.instance().getIntPref(Prefkey.mainBackPressCount , 0)
+            PrefUtil.instance().setIntPref(Prefkey.mainBackPressCount , count+1)
+        }
+
+        fun getMainBackPressCount() : Int{
+            updateMainBackPressCount()
+            return PrefUtil.instance().getIntPref(Prefkey.mainBackPressCount , 0)
+        }
     }
 
 }

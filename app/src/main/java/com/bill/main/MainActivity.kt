@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
 import com.bill.add.AddNewAccountActivity
-import com.bill.base.BaseKotlinActivity
-import com.bill.base.BaseNewKotlinActivity
 import com.bill.billbook.BillBookView
 import com.bill.daylist.DailyBillListView
 import com.bill.summary.SummaryView
@@ -42,7 +40,6 @@ class MainActivity : BaseMainActivity() {
                     item1TextView.setTextColor(if (0 == index){ContextCompat.getColor(context ,R.color.c27)}else{ContextCompat.getColor(context ,R.color.c13)})
                     item2TextView.setTextColor(if (1 == index){ContextCompat.getColor(context ,R.color.c27) }else{ContextCompat.getColor(context ,R.color.c13)})
                     item3TextView.setTextColor(if (2 == index){ContextCompat.getColor(context ,R.color.c27)}else{ContextCompat.getColor(context ,R.color.c13)})
-
 
                     list[index].freshByHand(true)
                 }

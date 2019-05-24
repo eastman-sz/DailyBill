@@ -2,16 +2,15 @@ package com.bill.billbook
 
 import android.os.Bundle
 import android.view.View
-import com.bill.base.BaseKotlinActivity
+import com.bill.base.BaseNewKotlinActivity
 import com.bill.util.BroadcastAction
 import com.bill.util.BroadcastUtil
 import com.common.base.ITextChangedListener
-import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import com.utils.lib.ss.common.ToastHelper
 import kotlinx.android.synthetic.main.activity_add_billbook.*
 
-class AddBillBookActivity : BaseKotlinActivity() {
+class AddBillBookActivity : BaseNewKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,12 +19,8 @@ class AddBillBookActivity : BaseKotlinActivity() {
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitle("新建账簿")
-        commonTitleView.setLeftBtnText("返回")
-        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
-            override fun onLeftBtnClick() {
-                onBackPressed()
-            }
+        returnBtn.setOnClickListener {
+            onBackPressed()
         }
     }
 
