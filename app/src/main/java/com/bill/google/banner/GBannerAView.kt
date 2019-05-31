@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import com.bill.base.BaseKotlinRelativeLayout
+import com.bill.util.IConstant
 import com.bill.util.ILog
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
@@ -19,6 +20,9 @@ class GBannerAView : BaseKotlinRelativeLayout {
     override fun initViews() {
         View.inflate(context , R.layout.g_banner_a_view , this)
 
+        if (IConstant.debugMode){
+            return
+        }
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
         adView.adListener = object : AdListener(){

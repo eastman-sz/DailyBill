@@ -23,6 +23,8 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
     private val color1 = ColorHelper.getExpenseTextColor()
     private val color2 = ColorHelper.getIncomeTextColor()
+    //0全显示 1只显示支出总数 2只显示收入部数
+    var type = 0
 
     constructor(context: Context , list : List<BillList>) :
             super(context , list , R.layout.bill_list_adapter_view , R.layout.adapter_header_view){
@@ -68,8 +70,28 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
         val monthIncomeAmount = billList.monthIncomeAmount
 
         headerTextView.text = DateHelper.timestampFormat(billTime , "yyyy年MM月")
+
         monthExpanseAmountTextView.text = "支出: ".plus(CommonUtil.trimLastZero(monthAmount.toString()))
         monthIncomeAmountTextView.text = "收入: ".plus(CommonUtil.trimLastZero(monthIncomeAmount.toString()))
+
+        when(type){
+            0 -> {
+                monthExpanseAmountTextView.visibility = View.VISIBLE
+                monthIncomeAmountTextView.visibility = View.VISIBLE
+            }
+
+            1 ->{
+                monthExpanseAmountTextView.visibility = View.VISIBLE
+                monthIncomeAmountTextView.visibility = View.GONE
+            }
+
+            2 ->{
+                monthExpanseAmountTextView.visibility = View.GONE
+                monthIncomeAmountTextView.visibility = View.VISIBLE
+            }
+
+        }
+
     }
 
 }

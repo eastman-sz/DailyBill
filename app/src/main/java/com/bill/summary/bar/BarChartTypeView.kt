@@ -7,8 +7,11 @@ import com.bill.bill.DailyBill
 import com.bill.bill.DailyBillDbHelper
 import com.bill.consumption.type.SuperType
 import com.bill.summary.BaseSummaryView
+import com.bill.summary.detail.FilterDetailActivity
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.bar_chart_type_view.view.*
+import org.jetbrains.anko.startActivity
+
 /**
  * BarChartTypeView. Total data grouped by bigType.
  * @author E
@@ -41,6 +44,17 @@ class BarChartTypeView : BaseSummaryView {
         list.clear()
         list.addAll(DailyBillDbHelper.getPeriodGroupByBigType(superType , startTimestamp , endTimestamp))
         adapter?.notifyDataSetChanged()
+
+        listView.setOnItemClickListener { _, _, position, _ ->
+            val dailyBill = list[position]
+
+            context.startActivity<FilterDetailActivity>("superType" to superType ,
+                    "bigType" to dailyBill.bigTypeId ,
+                    "smallType" to dailyBill.smallTypeId ,
+                    "startTimestamp" to startTimestamp ,
+                    "endTimestamp" to endTimestamp)
+
+        }
     }
 
     override fun onSummaryRefresh() {

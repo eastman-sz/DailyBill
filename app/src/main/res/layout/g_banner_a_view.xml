@@ -8,6 +8,13 @@
     android:orientation="vertical"
     android:background="@color/transparent"
     >
+        <com.common.base.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:paddingLeft="5dp"
+            android:textSize="12sp"
+            />
+        
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
@@ -22,4 +29,10 @@
 
     <!-- =offer=ca-app-pub-3628895359109901/8298237479=== -->
 
+        <com.common.base.CustomFontTextView
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:paddingLeft="5dp"
+            android:textSize="12sp"
+            />
 </LinearLayout>

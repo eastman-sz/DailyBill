@@ -28,6 +28,8 @@ class DailyBillDataFetchHelper {
             }
         }
 
+
+
         //某一个帐户下的所有数据
         fun getAllDailyBills(bookId : Long , onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
             doAsync {
@@ -42,6 +44,16 @@ class DailyBillDataFetchHelper {
         fun getAllDailyBills(dailyBillFilter: DailyBillFilter , onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
             doAsync {
                 val dailyBillList = DailyBillDbHelper.getFilterDailyBill(dailyBillFilter)
+                uiThread {
+                    getGroupedBillList(dailyBillList , onCommonRequestListener)
+                }
+            }
+        }
+
+        //一段时期内某一小类的明细
+        fun getSmallTypeBillList(superType : Int , smallTypeId : Int , startTimestamp : Long , endTimestamp : Long , onCommonRequestListener : OnCommonRequestListener<List<BillList>>?){
+            doAsync {
+                val dailyBillList = DailyBillDbHelper.getSmallTypeDetails(superType , smallTypeId , startTimestamp , endTimestamp)
                 uiThread {
                     getGroupedBillList(dailyBillList , onCommonRequestListener)
                 }

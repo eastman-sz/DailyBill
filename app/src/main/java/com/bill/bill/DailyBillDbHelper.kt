@@ -339,6 +339,26 @@ class DailyBillDbHelper {
             return list
         }
 
+        //一段时期内某一小类的明细
+        fun getSmallTypeDetails(superType : Int , smallTypeId : Int , startTimestamp : Long , endTimestamp : Long) : List<DailyBill>{
+            val list = ArrayList<DailyBill>()
+            var cursor: Cursor? = null
+            try {
+                val db = ISqliteDataBase.getSqLiteDatabase()
+                cursor = db.query(DBNAME , null , "superType = ? and smallTypeId = ? and billTime > ? and billTime < ?" ,
+                        arrayOf(superType.toString() , smallTypeId.toString() , startTimestamp.toString() , endTimestamp.toString()) , null , null , null)
+                while(null != cursor && cursor.moveToNext()){
+                    val it = fromCursor(cursor)
+                    list.add(it)
+                }
+            }catch (e : Exception){
+                e.printStackTrace()
+            }finally {
+                cursor?.close()
+            }
+            return list
+        }
+
         //删除某一帐本下的数据
         fun deleteBook(bookId: Long) {
             val db = ISqliteDataBase.getSqLiteDatabase()

@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.bill.add.AddActivity"></activity>
+        <activity android:name="com.bill.summary.detail.FilterDetailActivity"></activity>
+        <activity android:name="com.bill.add.AddActivity" />
         <activity android:name="com.bill.base.BaseNewKotlinActivity" />
         <activity
             android:name="com.bill.add.AddNewAccountActivity"
@@ -68,7 +69,8 @@
             android:value="100000" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3628895359109901~3411197712"/>
+            android:value="ca-app-pub-3628895359109901~3411197712" />
+
         <activity
             android:name="com.bill.daylist.DailyBillFilterActivity"
             android:screenOrientation="portrait" />
@@ -85,7 +87,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

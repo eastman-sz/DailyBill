@@ -71,7 +71,6 @@ class BarChartShowView : BaseKotlinRelativeLayout {
 
             SuperType.Income.type ->{
 
-
                 val list = ArrayList<BaseSummaryView>()
                 list.add(BarChartIncomeTypeView(context))
 

@@ -37,6 +37,10 @@
             />
     </RelativeLayout>
 
+    <com.bill.google.banner.GBannerAView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -52,9 +56,5 @@
             android:overScrollMode="never"
             />
     </LinearLayout>
-
-    <com.bill.google.banner.GBannerAView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
 </LinearLayout>
