@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bill.summary.detail.FilterDetailActivity"
+    android:background="@color/sfs_page_bg_color"
+    android:orientation="vertical"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/c8"
+        >
+        <ImageView
+            android:id="@+id/returnImgView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:src="@drawable/sfs_back_sel"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:id="@+id/centerTitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Title"
+            android:textSize="16sp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+    </RelativeLayout>
+
+
+    <com.handmark.pulltorefresh.library.PullToRefreshStickyListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/pullToRefreshStickyListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/transparent"
+        android:scrollbars="none"
+        android:cacheColorHint="@color/transparent"
+        android:divider="@null"
+        android:fadingEdge="none"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrHeaderTextColor="@color/c12"
+        ptr:ptrMode="disabled"
+        ptr:ptrloading_layout_bg_color="@color/transparent"
+        />
+
+</LinearLayout>
