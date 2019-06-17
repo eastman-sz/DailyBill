@@ -50,6 +50,8 @@ class BarChartMarketAdapter : IBaseAdapter<DailyBill> {
         list.forEach {
             totalAmount += it.amount.toFloat()
         }
+        marketNameArray = MarketDbHelper.getMarketNameArray()
+
         super.notifyDataSetChanged()
     }
 

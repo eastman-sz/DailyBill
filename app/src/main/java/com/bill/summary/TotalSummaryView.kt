@@ -18,8 +18,6 @@ import java.math.BigDecimal
  */
 class TotalSummaryView : BaseKotlinRelativeLayout {
 
-
-
     constructor(context: Context) : super(context){
         init()
     }

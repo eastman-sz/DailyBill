@@ -15,9 +15,15 @@ class BroadcastHelper {
             sendBroadcast(filterTimeRangeIntent)
         }
 
+        fun onMarketChanged(){
+            sendBroadcast(Intent(BroadcastAction.marketChanged))
+        }
+
         fun sendBroadcast(intent: Intent){
             IApplication.context?.sendBroadcast(intent)
         }
+
+
 
     }
 

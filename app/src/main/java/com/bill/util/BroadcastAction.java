@@ -14,5 +14,7 @@ public class BroadcastAction {
     public final static String bigTypeFresh = "bigTypeFresh";
     //过滤时，时间范围变化
     public final static String filterTimeRangeChanged = "filterTimeRangeChanged";
+    //添加了新的商家
+    public final static String marketChanged = "marketChanged";
 
 }

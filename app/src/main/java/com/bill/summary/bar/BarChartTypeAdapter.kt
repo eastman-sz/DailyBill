@@ -49,6 +49,8 @@ class BarChartTypeAdapter : IBaseAdapter<DailyBill> {
         list.forEach {
             totalAmount += it.amount.toFloat()
         }
+        bigTypeNameArray = BigTypeDbHelper.getBigTypeNameArray(SuperType.Expense.type)
+
         super.notifyDataSetChanged()
     }
 

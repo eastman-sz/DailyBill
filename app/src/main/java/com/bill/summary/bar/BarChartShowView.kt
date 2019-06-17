@@ -27,23 +27,6 @@ class BarChartShowView : BaseKotlinRelativeLayout {
 
     override fun initViews() {
         View.inflate(context , R.layout.bar_chart_show_view , this)
-
-/*        val list = ArrayList<BaseSummaryView>()
-        list.add(BarChartTypeView(context))
-        list.add(BarChartMarketView(context))
-        list.add(BarChartNatureView(context))
-        list.add(BarChartPaymentView(context))
-        list.add(BarChartBookView(context))
-
-        val adapter = BasePagerAdapter<BaseSummaryView>(context , list)
-        viewPager.adapter = adapter
-
-
-        barChartFilterView.onBarChartFilterParamSetListener = object : OnBarChartFilterParamSetListener{
-            override fun onResult(it: BarChartFilter) {
-                viewPager.setCurrentItem(it.barChartGroupId , false)
-            }
-        }*/
     }
 
     fun setViewType(superType: Int){

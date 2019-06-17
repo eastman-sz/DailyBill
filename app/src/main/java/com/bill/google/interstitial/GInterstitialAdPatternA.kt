@@ -16,7 +16,7 @@ class GInterstitialAdPatternA {
     constructor()
 
     fun startLoad(context: Context){
-        mInterstitialAd = InterstitialAd(context)
+/*        mInterstitialAd = InterstitialAd(context)
         mInterstitialAd?.adUnitId = "ca-app-pub-3628895359109901/4401829262" //test---ca-app-pub-3940256099942544/1033173712
         mInterstitialAd?.loadAd(AdRequest.Builder().build())
         mInterstitialAd?.adListener = object : AdListener(){
@@ -39,7 +39,7 @@ class GInterstitialAdPatternA {
                 ILog.e("-----插页---onAdLeftApplication-----------")
                 onGAdListener?.onLeftApplication()
             }
-        }
+        }*/
     }
 
     fun show(){

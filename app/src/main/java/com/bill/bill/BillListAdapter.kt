@@ -18,7 +18,7 @@ import com.utils.lib.ss.common.DateHelper
  */
 class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
-    private val marketArray = MarketDbHelper.getMarketArray()
+    private var marketArray = MarketDbHelper.getMarketArray()
     private val incomeSmallTypeNameArray = SmallTypeDbHelper.getNameArray(SuperType.Income.type)
 
     private val color1 = ColorHelper.getExpenseTextColor()
@@ -92,6 +92,11 @@ class BillListAdapter : IBaseStickyListAdapter<BillList> {
 
         }
 
+    }
+
+    override fun notifyDataSetChanged() {
+        marketArray = MarketDbHelper.getMarketArray()
+        super.notifyDataSetChanged()
     }
 
 }
