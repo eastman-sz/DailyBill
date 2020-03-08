@@ -11,7 +11,7 @@ import com.common.base.BaseRelativeLayout;
 import com.sz.kk.daily.bill.R;
 import com.utils.lib.ss.common.MathUtil;
 /**
- * Created by E on 2018/4/4.
+ * Created by E on 2018/4/4.d
  */
 public class WaveView extends BaseRelativeLayout {
 
