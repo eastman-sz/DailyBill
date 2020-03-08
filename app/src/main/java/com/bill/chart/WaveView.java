@@ -29,7 +29,7 @@ public class WaveView extends BaseRelativeLayout {
     }
 
     /**
-     * 不断的更新偏移量，并且循环。
+     * 不断的更新偏移量，并且循环。f
      */
     private void updateXControl(){
         //设置一个波长的偏移
