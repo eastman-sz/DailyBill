@@ -2,7 +2,7 @@ package com.bill.util
 
 object IConstant {
 
-    const val debugMode = false
+    const val debugMode = true
 
 
 }
