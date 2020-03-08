@@ -23,7 +23,7 @@ class GBannerAView : BaseKotlinRelativeLayout {
         if (IConstant.debugMode){
             return
         }
-        val adRequest = AdRequest.Builder().build()
+/*        val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
         adView.adListener = object : AdListener(){
             override fun onAdLoaded() {
@@ -47,7 +47,7 @@ class GBannerAView : BaseKotlinRelativeLayout {
             override fun onAdOpened() {
                 ILog.e("=========onAdOpened===========")
             }
-        }
+        }*/
     }
 
 }

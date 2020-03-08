@@ -10,7 +10,7 @@
     >
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="120dp"
         android:background="@drawable/input_bg"
         >
         <LinearLayout
@@ -37,13 +37,13 @@
                 android:textSize="@dimen/s11"
                 android:textColor="@color/c27"
                 android:text="0"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="4dp"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 >
                 <com.common.base.CustomFontTextView
@@ -78,7 +78,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="4dp"
                 android:orientation="horizontal"
                 >
                 <com.common.base.CustomFontDigitTextView

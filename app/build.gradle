@@ -3,14 +3,14 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-/*    signingConfigs {
+    signingConfigs {
         smilefuns {
             storeFile file('D:\\key_space\\zz\\smilefuns.jks')
             storePassword 'smilefuns'
             keyAlias = 'smilefuns'
             keyPassword 'smilefuns'
         }
-    }*/
+    }
     compileSdkVersion 26
     buildToolsVersion '28.0.3'
 
@@ -24,9 +24,10 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             debuggable = false
+            signingConfig signingConfigs.smilefuns
         }
     }
     sourceSets {

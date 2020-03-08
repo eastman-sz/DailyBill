@@ -7,6 +7,7 @@ import android.util.SparseArray
 import com.bill.db.CursorHelper
 import com.bill.db.DbTableHelper
 import com.bill.db.ISqliteDataBase
+import com.bill.util.BroadcastHelper
 import java.lang.Exception
 
 class MarketDbHelper {
@@ -23,6 +24,9 @@ class MarketDbHelper {
 
             val db = ISqliteDataBase.getSqLiteDatabase()
             db.insert(DBNAME, null, values)
+
+            //广播信息
+            BroadcastHelper.onMarketChanged()
         }
 
         private fun getMaxMarketId(): Int {

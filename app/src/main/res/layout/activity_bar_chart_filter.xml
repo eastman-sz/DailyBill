@@ -8,10 +8,34 @@
     android:orientation="vertical"
     android:background="@color/sfs_page_bg_color"
     >
-    <com.common.base.CommonTitleView
-        android:id="@+id/commonTitleView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="48dp"
+        android:background="@color/c8"
+        >
+        <com.common.base.CustomFontTextView
+            android:id="@+id/returnBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:paddingRight="15dp"
+            android:drawableLeft="@drawable/sfs_back_sel"
+            android:text="返回"
+            />
+
+        <com.common.base.CustomFontTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="过滤"
+            android:textSize="16sp"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:gravity="center"
+            />
+    </RelativeLayout>
 
     <com.bill.daylist.CommonDateFilterView
         android:id="@+id/commonDateFilterView"

@@ -42,7 +42,7 @@
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:paddingRight="15dp"
-            android:text="元"
+            android:text=""
             android:textColor="@color/c8"
             android:textSize="@dimen/s2" />
     </RelativeLayout>

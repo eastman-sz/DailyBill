@@ -3,27 +3,58 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.bill.start.StartActivity"
+    android:layout_height="wrap_content"
+    tools:context="com.bill.billbook.AddBillBookActivity"
     android:orientation="vertical"
-    android:background="@color/sfs_page_bg_color"
+    android:background="@color/white"
     >
-    <ListView
-        android:id="@+id/itemExpandListview"
-        android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:divider="@null"
-        android:scrollbars="none"
-        android:fadingEdge="none"
-        android:visibility="visible"
-        />
     <com.common.base.CustomFontTextView
-        android:id="@+id/addNewPointTextView"
         android:layout_width="match_parent"
         android:layout_height="42dp"
         android:gravity="center"
-        android:textSize="@dimen/s6"
-        android:textColor="@color/c8"
-        android:text="添加"
+        android:textColor="@color/c13"
+        android:text="商家"
         />
+
+    <ImageView style="@style/full_line_style"/>
+
+    <com.bill.wheelview.MarketWheelView
+        android:id="@+id/marketWheelView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView style="@style/full_line_style"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:orientation="horizontal"
+        android:background="@drawable/btn_bg_a"
+        >
+        <com.common.base.CustomFontTextView
+            android:id="@+id/editTextView"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/c12"
+            android:text="添加"
+            />
+
+        <ImageView style="@style/full_line_style"
+            android:layout_width="@dimen/basic_line_height"
+            android:layout_height="match_parent" />
+
+        <com.common.base.CustomFontTextView
+            android:id="@+id/sureBtnTextView"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:gravity="center"
+            android:textColor="@color/c12"
+            android:text="确定"
+            />
+    </LinearLayout>
 </LinearLayout>

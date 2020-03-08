@@ -1,13 +1,12 @@
 package com.bill.summary.bar.filter
 
 import android.os.Bundle
+import com.bill.base.BaseNewKotlinActivity
 import com.bill.daylist.ListenerConfig
-import com.common.base.BaseAppCompactActivity
-import com.common.base.OnCommonTitleClickListener
 import com.sz.kk.daily.bill.R
 import kotlinx.android.synthetic.main.activity_bar_chart_filter.*
 
-class BarChartFilterActivity : BaseAppCompactActivity() {
+class BarChartFilterActivity : BaseNewKotlinActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,12 +15,8 @@ class BarChartFilterActivity : BaseAppCompactActivity() {
     }
 
     override fun initTitle() {
-        commonTitleView.setCenterTitle("过滤")
-        commonTitleView.setLeftBtnText("返回")
-        commonTitleView.onCommonTitleItemClickListener = object : OnCommonTitleClickListener(){
-            override fun onLeftBtnClick() {
-                finish()
-            }
+        returnBtn.setOnClickListener {
+            finish()
         }
     }
 

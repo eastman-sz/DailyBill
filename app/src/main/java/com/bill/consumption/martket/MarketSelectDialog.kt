@@ -11,9 +11,6 @@ import kotlinx.android.synthetic.main.consumption_point_dialog_view.*
  */
 class MarketSelectDialog : BaseUpGlideDialog {
 
-    val list = ArrayList<Market>()
-    var adapter : MarketSelectAdapter?= null
-
     var onCommonItemClickListener : OnCommonItemClickListener<Market>?= null
 
     constructor(context: Context) : super(context)
@@ -26,22 +23,23 @@ class MarketSelectDialog : BaseUpGlideDialog {
     }
 
     override fun initViews() {
-        list.addAll(MarketDbHelper.getMarkets())
-
-        adapter = MarketSelectAdapter(context , list)
-        itemExpandListview.adapter = adapter
-
-        itemExpandListview.setOnItemClickListener { _, _, position, id ->
-
-            onCommonItemClickListener?.onItemClick(list[position])
-
-            dismiss()
-        }
-
+        marketWheelView.showAllMarkets()
     }
 
     override fun initListeners() {
-        addNewPointTextView.setOnClickListener({
+        sureBtnTextView.setOnClickListener {
+            dismiss()
+            val market = marketWheelView.getMarket()
+
+            onCommonItemClickListener?.onItemClick(market)
+        }
+
+        editTextView.setOnClickListener {
+            val dialog = AddMarketNameDialog(context)
+            dialog.show()
+        }
+
+/*        addNewPointTextView.setOnClickListener({
             val dialog = AddMarketNameDialog(context)
             dialog.show()
             dialog.onNewMarketAddedListener = object : AddMarketNameDialog.OnNewMarketAddedListener{
@@ -53,7 +51,7 @@ class MarketSelectDialog : BaseUpGlideDialog {
                     adapter?.notifyDataSetChanged()
                 }
             }
-        })
+        })*/
     }
 
 }
